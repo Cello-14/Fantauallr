@@ -168,17 +168,27 @@ function renderView() {
             renderMercato(container);
             break;
         case 'previsioni':
-        case 'scommesse':
-            title.innerText = State.view.charAt(0).toUpperCase() + State.view.slice(1);
-            subtitle.innerText = 'Presto disponibile';
+        case 'quote':
+        case 'scommettitori': {
+            const info = {
+                previsioni: ['Previsioni', 'Probabilità di fine stagione',
+                    "Tabella con la probabilità di ogni squadra di chiudere il Campionato in ciascuna posizione. Comparirà quando almeno una posizione sarà diventata matematicamente impossibile per almeno una squadra."],
+                quote: ['Quote', 'Prossima giornata',
+                    "Quote 1 · X · 2 delle partite della prossima giornata. Accedendo con la tua email potrai scommettere con crediti virtuali, anche con schedine multiple, fino alla scadenza delle formazioni."],
+                scommettitori: ['Classifica Scommettitori', 'Chi scommette meglio',
+                    "Classifica per guadagno netto in crediti, stagionale e di sempre, con le statistiche: quota più alta vinta, più pronostici indovinati, schedina multipla più ricca, percentuale di scommesse vinte."]
+            }[State.view];
+            title.innerText = info[0];
+            subtitle.innerText = info[1];
             container.innerHTML = `
                 <div class="surface rounded-2xl p-12 text-center flex flex-col items-center justify-center border border-theme">
                     <span class="text-6xl mb-4 opacity-50">🚧</span>
                     <h3 class="text-2xl font-bold mb-2">In arrivo</h3>
-                    <p class="text-muted max-w-md">Questa sezione è attualmente in fase di sviluppo e sarà disponibile nelle prossime versioni della dashboard.</p>
+                    <p class="text-muted max-w-md">${info[2]}</p>
                 </div>
             `;
             break;
+        }
     }
 }
 
@@ -504,23 +514,23 @@ function renderGirone(fase, compName) {
 
         return `
             <tr class="border-b border-theme hover:bg-white/5 transition-colors">
-                <td class="p-3 text-center font-bold text-sm text-muted w-10">${r.pos}</td>
-                <td class="p-3 font-semibold">
-                    <div class="flex items-center gap-3">
-                        ${renderStemma(r.squadra, 'w-8 h-8')}
-                        <span class="truncate max-w-[100px] sm:max-w-xs">${r.squadra.nome}</span>
+                <td class="px-1 py-3 sm:p-3 text-center font-bold text-sm text-muted w-10">${r.pos}</td>
+                <td class="px-1 py-3 sm:p-3 font-semibold">
+                    <div class="flex items-center gap-2 sm:gap-3">
+                        ${renderStemma(r.squadra, 'w-6 h-6 sm:w-8 sm:h-8')}
+                        <span class="truncate max-w-[92px] sm:max-w-xs text-sm sm:text-base">${r.squadra.nome}</span>
                     </div>
                 </td>
-                <td class="p-3 text-center font-black text-lg flex items-center justify-center">${r.pt}${penBadge}</td>
-                <td class="p-3 text-center text-sm hidden sm:table-cell">${r.g}</td>
-                <td class="p-3 text-center text-sm hidden sm:table-cell text-accent">${r.v}</td>
-                <td class="p-3 text-center text-sm hidden sm:table-cell text-muted">${r.n}</td>
-                <td class="p-3 text-center text-sm hidden sm:table-cell text-danger">${r.p}</td>
-                <td class="p-3 text-center text-sm hidden md:table-cell">${r.gf}</td>
-                <td class="p-3 text-center text-sm hidden md:table-cell">${r.gs}</td>
-                <td class="p-3 text-center text-sm font-mono ${getColorClass(r.dr)}">${r.dr > 0 ? '+'+r.dr : r.dr}</td>
-                <td class="p-3 text-center text-sm font-mono">${formatNumber(r.fp)}</td>
-                <td class="p-3 text-center text-sm text-muted hidden lg:table-cell">${formatNumber(r.fm, 2)}</td>
+                <td class="px-1 py-3 sm:p-3 text-center font-black text-lg flex items-center justify-center">${r.pt}${penBadge}</td>
+                <td class="px-1 py-3 sm:p-3 text-center text-sm hidden sm:table-cell">${r.g}</td>
+                <td class="px-1 py-3 sm:p-3 text-center text-sm hidden sm:table-cell text-accent">${r.v}</td>
+                <td class="px-1 py-3 sm:p-3 text-center text-sm hidden sm:table-cell text-muted">${r.n}</td>
+                <td class="px-1 py-3 sm:p-3 text-center text-sm hidden sm:table-cell text-danger">${r.p}</td>
+                <td class="px-1 py-3 sm:p-3 text-center text-sm hidden md:table-cell">${r.gf}</td>
+                <td class="px-1 py-3 sm:p-3 text-center text-sm hidden md:table-cell">${r.gs}</td>
+                <td class="px-1 py-3 sm:p-3 text-center text-sm font-mono ${getColorClass(r.dr)}">${r.dr > 0 ? '+'+r.dr : r.dr}</td>
+                <td class="px-1 py-3 sm:p-3 text-center text-sm font-mono">${formatNumber(r.fp)}</td>
+                <td class="px-1 py-3 sm:p-3 text-center text-sm text-muted hidden lg:table-cell">${formatNumber(r.fm, 2)}</td>
             </tr>
         `;
     }).join('');
@@ -531,21 +541,21 @@ function renderGirone(fase, compName) {
                 <h3 class="font-bold text-lg">${fase.nome}</h3>
             </div>
             <div class="overflow-x-auto custom-scrollbar w-full">
-                <table class="w-full min-w-max text-left border-collapse">
+                <table class="w-full text-left border-collapse">
                     <thead>
                         <tr class="text-xs uppercase tracking-wider text-muted border-b border-theme bg-black/10">
-                            <th class="p-3 text-center font-medium">Pos</th>
-                            <th class="p-3 font-medium">Squadra</th>
-                            <th class="p-3 text-center font-bold text-main">Pt</th>
-                            <th class="p-3 text-center font-medium hidden sm:table-cell">G</th>
-                            <th class="p-3 text-center font-medium hidden sm:table-cell">V</th>
-                            <th class="p-3 text-center font-medium hidden sm:table-cell">N</th>
-                            <th class="p-3 text-center font-medium hidden sm:table-cell">P</th>
-                            <th class="p-3 text-center font-medium hidden md:table-cell" title="Gol Fatti">GF</th>
-                            <th class="p-3 text-center font-medium hidden md:table-cell" title="Gol Subiti">GS</th>
-                            <th class="p-3 text-center font-medium" title="Differenza Reti">DR</th>
-                            <th class="p-3 text-center font-medium">Fantapunti</th>
-                            <th class="p-3 text-center font-medium hidden lg:table-cell">Media</th>
+                            <th class="px-1 py-3 sm:p-3 text-center font-medium">Pos</th>
+                            <th class="px-1 py-3 sm:p-3 font-medium">Squadra</th>
+                            <th class="px-1 py-3 sm:p-3 text-center font-bold text-main">Pt</th>
+                            <th class="px-1 py-3 sm:p-3 text-center font-medium hidden sm:table-cell">G</th>
+                            <th class="px-1 py-3 sm:p-3 text-center font-medium hidden sm:table-cell">V</th>
+                            <th class="px-1 py-3 sm:p-3 text-center font-medium hidden sm:table-cell">N</th>
+                            <th class="px-1 py-3 sm:p-3 text-center font-medium hidden sm:table-cell">P</th>
+                            <th class="px-1 py-3 sm:p-3 text-center font-medium hidden md:table-cell" title="Gol Fatti">GF</th>
+                            <th class="px-1 py-3 sm:p-3 text-center font-medium hidden md:table-cell" title="Gol Subiti">GS</th>
+                            <th class="px-1 py-3 sm:p-3 text-center font-medium" title="Differenza Reti">DR</th>
+                            <th class="px-1 py-3 sm:p-3 text-center font-medium"><span class="sm:hidden">FP</span><span class="hidden sm:inline">Fantapunti</span></th>
+                            <th class="px-1 py-3 sm:p-3 text-center font-medium hidden lg:table-cell">Media</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -679,21 +689,18 @@ function renderElo(container) {
     }).join('');
 
     const html = `
-        <div class="surface rounded-2xl border border-theme p-4 mb-6 text-sm">
-            <p class="text-muted leading-relaxed">L'Elo misura la forza relativa: <strong class="text-main">+100 punti</strong> ≈ 64% di probabilità di vincere lo scontro diretto. Media sempre 1500.</p>
-        </div>
-        <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
-            <div class="xl:col-span-2 surface p-4 rounded-2xl border border-theme h-[400px] flex flex-col relative">
+        <div class="flex flex-col gap-6">
+            <div class="surface p-4 rounded-2xl border border-theme h-[420px] flex flex-col relative">
                 <h3 class="font-bold mb-4">Andamento Stagionale</h3>
                 <div class="flex-1 relative w-full h-full">
                     <canvas id="eloChart"></canvas>
                 </div>
             </div>
             
-            <div class="surface rounded-2xl border border-theme overflow-hidden flex flex-col h-[500px]">
-                <div class="overflow-auto flex-1 custom-scrollbar">
+            <div class="surface rounded-2xl border border-theme overflow-hidden">
+                <div>
                     <table class="w-full text-left border-collapse">
-                        <thead class="sticky top-0 surface z-10 shadow-sm border-b border-theme">
+                        <thead class="border-b border-theme bg-black/10">
                             <tr class="text-xs uppercase tracking-wider text-muted">
                                 <th class="py-3 px-2 text-center">#</th>
                                 <th class="py-3 px-2">Squadra</th>
@@ -742,9 +749,9 @@ function renderEloChart() {
         return {
             label: sq,
             data: storia.map(s => s.rating[sq]),
-            borderColor: isHighlight ? color : (State.theme === 'dark' ? '#6b7280' : '#c4c4c0'),
-            backgroundColor: isHighlight ? color : (State.theme === 'dark' ? '#6b7280' : '#c4c4c0'),
-            borderWidth: isHighlight ? 3 : 1.25,
+            borderColor: color,
+            backgroundColor: color,
+            borderWidth: isHighlight ? 3 : 2,
             tension: 0.3,
             pointRadius: isHighlight ? 4 : 0,
             pointHoverRadius: 6,
@@ -847,21 +854,21 @@ function renderRanking(container) {
 
     container.innerHTML = `
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div class="surface rounded-2xl border border-theme overflow-hidden flex flex-col h-[500px]">
+            <div class="surface rounded-2xl border border-theme overflow-hidden flex flex-col">
                 <div class="p-4 border-b border-theme bg-black/20"><h3 class="font-bold">Storico Assoluto</h3></div>
-                <div class="overflow-y-auto custom-scrollbar flex-1">
+                <div>
                     ${renderTable(d.storico, 'punti', 'Punti')}
                 </div>
             </div>
-            <div class="surface rounded-2xl border border-theme overflow-hidden flex flex-col h-[500px]">
+            <div class="surface rounded-2xl border border-theme overflow-hidden flex flex-col">
                 <div class="p-4 border-b border-theme bg-black/20"><h3 class="font-bold">Standardizzato (Media)</h3></div>
-                <div class="overflow-y-auto custom-scrollbar flex-1">
+                <div>
                     ${renderTable(d.standardizzato, 'punti', 'Pt/Stag', true)}
                 </div>
             </div>
-            <div class="surface rounded-2xl border border-theme overflow-hidden flex flex-col h-[500px]">
+            <div class="surface rounded-2xl border border-theme overflow-hidden flex flex-col">
                 <div class="p-4 border-b border-theme bg-black/20"><h3 class="font-bold">Ultime 5 Stagioni</h3></div>
-                <div class="overflow-y-auto custom-scrollbar flex-1">
+                <div>
                     ${renderTable(d.ultime5_classifica, 'punti', 'Punti')}
                 </div>
             </div>
