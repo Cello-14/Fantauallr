@@ -120,7 +120,7 @@ function updateHeader() {
     if(!State.data) return;
     document.getElementById('desktop-league-name').innerText = State.data.lega.nome;
     document.getElementById('mobile-league-name').innerText = State.data.lega.nome;
-    document.getElementById('league-season').innerText = `Stagione ${State.data.lega.stagione}` + (State.data.ultima_giornata?.giornata ? ` • Giornata ${State.data.ultima_giornata.giornata}` : '');
+    document.getElementById('league-season').innerText = `Stagione ${State.data.lega.stagione}` + (State.data.ultima_giornata?.giornata ? ` • Giornata ${gLega(State.data.ultima_giornata.giornata)}` : '');
     
     const dateStr = State.data.aggiornato ? formatDate(State.data.aggiornato) : 'Sconosciuto';
     document.getElementById('last-updated').innerText = `Aggiornato il ${dateStr}`;
@@ -144,7 +144,7 @@ function renderView() {
     switch(State.view) {
         case 'home':
             title.innerText = 'Dashboard';
-            subtitle.innerText = State.data.ultima_giornata?.giornata ? `Riepilogo Giornata ${State.data.ultima_giornata.giornata}` : 'La stagione sta per iniziare';
+            subtitle.innerText = State.data.ultima_giornata?.giornata ? `Riepilogo Giornata ${gLega(State.data.ultima_giornata.giornata)}` : 'La stagione sta per iniziare';
             renderHome(container);
             break;
         case 'classifiche':
@@ -197,6 +197,7 @@ function renderHome(container) {
     const d = State.data;
     const uGiornata = d.ultima_giornata;
     const pGiornata = d.prossima_giornata;
+    const turni = d.turni || [{ competizione: 'Campionato', ultimo: d.ultima_giornata, prossimo: d.prossima_giornata }];
     
     // Widgets
     let marketText = "Chiuso";
@@ -228,47 +229,48 @@ function renderHome(container) {
                 <span class="font-bold text-sm ${marketColor} leading-tight">${marketText}</span>
             </div>
             <div class="surface p-4 rounded-2xl border border-theme flex flex-col justify-center">
-                <span class="text-xs text-muted font-semibold uppercase tracking-wider mb-1">Scadenza formazioni${pGiornata?.giornata ? ' · G. ' + pGiornata.giornata : ''}</span>
+                <span class="text-xs text-muted font-semibold uppercase tracking-wider mb-1">Scadenza formazioni${pGiornata?.giornata ? ' · G. ' + gLega(pGiornata.giornata) : ''}</span>
                 <span class="font-bold text-sm leading-tight">${pGiornata?.scadenza_formazioni ? formatDate(pGiornata.scadenza_formazioni) : 'Non ancora inserita'}</span>
             </div>
         </div>
 
-        <!-- Caroselli -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            
-            <!-- Ultima Giornata -->
-            <div class="surface rounded-3xl border border-theme overflow-hidden flex flex-col h-80 relative group" id="carousel-ultima">
-                <div class="bg-black/20 p-4 border-b border-theme flex justify-between items-center z-10">
-                    <h3 class="font-bold text-lg">Ultimi Risultati <span class="text-muted text-sm ml-2">G. ${uGiornata?.giornata || '-'}</span></h3>
-                    <div class="flex items-center gap-2"><button class="car-nav w-7 h-7 rounded-full border border-theme text-muted hover:text-main" data-car="ultima" data-dir="-1" aria-label="Partita precedente">‹</button><div class="flex gap-1" id="dots-ultima"></div><button class="car-nav w-7 h-7 rounded-full border border-theme text-muted hover:text-main" data-car="ultima" data-dir="1" aria-label="Partita successiva">›</button></div>
-                </div>
-                <div class="carousel-track flex overflow-x-auto snap-x snap-mandatory hide-scrollbar flex-1 relative" id="track-ultima">
-                    ${uGiornata?.partite.map(p => renderMatchCardLast(p)).join('') || '<div class="w-full flex items-center justify-center">Nessun dato</div>'}
-                </div>
-                <div class="h-1 bg-white/10 w-full absolute bottom-0 z-20">
-                    <div class="h-full bg-accent w-0 transition-all duration-100 ease-linear" id="progress-ultima"></div>
-                </div>
-            </div>
-
-            <!-- Prossima Giornata -->
-            <div class="surface rounded-3xl border border-theme overflow-hidden flex flex-col h-80 relative group" id="carousel-prossima">
-                <div class="bg-black/20 p-4 border-b border-theme flex justify-between items-center z-10">
-                    <h3 class="font-bold text-lg">Prossime Sfide <span class="text-muted text-sm ml-2">G. ${pGiornata?.giornata || '-'}</span></h3>
-                    <div class="flex items-center gap-2"><button class="car-nav w-7 h-7 rounded-full border border-theme text-muted hover:text-main" data-car="prossima" data-dir="-1" aria-label="Partita precedente">‹</button><div class="flex gap-1" id="dots-prossima"></div><button class="car-nav w-7 h-7 rounded-full border border-theme text-muted hover:text-main" data-car="prossima" data-dir="1" aria-label="Partita successiva">›</button></div>
-                </div>
-                <div class="carousel-track flex overflow-x-auto snap-x snap-mandatory hide-scrollbar flex-1 relative" id="track-prossima">
-                    ${pGiornata?.partite.map(p => renderMatchCardNext(p)).join('') || '<div class="w-full flex items-center justify-center">Nessun dato</div>'}
-                </div>
-                <div class="h-1 bg-white/10 w-full absolute bottom-0 z-20">
-                    <div class="h-full bg-accent w-0 transition-all duration-100 ease-linear" id="progress-prossima"></div>
-                </div>
-            </div>
-        </div>
+        <!-- Caroselli: una coppia (ultimi risultati / prossime sfide) per ogni competizione con partite -->
+        ${turni.map((t, i) => `
+            <h2 class="font-bold text-xl ${i > 0 ? 'mt-10' : ''} mb-4">${t.competizione}</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                ${renderCarosello(i === 0 ? 'ultima' : 'ultima-' + i, 'Ultimi Risultati', t.ultimo, true, 'Nessuna partita giocata')}
+                ${renderCarosello(i === 0 ? 'prossima' : 'prossima-' + i, 'Prossime Sfide', t.prossimo, false, 'Calendario non ancora disponibile')}
+            </div>`).join('')}
     `;
     container.innerHTML = html;
 
-    if(uGiornata?.partite?.length) initCarousel('ultima', uGiornata.partite.length);
-    if(pGiornata?.partite?.length) initCarousel('prossima', pGiornata.partite.length);
+    turni.forEach((t, i) => {
+        if(t.ultimo?.partite?.length) initCarousel(i === 0 ? 'ultima' : 'ultima-' + i, t.ultimo.partite.length);
+        if(t.prossimo?.partite?.length) initCarousel(i === 0 ? 'prossima' : 'prossima-' + i, t.prossimo.partite.length);
+    });
+}
+
+// Giornata di Lega a partire da quella di Serie A (la 1ª di Lega è la prima_giornata di Serie A)
+function gLega(g) {
+    if(g === null || g === undefined || g === '') return g;
+    return Number(g) - (State.data?.lega?.prima_giornata || 1) + 1;
+}
+
+function renderCarosello(id, titolo, turno, giocate, vuoto) {
+    const partite = turno?.partite || [];
+    return `
+            <div class="surface rounded-3xl border border-theme overflow-hidden flex flex-col h-80 relative group" id="carousel-${id}">
+                <div class="bg-black/20 p-4 border-b border-theme flex justify-between items-center z-10">
+                    <h3 class="font-bold text-lg">${titolo} <span class="text-muted text-sm ml-2">G. ${turno?.giornata ? gLega(turno.giornata) : '-'}</span></h3>
+                    ${partite.length > 1 ? `<div class="flex items-center gap-2"><button class="car-nav w-7 h-7 rounded-full border border-theme text-muted hover:text-main" data-car="${id}" data-dir="-1" aria-label="Partita precedente">‹</button><div class="flex gap-1" id="dots-${id}"></div><button class="car-nav w-7 h-7 rounded-full border border-theme text-muted hover:text-main" data-car="${id}" data-dir="1" aria-label="Partita successiva">›</button></div>` : ''}
+                </div>
+                <div class="carousel-track flex overflow-x-auto snap-x snap-mandatory hide-scrollbar flex-1 relative" id="track-${id}">
+                    ${partite.map(p => giocate ? renderMatchCardLast(p) : renderMatchCardNext(p)).join('') || `<div class="w-full flex items-center justify-center text-muted">${vuoto}</div>`}
+                </div>
+                <div class="h-1 bg-white/10 w-full absolute bottom-0 z-20">
+                    <div class="h-full bg-accent w-0 transition-all duration-100 ease-linear" id="progress-${id}"></div>
+                </div>
+            </div>`;
 }
 
 function renderMatchCardLast(partita) {
@@ -278,7 +280,7 @@ function renderMatchCardLast(partita) {
 
     return `
         <div class="min-w-full w-full flex-shrink-0 snap-center flex flex-col items-center justify-center p-6 relative">
-            <span class="absolute top-4 bg-white/10 text-xs px-3 py-1 rounded-full font-semibold border border-theme">${partita.competizione}</span>
+            <span class="absolute top-4 bg-white/10 text-xs px-3 py-1 rounded-full font-semibold border border-theme">${partita.competizione === "Campionato" ? "Campionato" : (partita.fase || partita.competizione)}</span>
             
             <div class="flex items-center justify-between w-full max-w-sm mt-4">
                 <!-- Casa -->
@@ -350,7 +352,7 @@ function renderMatchCardNext(partita) {
 
     return `
         <div class="min-w-full w-full flex-shrink-0 snap-center flex flex-col items-center justify-center p-6 relative">
-            <span class="absolute top-4 bg-white/10 text-xs px-3 py-1 rounded-full font-semibold border border-theme">${partita.competizione}</span>
+            <span class="absolute top-4 bg-white/10 text-xs px-3 py-1 rounded-full font-semibold border border-theme">${partita.competizione === "Campionato" ? "Campionato" : (partita.fase || partita.competizione)}</span>
             
             <div class="flex items-center justify-between w-full max-w-sm mt-4">
                 <div class="flex flex-col items-center w-5/12">
@@ -594,7 +596,7 @@ function renderEliminazione(fase) {
                 <div class="flex flex-col gap-2 text-xs text-muted sm:w-2/3 border-t sm:border-t-0 sm:border-l border-theme pt-3 sm:pt-0 sm:pl-4">
                     ${sfida.gare.map(g => `
                         <div class="flex justify-between items-center bg-white/5 p-2 rounded">
-                            <span class="w-12">G. ${g.giornata}</span>
+                            <span class="w-12">G. ${gLega(g.giornata)}</span>
                             <span class="flex-1 truncate text-right mr-2 ${g.casa === sfida.passa ? 'text-main font-semibold' : ''}">${g.casa}</span>
                             <span class="font-mono bg-black/20 px-1 rounded text-main">${g.gol[0]}-${g.gol[1]}</span>
                             <span class="flex-1 truncate ml-2 ${g.trasferta === sfida.passa ? 'text-main font-semibold' : ''}">${g.trasferta}</span>
@@ -731,8 +733,7 @@ function renderEloChart() {
     const storia = State.data?.elo?.storia || [];
     if(storia.length === 0) return;
 
-    const prima = State.data?.lega?.prima_giornata || 1; // asse in giornate di Lega (1ª di Lega = prima_giornata di Serie A)
-    const labels = storia.map(s => s.giornata === null ? 'Inizio' : `${s.giornata - prima + 1}ª`);
+    const labels = storia.map(s => s.giornata === null ? 'Inizio' : `${gLega(s.giornata)}ª`);
     const squadre = Object.keys(storia[0].rating);
     
     // Definisci i colori base per il tema corrente
@@ -895,7 +896,7 @@ function renderOperazione(righe) {
         <div class="surface p-4 rounded-xl border border-theme">
             <div class="flex justify-between items-center mb-2">
                 <span class="font-bold text-sm">${titolo}</span>
-                <span class="text-xs text-muted">${o.data ? formatDate(String(o.data).slice(0, 10)) : (o.giornata ? 'G. ' + o.giornata : '')}</span>
+                <span class="text-xs text-muted">${o.data ? formatDate(String(o.data).slice(0, 10)) : (o.giornata ? 'G. ' + gLega(o.giornata) : '')}</span>
             </div>
             ${righe.map(r => `<div class="py-1.5 border-t border-theme first:border-t-0"><div class="text-sm">${r.ruolo ? `<span class="inline-block w-5 font-bold text-muted">${r.ruolo}</span>` : ''}${r.giocatore || ''}</div><div class="text-xs text-muted ${r.ruolo ? 'pl-5' : ''}">${r.da_squadra || 'svincolati'} → ${r.a_squadra || 'svincolati'}${r.crediti ? ` · ${r.crediti} crediti` : ''}</div></div>`).join('')}
         </div>`;

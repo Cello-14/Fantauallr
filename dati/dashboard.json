@@ -1,6 +1,6 @@
 {
  "versione_contratto": 1,
- "aggiornato": "2026-10-08T22:34",
+ "aggiornato": "2026-10-08T22:42",
  "lega": {
   "nome": "FANTAUALLR 2026-27",
   "stagione": "2026-27",
@@ -415,6 +415,368 @@
    }
   ]
  },
+ "turni": [
+  {
+   "competizione": "Campionato",
+   "ultimo": {
+    "giornata": 5,
+    "partite": [
+     {
+      "competizione": "Campionato",
+      "fase": "Campionato",
+      "casa": {
+       "nome": "Sassuoli",
+       "sigla": "SAS",
+       "stemma": "stemmi/SAS.png",
+       "colore": "#309050"
+      },
+      "trasferta": {
+       "nome": "Cardiff",
+       "sigla": "CAR",
+       "stemma": "stemmi/CAR.png",
+       "colore": "#3050B0"
+      },
+      "fantapunti": [
+       65.0,
+       77.5
+      ],
+      "gol": [
+       0,
+       3
+      ],
+      "supplementari_vinti_da": null
+     },
+     {
+      "competizione": "Campionato",
+      "fase": "Campionato",
+      "casa": {
+       "nome": "BARÇELONARDO",
+       "sigla": "BAR",
+       "stemma": "stemmi/BAR.png",
+       "colore": "#B01050"
+      },
+      "trasferta": {
+       "nome": "Real Sandro CF",
+       "sigla": "RSF",
+       "stemma": "stemmi/RSF.png",
+       "colore": "#B09030"
+      },
+      "fantapunti": [
+       86.5,
+       76.0
+      ],
+      "gol": [
+       5,
+       2
+      ],
+      "supplementari_vinti_da": null
+     },
+     {
+      "competizione": "Campionato",
+      "fase": "Campionato",
+      "casa": {
+       "nome": "Standard HEGI",
+       "sigla": "STA",
+       "stemma": "stemmi/STA.png",
+       "colore": "#909050"
+      },
+      "trasferta": {
+       "nome": "Fresencvaros",
+       "sigla": "FRE",
+       "stemma": "stemmi/FRE.png",
+       "colore": "#107050"
+      },
+      "fantapunti": [
+       62.0,
+       75.0
+      ],
+      "gol": [
+       0,
+       2
+      ],
+      "supplementari_vinti_da": null
+     },
+     {
+      "competizione": "Campionato",
+      "fase": "Campionato",
+      "casa": {
+       "nome": "FC Canzanella",
+       "sigla": "CAN",
+       "stemma": "stemmi/CAN.png",
+       "colore": "#1070B0"
+      },
+      "trasferta": {
+       "nome": "Milan & Shiro",
+       "sigla": "MIL",
+       "stemma": "stemmi/MIL.png",
+       "colore": "#B01010"
+      },
+      "fantapunti": [
+       71.5,
+       75.5
+      ],
+      "gol": [
+       1,
+       2
+      ],
+      "supplementari_vinti_da": null
+     },
+     {
+      "competizione": "Campionato",
+      "fase": "Campionato",
+      "casa": {
+       "nome": "SOMMO FC",
+       "sigla": "SOM",
+       "stemma": "stemmi/SOM.png",
+       "colore": "#B09050"
+      },
+      "trasferta": {
+       "nome": "Union Sg",
+       "sigla": "UNI",
+       "stemma": "stemmi/UNI.png",
+       "colore": "#103050"
+      },
+      "fantapunti": [
+       72.5,
+       68.0
+      ],
+      "gol": [
+       2,
+       1
+      ],
+      "supplementari_vinti_da": null
+     },
+     {
+      "competizione": "Campionato",
+      "fase": "Campionato",
+      "casa": {
+       "nome": "Gin Tony FC",
+       "sigla": "GIN",
+       "stemma": "stemmi/GIN.png",
+       "colore": "#F0D030"
+      },
+      "trasferta": {
+       "nome": "Friskoni FC",
+       "sigla": "FRI",
+       "stemma": "stemmi/FRI.png",
+       "colore": "#705030"
+      },
+      "fantapunti": [
+       69.0,
+       65.5
+      ],
+      "gol": [
+       1,
+       0
+      ],
+      "supplementari_vinti_da": null
+     }
+    ]
+   },
+   "prossimo": {
+    "giornata": 6,
+    "partite": [
+     {
+      "competizione": "Campionato",
+      "fase": "Campionato",
+      "casa": {
+       "nome": "Friskoni FC",
+       "sigla": "FRI",
+       "stemma": "stemmi/FRI.png",
+       "colore": "#705030"
+      },
+      "trasferta": {
+       "nome": "Sassuoli",
+       "sigla": "SAS",
+       "stemma": "stemmi/SAS.png",
+       "colore": "#309050"
+      },
+      "elo": {
+       "casa": 1361.1,
+       "trasferta": 1383.5,
+       "atteso_casa": 0.499
+      },
+      "probabilita": null,
+      "quote": null
+     },
+     {
+      "competizione": "Campionato",
+      "fase": "Campionato",
+      "casa": {
+       "nome": "Cardiff",
+       "sigla": "CAR",
+       "stemma": "stemmi/CAR.png",
+       "colore": "#3050B0"
+      },
+      "trasferta": {
+       "nome": "FC Canzanella",
+       "sigla": "CAN",
+       "stemma": "stemmi/CAN.png",
+       "colore": "#1070B0"
+      },
+      "elo": {
+       "casa": 1544.6,
+       "trasferta": 1489.1,
+       "atteso_casa": 0.553
+      },
+      "probabilita": null,
+      "quote": null
+     },
+     {
+      "competizione": "Campionato",
+      "fase": "Campionato",
+      "casa": {
+       "nome": "Fresencvaros",
+       "sigla": "FRE",
+       "stemma": "stemmi/FRE.png",
+       "colore": "#107050"
+      },
+      "trasferta": {
+       "nome": "Gin Tony FC",
+       "sigla": "GIN",
+       "stemma": "stemmi/GIN.png",
+       "colore": "#F0D030"
+      },
+      "elo": {
+       "casa": 1584.8,
+       "trasferta": 1608.5,
+       "atteso_casa": 0.49
+      },
+      "probabilita": null,
+      "quote": null
+     },
+     {
+      "competizione": "Campionato",
+      "fase": "Campionato",
+      "casa": {
+       "nome": "Real Sandro CF",
+       "sigla": "RSF",
+       "stemma": "stemmi/RSF.png",
+       "colore": "#B09030"
+      },
+      "trasferta": {
+       "nome": "Standard HEGI",
+       "sigla": "STA",
+       "stemma": "stemmi/STA.png",
+       "colore": "#909050"
+      },
+      "elo": {
+       "casa": 1440.3,
+       "trasferta": 1466.3,
+       "atteso_casa": 0.489
+      },
+      "probabilita": null,
+      "quote": null
+     },
+     {
+      "competizione": "Campionato",
+      "fase": "Campionato",
+      "casa": {
+       "nome": "Union Sg",
+       "sigla": "UNI",
+       "stemma": "stemmi/UNI.png",
+       "colore": "#103050"
+      },
+      "trasferta": {
+       "nome": "BARÇELONARDO",
+       "sigla": "BAR",
+       "stemma": "stemmi/BAR.png",
+       "colore": "#B01050"
+      },
+      "elo": {
+       "casa": 1458.3,
+       "trasferta": 1483.6,
+       "atteso_casa": 0.479
+      },
+      "probabilita": null,
+      "quote": null
+     },
+     {
+      "competizione": "Campionato",
+      "fase": "Campionato",
+      "casa": {
+       "nome": "Milan & Shiro",
+       "sigla": "MIL",
+       "stemma": "stemmi/MIL.png",
+       "colore": "#B01010"
+      },
+      "trasferta": {
+       "nome": "SOMMO FC",
+       "sigla": "SOM",
+       "stemma": "stemmi/SOM.png",
+       "colore": "#B09050"
+      },
+      "elo": {
+       "casa": 1590.0,
+       "trasferta": 1590.0,
+       "atteso_casa": 0.499
+      },
+      "probabilita": null,
+      "quote": null
+     }
+    ]
+   }
+  },
+  {
+   "competizione": "Champions League",
+   "ultimo": {
+    "giornata": 4,
+    "partite": [
+     {
+      "competizione": "Champions League",
+      "fase": "CL Playoff",
+      "casa": {
+       "nome": "Sassuoli",
+       "sigla": "SAS",
+       "stemma": "stemmi/SAS.png",
+       "colore": "#309050"
+      },
+      "trasferta": {
+       "nome": "Real Sandro CF",
+       "sigla": "RSF",
+       "stemma": "stemmi/RSF.png",
+       "colore": "#B09030"
+      },
+      "fantapunti": [
+       68.5,
+       76.5
+      ],
+      "gol": [
+       1,
+       2
+      ],
+      "supplementari_vinti_da": null
+     },
+     {
+      "competizione": "Champions League",
+      "fase": "CL Playoff",
+      "casa": {
+       "nome": "FC Canzanella",
+       "sigla": "CAN",
+       "stemma": "stemmi/CAN.png",
+       "colore": "#1070B0"
+      },
+      "trasferta": {
+       "nome": "Fresencvaros",
+       "sigla": "FRE",
+       "stemma": "stemmi/FRE.png",
+       "colore": "#107050"
+      },
+      "fantapunti": [
+       72.0,
+       72.5
+      ],
+      "gol": [
+       2,
+       2
+      ],
+      "supplementari_vinti_da": null
+     }
+    ]
+   },
+   "prossimo": null
+  }
+ ],
  "competizioni": {
   "Campionato": {
    "fasi": [
