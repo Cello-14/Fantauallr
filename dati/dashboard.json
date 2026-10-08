@@ -1,6 +1,6 @@
 {
  "versione_contratto": 1,
- "aggiornato": "2026-10-08T21:47",
+ "aggiornato": "2026-10-08T22:25",
  "lega": {
   "nome": "FANTAUALLR 2026-27",
   "stagione": "2026-27"
@@ -290,8 +290,8 @@
      "colore": "#309050"
     },
     "elo": {
-     "casa": 1362.6,
-     "trasferta": 1364.2,
+     "casa": 1361.1,
+     "trasferta": 1383.5,
      "atteso_casa": 0.499
     },
     "probabilita": null,
@@ -313,8 +313,8 @@
      "colore": "#1070B0"
     },
     "elo": {
-     "casa": 1543.5,
-     "trasferta": 1469.7,
+     "casa": 1544.6,
+     "trasferta": 1489.1,
      "atteso_casa": 0.553
     },
     "probabilita": null,
@@ -336,8 +336,8 @@
      "colore": "#F0D030"
     },
     "elo": {
-     "casa": 1596.0,
-     "trasferta": 1610.0,
+     "casa": 1584.8,
+     "trasferta": 1608.5,
      "atteso_casa": 0.49
     },
     "probabilita": null,
@@ -359,8 +359,8 @@
      "colore": "#909050"
     },
     "elo": {
-     "casa": 1454.3,
-     "trasferta": 1468.9,
+     "casa": 1440.3,
+     "trasferta": 1466.3,
      "atteso_casa": 0.489
     },
     "probabilita": null,
@@ -382,8 +382,8 @@
      "colore": "#B01050"
     },
     "elo": {
-     "casa": 1458.7,
-     "trasferta": 1488.5,
+     "casa": 1458.3,
+     "trasferta": 1483.6,
      "atteso_casa": 0.479
     },
     "probabilita": null,
@@ -405,8 +405,8 @@
      "colore": "#B09050"
     },
     "elo": {
-     "casa": 1591.1,
-     "trasferta": 1592.5,
+     "casa": 1590.0,
+     "trasferta": 1590.0,
      "atteso_casa": 0.499
     },
     "probabilita": null,
@@ -829,8 +829,8 @@
     "allenatori": [
      "Toni"
     ],
-    "rating": 1610.0,
-    "variazione": 110.0,
+    "rating": 1608.5,
+    "variazione": 108.5,
     "partite": 3,
     "prob_vs_media": 0.579,
     "squadra": {
@@ -842,25 +842,10 @@
    },
    {
     "allenatori": [
-     "Fresa"
-    ],
-    "rating": 1596.0,
-    "variazione": 96.0,
-    "partite": 5,
-    "prob_vs_media": 0.569,
-    "squadra": {
-     "nome": "Fresencvaros",
-     "sigla": "FRE",
-     "stemma": "stemmi/FRE.png",
-     "colore": "#107050"
-    }
-   },
-   {
-    "allenatori": [
      "Edo"
     ],
-    "rating": 1592.5,
-    "variazione": 92.5,
+    "rating": 1590.0,
+    "variazione": 90.0,
     "partite": 3,
     "prob_vs_media": 0.566,
     "squadra": {
@@ -874,8 +859,8 @@
     "allenatori": [
      "Dario"
     ],
-    "rating": 1591.1,
-    "variazione": 91.1,
+    "rating": 1590.0,
+    "variazione": 90.0,
     "partite": 3,
     "prob_vs_media": 0.565,
     "squadra": {
@@ -887,10 +872,25 @@
    },
    {
     "allenatori": [
+     "Fresa"
+    ],
+    "rating": 1584.8,
+    "variazione": 84.8,
+    "partite": 5,
+    "prob_vs_media": 0.569,
+    "squadra": {
+     "nome": "Fresencvaros",
+     "sigla": "FRE",
+     "stemma": "stemmi/FRE.png",
+     "colore": "#107050"
+    }
+   },
+   {
+    "allenatori": [
      "Riki"
     ],
-    "rating": 1543.5,
-    "variazione": 43.5,
+    "rating": 1544.6,
+    "variazione": 44.6,
     "partite": 3,
     "prob_vs_media": 0.531,
     "squadra": {
@@ -902,25 +902,10 @@
    },
    {
     "allenatori": [
-     "Leo"
-    ],
-    "rating": 1488.5,
-    "variazione": -11.5,
-    "partite": 3,
-    "prob_vs_media": 0.492,
-    "squadra": {
-     "nome": "BARÇELONARDO",
-     "sigla": "BAR",
-     "stemma": "stemmi/BAR.png",
-     "colore": "#B01050"
-    }
-   },
-   {
-    "allenatori": [
      "Giacomo"
     ],
-    "rating": 1469.7,
-    "variazione": -30.3,
+    "rating": 1489.1,
+    "variazione": -10.9,
     "partite": 5,
     "prob_vs_media": 0.478,
     "squadra": {
@@ -932,10 +917,25 @@
    },
    {
     "allenatori": [
+     "Leo"
+    ],
+    "rating": 1483.6,
+    "variazione": -16.4,
+    "partite": 3,
+    "prob_vs_media": 0.492,
+    "squadra": {
+     "nome": "BARÇELONARDO",
+     "sigla": "BAR",
+     "stemma": "stemmi/BAR.png",
+     "colore": "#B01050"
+    }
+   },
+   {
+    "allenatori": [
      "Gigi"
     ],
-    "rating": 1468.9,
-    "variazione": -31.1,
+    "rating": 1466.3,
+    "variazione": -33.7,
     "partite": 3,
     "prob_vs_media": 0.478,
     "squadra": {
@@ -949,8 +949,8 @@
     "allenatori": [
      "Guido"
     ],
-    "rating": 1458.7,
-    "variazione": -41.3,
+    "rating": 1458.3,
+    "variazione": -41.7,
     "partite": 3,
     "prob_vs_media": 0.47,
     "squadra": {
@@ -964,8 +964,8 @@
     "allenatori": [
      "Lispa"
     ],
-    "rating": 1454.3,
-    "variazione": -45.7,
+    "rating": 1440.3,
+    "variazione": -59.7,
     "partite": 5,
     "prob_vs_media": 0.467,
     "squadra": {
@@ -979,8 +979,8 @@
     "allenatori": [
      "Sazo"
     ],
-    "rating": 1364.2,
-    "variazione": -135.8,
+    "rating": 1383.5,
+    "variazione": -116.5,
     "partite": 5,
     "prob_vs_media": 0.404,
     "squadra": {
@@ -994,8 +994,8 @@
     "allenatori": [
      "Frisko"
     ],
-    "rating": 1362.6,
-    "variazione": -137.4,
+    "rating": 1361.1,
+    "variazione": -138.9,
     "partite": 3,
     "prob_vs_media": 0.402,
     "squadra": {
@@ -1027,52 +1027,52 @@
    {
     "giornata": 3,
     "rating": {
-     "Gin Tony FC": 1540.0,
-     "SOMMO FC": 1560.0,
-     "Fresencvaros": 1480.0,
-     "Milan & Shiro": 1560.0,
-     "Cardiff": 1440.0,
-     "BARÇELONARDO": 1460.0,
-     "Standard HEGI": 1570.0,
-     "FC Canzanella": 1460.0,
-     "Union Sg": 1540.0,
-     "Real Sandro CF": 1500.0,
-     "Sassuoli": 1460.0,
-     "Friskoni FC": 1430.0
+     "Gin Tony FC": 1543.3,
+     "SOMMO FC": 1563.3,
+     "Fresencvaros": 1463.3,
+     "Milan & Shiro": 1563.3,
+     "Cardiff": 1443.3,
+     "BARÇELONARDO": 1463.3,
+     "Standard HEGI": 1573.3,
+     "FC Canzanella": 1483.3,
+     "Union Sg": 1543.3,
+     "Real Sandro CF": 1483.3,
+     "Sassuoli": 1443.3,
+     "Friskoni FC": 1433.3
     }
    },
    {
     "giornata": 4,
     "rating": {
-     "Gin Tony FC": 1582.0,
-     "SOMMO FC": 1556.6,
-     "Fresencvaros": 1536.9,
-     "Milan & Shiro": 1554.3,
-     "Cardiff": 1479.3,
-     "BARÇELONARDO": 1402.0,
-     "Standard HEGI": 1528.0,
-     "FC Canzanella": 1506.6,
-     "Union Sg": 1494.6,
-     "Real Sandro CF": 1540.8,
-     "Sassuoli": 1428.4,
-     "Friskoni FC": 1390.7
+     "Gin Tony FC": 1580.5,
+     "SOMMO FC": 1553.9,
+     "Fresencvaros": 1524.6,
+     "Milan & Shiro": 1551.6,
+     "Cardiff": 1477.8,
+     "BARÇELONARDO": 1398.5,
+     "Standard HEGI": 1526.4,
+     "FC Canzanella": 1527.5,
+     "Union Sg": 1494.4,
+     "Real Sandro CF": 1525.4,
+     "Sassuoli": 1450.3,
+     "Friskoni FC": 1389.1
     }
    },
    {
     "giornata": 5,
     "rating": {
-     "Gin Tony FC": 1610.0,
-     "SOMMO FC": 1592.5,
-     "Fresencvaros": 1596.0,
-     "Milan & Shiro": 1591.1,
-     "Cardiff": 1543.5,
-     "BARÇELONARDO": 1488.5,
-     "Standard HEGI": 1468.9,
-     "FC Canzanella": 1469.7,
-     "Union Sg": 1458.7,
-     "Real Sandro CF": 1454.3,
-     "Sassuoli": 1364.2,
-     "Friskoni FC": 1362.6
+     "Gin Tony FC": 1608.5,
+     "SOMMO FC": 1590.0,
+     "Fresencvaros": 1584.8,
+     "Milan & Shiro": 1590.0,
+     "Cardiff": 1544.6,
+     "BARÇELONARDO": 1483.6,
+     "Standard HEGI": 1466.3,
+     "FC Canzanella": 1489.1,
+     "Union Sg": 1458.3,
+     "Real Sandro CF": 1440.3,
+     "Sassuoli": 1383.5,
+     "Friskoni FC": 1361.1
     }
    }
   ]
