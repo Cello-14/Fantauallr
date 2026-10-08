@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FANTAUALLR Dashboard</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23c4ff00'/%3E%3Ctext x='16' y='22' font-size='18' font-family='Arial' font-weight='bold' text-anchor='middle' fill='%23000'%3EF%3C/text%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="vendor/chart.min.js"></script>
+    
+    <link rel="stylesheet" href="tailwind.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="min-h-screen flex flex-col md:flex-row">
+
+    <!-- Navigazione Mobile (Header) -->
+    <header class="md:hidden surface sticky top-0 z-50 flex items-center justify-between p-4 shadow-md">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-full bg-accent flex items-center justify-center font-bold text-sm">F</div>
+            <h1 class="font-bold tracking-tight whitespace-nowrap" id="mobile-league-name">FANTAUALLR</h1>
+        </div>
+        <button id="mobile-menu-btn" class="p-2 border border-theme rounded-lg">
+            <svg class="w-6 h-6 text-main" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+    </header>
+
+    <!-- Navigazione Desktop & Menu Mobile espanso -->
+    <nav id="sidebar" class="hidden md:flex flex-col surface w-full md:w-64 md:min-h-screen border-r border-theme fixed md:sticky top-16 md:top-0 z-40 h-[calc(100vh-64px)] md:h-screen">
+        <div class="p-6 hidden md:flex items-center gap-3 border-b border-theme">
+            <div class="w-10 h-10 rounded-full bg-accent flex items-center justify-center font-bold text-lg">F</div>
+            <div>
+                <h1 class="font-bold tracking-tight leading-tight whitespace-nowrap text-[15px]" id="desktop-league-name">FANTAUALLR</h1>
+                <p class="text-xs text-muted" id="league-season">Stagione</p>
+            </div>
+        </div>
+        
+        <div class="flex-1 overflow-y-auto py-4 px-3 flex flex-col gap-1">
+            <button data-view="home" class="nav-btn flex items-center gap-3 w-full text-left p-3 rounded-xl hover:bg-white/5 transition-colors font-medium bg-white/10 text-main">
+                <svg class="w-5 h-5 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                Dashboard
+            </button>
+            <button data-view="classifiche" class="nav-btn flex items-center gap-3 w-full text-left p-3 rounded-xl hover:bg-white/5 transition-colors font-medium text-muted">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                Classifiche
+            </button>
+            <button data-view="elo" class="nav-btn flex items-center gap-3 w-full text-left p-3 rounded-xl hover:bg-white/5 transition-colors font-medium text-muted">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
+                Rating Elo
+            </button>
+            <button data-view="ranking" class="nav-btn flex items-center gap-3 w-full text-left p-3 rounded-xl hover:bg-white/5 transition-colors font-medium text-muted">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                Allenatori
+            </button>
+            <button data-view="mercato" class="nav-btn flex items-center gap-3 w-full text-left p-3 rounded-xl hover:bg-white/5 transition-colors font-medium text-muted">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                Mercato
+            </button>
+            
+            <div class="my-2 border-t border-theme"></div>
+            
+            <button data-view="previsioni" class="nav-btn flex items-center gap-3 w-full text-left p-3 rounded-xl hover:bg-white/5 transition-colors font-medium text-muted opacity-70">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                Previsioni
+            </button>
+            <button data-view="scommesse" class="nav-btn flex items-center gap-3 w-full text-left p-3 rounded-xl hover:bg-white/5 transition-colors font-medium text-muted opacity-70">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                Scommesse
+            </button>
+        </div>
+        
+        <div class="p-4 border-t border-theme">
+            <button id="theme-toggle" class="flex items-center justify-between w-full p-2 rounded-lg hover:bg-white/5 transition-colors text-sm text-muted">
+                <span>Tema</span>
+                <div class="flex gap-2">
+                    <span id="icon-sun" class="hidden">☀️</span>
+                    <span id="icon-moon">🌙</span>
+                </div>
+            </button>
+            <div id="last-updated" class="text-xs text-muted text-center mt-4"></div>
+        </div>
+    </nav>
+
+    <!-- Contenuto Principale -->
+    <main class="flex-1 w-full max-w-full overflow-x-hidden p-4 md:p-8">
+        
+        <!-- Header Dinamico -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+            <div>
+                <h2 id="page-title" class="text-2xl md:text-3xl font-bold">Dashboard</h2>
+                <p id="page-subtitle" class="text-muted mt-1">Caricamento dati...</p>
+            </div>
+            
+            <!-- Area Scommesse Futura (Mock) -->
+            <div id="auth-area" class="flex items-center gap-3 hidden">
+                <div class="surface px-4 py-2 rounded-full border-theme flex items-center gap-2">
+                    <span class="text-warning font-bold">🪙</span>
+                    <span id="user-balance" class="font-bold">100</span>
+                </div>
+                <button class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-full text-sm font-medium transition-colors border border-theme">
+                    Profilo
+                </button>
+            </div>
+        </div>
+
+        <!-- Contenitore delle viste -->
+        <div id="view-container" class="w-full">
+            <!-- Il contenuto viene iniettato qui da JS -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="surface h-32 rounded-2xl skeleton"></div>
+                <div class="surface h-32 rounded-2xl skeleton"></div>
+                <div class="surface h-32 rounded-2xl skeleton"></div>
+            </div>
+            <div class="mt-6 surface h-96 rounded-2xl skeleton"></div>
+        </div>
+
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
