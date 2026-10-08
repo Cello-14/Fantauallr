@@ -700,11 +700,11 @@ function renderElo(container) {
     const html = `
         <div class="flex flex-col gap-6">
             <div class="surface p-4 rounded-2xl border border-theme h-[420px] flex flex-col relative">
-                <div class="flex items-center justify-between gap-2 mb-4">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
                     <h3 class="font-bold">Andamento Stagionale</h3>
                     <div class="flex gap-2">
-                        <button id="elo-tutte" class="text-xs font-semibold px-3 py-1 rounded-full border border-theme text-muted hover:text-main">Tutte</button>
-                        <button id="elo-nessuna" class="text-xs font-semibold px-3 py-1 rounded-full border border-theme text-muted hover:text-main">Nessuna</button>
+                        <button id="elo-tutte" class="text-xs font-semibold px-3 py-1 rounded-full border border-theme text-muted hover:text-main">Seleziona tutte</button>
+                        <button id="elo-nessuna" class="text-xs font-semibold px-3 py-1 rounded-full border border-theme text-muted hover:text-main">Deseleziona tutte</button>
                     </div>
                 </div>
                 <div class="flex-1 relative w-full h-full">
@@ -823,11 +823,12 @@ function renderEloChart() {
                         filter: function(item) { return item.text !== 'Media (1500)'; }
                     },
                     onClick: function(e, legendItem, legend) {
-                        // clic sul nome: mostra solo quella squadra; un secondo clic sulla stessa le rimostra tutte
+                        // con tutte le squadre visibili il clic sul nome isola quella squadra;
+                        // altrimenti il clic aggiunge o toglie la squadra dal confronto
                         const ci = legend.chart, index = legendItem.datasetIndex;
-                        const visibili = squadre.map((_, i) => i).filter(i => ci.isDatasetVisible(i));
-                        const sola = visibili.length === 1 && visibili[0] === index;
-                        squadre.forEach((_, i) => ci.setDatasetVisibility(i, sola || i === index));
+                        const tutte = squadre.every((_, i) => ci.isDatasetVisible(i));
+                        if(tutte) squadre.forEach((_, i) => ci.setDatasetVisibility(i, i === index));
+                        else ci.setDatasetVisibility(index, !ci.isDatasetVisible(index));
                         ci.update();
                     }
                 },
