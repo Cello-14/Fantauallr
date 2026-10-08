@@ -679,7 +679,7 @@ function renderElo(container) {
                 <td class="py-3 px-2 font-semibold">
                     <div class="flex items-center gap-2 min-w-0">
                         ${renderStemma(r.squadra, 'w-7 h-7')}
-                        <span class="truncate max-w-[130px]">${r.squadra.nome}</span>
+                        <span class="truncate max-w-[110px] sm:max-w-[130px]">${r.squadra.nome}</span>
                     </div>
                 </td>
                 <td class="py-3 px-2 text-center font-bold font-mono text-base">${r.rating.toFixed(0)}</td>
