@@ -1,6 +1,6 @@
 {
  "versione_contratto": 1,
- "aggiornato": "2026-10-08T22:42",
+ "aggiornato": "2026-10-08T22:48",
  "lega": {
   "nome": "FANTAUALLR 2026-27",
   "stagione": "2026-27",
@@ -293,7 +293,7 @@
     "elo": {
      "casa": 1361.1,
      "trasferta": 1383.5,
-     "atteso_casa": 0.499
+     "atteso_casa": 0.484
     },
     "probabilita": null,
     "quote": null
@@ -316,7 +316,7 @@
     "elo": {
      "casa": 1544.6,
      "trasferta": 1489.1,
-     "atteso_casa": 0.553
+     "atteso_casa": 0.54
     },
     "probabilita": null,
     "quote": null
@@ -339,7 +339,7 @@
     "elo": {
      "casa": 1584.8,
      "trasferta": 1608.5,
-     "atteso_casa": 0.49
+     "atteso_casa": 0.483
     },
     "probabilita": null,
     "quote": null
@@ -362,7 +362,7 @@
     "elo": {
      "casa": 1440.3,
      "trasferta": 1466.3,
-     "atteso_casa": 0.489
+     "atteso_casa": 0.481
     },
     "probabilita": null,
     "quote": null
@@ -385,7 +385,7 @@
     "elo": {
      "casa": 1458.3,
      "trasferta": 1483.6,
-     "atteso_casa": 0.479
+     "atteso_casa": 0.482
     },
     "probabilita": null,
     "quote": null
@@ -408,7 +408,7 @@
     "elo": {
      "casa": 1590.0,
      "trasferta": 1590.0,
-     "atteso_casa": 0.499
+     "atteso_casa": 0.5
     },
     "probabilita": null,
     "quote": null
@@ -594,7 +594,7 @@
       "elo": {
        "casa": 1361.1,
        "trasferta": 1383.5,
-       "atteso_casa": 0.499
+       "atteso_casa": 0.484
       },
       "probabilita": null,
       "quote": null
@@ -617,7 +617,7 @@
       "elo": {
        "casa": 1544.6,
        "trasferta": 1489.1,
-       "atteso_casa": 0.553
+       "atteso_casa": 0.54
       },
       "probabilita": null,
       "quote": null
@@ -640,7 +640,7 @@
       "elo": {
        "casa": 1584.8,
        "trasferta": 1608.5,
-       "atteso_casa": 0.49
+       "atteso_casa": 0.483
       },
       "probabilita": null,
       "quote": null
@@ -663,7 +663,7 @@
       "elo": {
        "casa": 1440.3,
        "trasferta": 1466.3,
-       "atteso_casa": 0.489
+       "atteso_casa": 0.481
       },
       "probabilita": null,
       "quote": null
@@ -686,7 +686,7 @@
       "elo": {
        "casa": 1458.3,
        "trasferta": 1483.6,
-       "atteso_casa": 0.479
+       "atteso_casa": 0.482
       },
       "probabilita": null,
       "quote": null
@@ -709,7 +709,7 @@
       "elo": {
        "casa": 1590.0,
        "trasferta": 1590.0,
-       "atteso_casa": 0.499
+       "atteso_casa": 0.5
       },
       "probabilita": null,
       "quote": null
@@ -1449,6 +1449,32 @@
      "Sassuoli": 1383.5,
      "Friskoni FC": 1361.1
     }
+   }
+  ],
+  "bonus_coppe": [
+   {
+    "fase": "CL Playoff",
+    "punti": 10.0
+   },
+   {
+    "fase": "CL Girone",
+    "punti": 40.0
+   },
+   {
+    "fase": "CL Semifinali",
+    "punti": 20.0
+   },
+   {
+    "fase": "CL Finale",
+    "punti": 20.0
+   },
+   {
+    "fase": "Coppa Finale",
+    "punti": 20.0
+   },
+   {
+    "fase": "CL Qualificazione diretta",
+    "punti": 25.0
    }
   ]
  },

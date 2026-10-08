@@ -667,6 +667,7 @@ function renderFormula1(fase) {
 // --- STREAMING_CHUNK:View - Elo & Chart... ---
 function renderElo(container) {
     const classData = State.data?.elo?.classifica || [];
+    const bonusTxt = (State.data?.elo?.bonus_coppe || []).map(b => `${b.fase} +${formatNumber(b.punti, 0)}`).join(', ');
     
     const tableRows = classData.map((r, i) => {
         const forma = r.forma ?? r.variazione; // variazione delle ultime 5 giornate
@@ -717,6 +718,18 @@ function renderElo(container) {
                         </tbody>
                     </table>
                 </div>
+            </div>
+
+            <div class="surface p-5 rounded-2xl border border-theme text-sm leading-relaxed">
+                <h3 class="font-bold mb-3">Come si calcola il Rating Elo</h3>
+                <ul class="list-disc pl-5 space-y-2 text-muted">
+                    <li>Ogni squadra parte da <b class="text-main">1500</b>, la media della lega. Dopo ogni partita guadagna punti se fa meglio del previsto e ne perde se fa peggio: battere una squadra più forte vale più che battere una più debole.</li>
+                    <li>Conta lo <b class="text-main">scarto di gol</b>: vincere di 2 o più gol vale di più. Una vittoria di 1 gol contro una squadra di pari livello vale circa +20.</li>
+                    <li>Nelle <b class="text-main">coppe</b> non si perdono punti e ogni fase giocata dà un bonus${bonusTxt ? ': ' + bonusTxt : ''}.</li>
+                    <li>Dopo ogni giornata la media torna a 1500: il rating dice quanto sei forte <b class="text-main">rispetto agli altri</b>.</li>
+                    <li>Il rating segue l'<b class="text-main">allenatore</b>. Nelle prime 10 partite in carriera si muove il doppio; a inizio stagione si conserva un terzo della distanza da 1500.</li>
+                    <li><b class="text-main">Forma</b>: variazione nelle ultime 5 giornate. Nelle Prossime Sfide, l'indice di forza è il punteggio atteso secondo l'Elo (il pareggio vale mezzo punto).</li>
+                </ul>
             </div>
         </div>
     `;
