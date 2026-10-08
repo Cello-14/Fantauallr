@@ -667,8 +667,9 @@ function renderElo(container) {
     const classData = State.data?.elo?.classifica || [];
     
     const tableRows = classData.map((r, i) => {
-        const isPos = r.variazione > 0;
-        const isNeg = r.variazione < 0;
+        const forma = r.forma ?? r.variazione; // variazione delle ultime 5 giornate
+        const isPos = forma > 0;
+        const isNeg = forma < 0;
         const varColor = isPos ? 'text-accent' : (isNeg ? 'text-danger' : 'text-muted');
         const sign = isPos ? '▲ +' : (isNeg ? '▼ ' : '');
         
@@ -682,7 +683,7 @@ function renderElo(container) {
                     </div>
                 </td>
                 <td class="py-3 px-2 text-center font-bold font-mono text-base">${r.rating.toFixed(0)}</td>
-                <td class="py-3 px-2 text-right font-mono text-xs whitespace-nowrap ${varColor}">${sign}${formatNumber(r.variazione, 0)}</td>
+                <td class="py-3 px-2 text-right font-mono text-xs whitespace-nowrap ${varColor}">${sign}${formatNumber(forma, 0)}</td>
                 <td class="py-3 px-2 text-center text-sm hidden sm:table-cell text-muted">${r.partite}</td>
             </tr>
         `;
@@ -705,7 +706,7 @@ function renderElo(container) {
                                 <th class="py-3 px-2 text-center">#</th>
                                 <th class="py-3 px-2">Squadra</th>
                                 <th class="py-3 px-2 text-center">Elo</th>
-                                <th class="py-3 px-2 text-right">Var.</th>
+                                <th class="py-3 px-2 text-right" title="Variazione dell'Elo nelle ultime 5 giornate">Forma</th>
                                 <th class="py-3 px-2 text-center hidden sm:table-cell">G</th>
                             </tr>
                         </thead>
@@ -730,7 +731,8 @@ function renderEloChart() {
     const storia = State.data?.elo?.storia || [];
     if(storia.length === 0) return;
 
-    const labels = storia.map(s => s.giornata === null ? 'Inizio' : `G${s.giornata}`);
+    const prima = State.data?.lega?.prima_giornata || 1; // asse in giornate di Lega (1ª di Lega = prima_giornata di Serie A)
+    const labels = storia.map(s => s.giornata === null ? 'Inizio' : `${s.giornata - prima + 1}ª`);
     const squadre = Object.keys(storia[0].rating);
     
     // Definisci i colori base per il tema corrente
@@ -808,7 +810,8 @@ function renderEloChart() {
                     borderWidth: 1,
                     padding: 10,
                     bodyFont: { family: 'Inter', size: 12 },
-                    titleFont: { family: 'Inter', size: 13, weight: 'bold' }
+                    titleFont: { family: 'Inter', size: 13, weight: 'bold' },
+                    callbacks: { title: items => items[0].label === 'Inizio' ? 'Inizio stagione' : `${items[0].label} giornata di Lega` }
                 }
             },
             scales: {
