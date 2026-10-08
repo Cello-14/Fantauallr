@@ -53,7 +53,7 @@ async function initApp() {
     
     try {
         // Tentativo di fetch reale
-        const response = await fetch('dati/dashboard.json');
+        const response = await fetch('dati/dashboard.json', { cache: 'no-cache' }); // sempre i dati più recenti
         if(!response.ok) throw new Error('Network response was not ok');
         State.data = await response.json();
     } catch (e) {
