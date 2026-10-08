@@ -700,7 +700,13 @@ function renderElo(container) {
     const html = `
         <div class="flex flex-col gap-6">
             <div class="surface p-4 rounded-2xl border border-theme h-[420px] flex flex-col relative">
-                <h3 class="font-bold mb-4">Andamento Stagionale</h3>
+                <div class="flex items-center justify-between gap-2 mb-4">
+                    <h3 class="font-bold">Andamento Stagionale</h3>
+                    <div class="flex gap-2">
+                        <button id="elo-tutte" class="text-xs font-semibold px-3 py-1 rounded-full border border-theme text-muted hover:text-main">Tutte</button>
+                        <button id="elo-nessuna" class="text-xs font-semibold px-3 py-1 rounded-full border border-theme text-muted hover:text-main">Nessuna</button>
+                    </div>
+                </div>
                 <div class="flex-1 relative w-full h-full">
                     <canvas id="eloChart"></canvas>
                 </div>
@@ -795,6 +801,9 @@ function renderEloChart() {
     });
 
     if(State.chartInstance) State.chartInstance.destroy();
+    const mostraTutte = v => { squadre.forEach((_, i) => State.chartInstance.setDatasetVisibility(i, v)); State.chartInstance.update(); };
+    document.getElementById('elo-tutte')?.addEventListener('click', () => mostraTutte(true));
+    document.getElementById('elo-nessuna')?.addEventListener('click', () => mostraTutte(false));
 
     State.chartInstance = new Chart(ctx, {
         type: 'line',
@@ -814,11 +823,11 @@ function renderEloChart() {
                         filter: function(item) { return item.text !== 'Media (1500)'; }
                     },
                     onClick: function(e, legendItem, legend) {
-                        const index = legendItem.datasetIndex;
-                        const ci = legend.chart;
-                        const meta = ci.getDatasetMeta(index);
-                        // Toggle visibility
-                        meta.hidden = meta.hidden === null ? !ci.data.datasets[index].hidden : null;
+                        // clic sul nome: mostra solo quella squadra; un secondo clic sulla stessa le rimostra tutte
+                        const ci = legend.chart, index = legendItem.datasetIndex;
+                        const visibili = squadre.map((_, i) => i).filter(i => ci.isDatasetVisible(i));
+                        const sola = visibili.length === 1 && visibili[0] === index;
+                        squadre.forEach((_, i) => ci.setDatasetVisibility(i, sola || i === index));
                         ci.update();
                     }
                 },
