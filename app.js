@@ -230,7 +230,7 @@ function renderHome(container) {
             </div>
             <div class="surface p-4 rounded-2xl border border-theme flex flex-col justify-center">
                 <span class="text-xs text-muted font-semibold uppercase tracking-wider mb-1">Scadenza formazioni${pGiornata?.giornata ? ' · G. ' + gLega(pGiornata.giornata) : ''}</span>
-                <span class="font-bold text-sm leading-tight">${pGiornata?.scadenza_formazioni ? formatDate(pGiornata.scadenza_formazioni) : 'Non ancora inserita'}</span>
+                <span class="font-bold text-sm leading-tight">${pGiornata?.scadenza_formazioni ? formatDate(pGiornata.scadenza_formazioni) + (pGiornata.scadenza_provvisoria ? ' (orario da definire)' : '') : 'Non ancora inserita'}</span>
             </div>
         </div>
 
