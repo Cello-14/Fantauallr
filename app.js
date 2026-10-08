@@ -665,8 +665,12 @@ function renderFormula1(fase) {
 }
 
 // --- STREAMING_CHUNK:View - Elo & Chart... ---
+const COLORI_FASCE = { Diamante: '#7dd3fc', Platino: '#c4d3e0', Oro: '#facc15', Argento: '#a3a3a3', Bronzo: '#cd7f32' };
+
 function renderElo(container) {
     const classData = State.data?.elo?.classifica || [];
+    const fasce = State.data?.elo?.fasce || [];
+    const fasceTxt = fasce.map((f, i) => `${f.nome} ${f.da === null ? 'sotto ' + fasce[i - 1]?.da : 'da ' + f.da}`).join(', ');
     const bonusTxt = (State.data?.elo?.bonus_coppe || []).map(b => `${b.fase} +${formatNumber(b.punti, 0)}`).join(', ');
     
     const tableRows = classData.map((r, i) => {
@@ -681,13 +685,14 @@ function renderElo(container) {
                 <td class="py-3 px-2 text-center text-muted w-8">${i + 1}</td>
                 <td class="py-3 px-2 font-semibold">
                     <div class="flex items-center gap-2 min-w-0">
+                        ${r.fascia ? `<span class="sm:hidden w-2.5 h-2.5 rounded-full flex-shrink-0" style="background:${COLORI_FASCE[r.fascia]}" title="${r.fascia}"></span>` : ''}
                         ${renderStemma(r.squadra, 'w-7 h-7')}
-                        <span class="truncate max-w-[110px] sm:max-w-[130px]">${r.squadra.nome}</span>
+                        <span class="truncate max-w-[96px] sm:max-w-[130px]">${r.squadra.nome}</span>
                     </div>
                 </td>
                 <td class="py-3 px-2 text-center font-bold font-mono text-base">${r.rating.toFixed(0)}</td>
                 <td class="py-3 px-2 text-right font-mono text-xs whitespace-nowrap ${varColor}">${sign}${formatNumber(forma, 0)}</td>
-                <td class="py-3 px-2 text-center text-sm hidden sm:table-cell text-muted">${r.partite}</td>
+                <td class="py-3 px-2 text-center hidden sm:table-cell">${r.fascia ? `<span class="text-xs font-bold px-2.5 py-1 rounded-full" style="background:${COLORI_FASCE[r.fascia]};color:#111">${r.fascia}</span>` : ''}</td>
             </tr>
         `;
     }).join('');
@@ -710,7 +715,7 @@ function renderElo(container) {
                                 <th class="py-3 px-2">Squadra</th>
                                 <th class="py-3 px-2 text-center">Elo</th>
                                 <th class="py-3 px-2 text-right" title="Variazione dell'Elo nelle ultime 5 giornate">Forma</th>
-                                <th class="py-3 px-2 text-center hidden sm:table-cell">G</th>
+                                <th class="py-3 px-2 text-center hidden sm:table-cell">Fascia</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -728,6 +733,7 @@ function renderElo(container) {
                     <li>Nelle <b class="text-main">coppe</b> non si perdono punti e ogni fase giocata dà un bonus${bonusTxt ? ': ' + bonusTxt : ''}.</li>
                     <li>Dopo ogni giornata la media torna a 1500: il rating dice quanto sei forte <b class="text-main">rispetto agli altri</b>.</li>
                     <li>Il rating segue l'<b class="text-main">allenatore</b>. Nelle prime 10 partite in carriera si muove il doppio; a inizio stagione si conserva un terzo della distanza da 1500.</li>
+                    <li><b class="text-main">Fasce</b>${fasceTxt ? ': ' + fasceTxt : ''}.</li>
                     <li><b class="text-main">Forma</b>: variazione nelle ultime 5 giornate. Nelle Prossime Sfide, l'indice di forza è il punteggio atteso secondo l'Elo (il pareggio vale mezzo punto).</li>
                 </ul>
             </div>

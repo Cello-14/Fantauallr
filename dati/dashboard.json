@@ -1,6 +1,6 @@
 {
  "versione_contratto": 1,
- "aggiornato": "2026-10-08T22:48",
+ "aggiornato": "2026-10-08T22:55",
  "lega": {
   "nome": "FANTAUALLR 2026-27",
   "stagione": "2026-27",
@@ -1197,6 +1197,7 @@
     "partite": 3,
     "forma": 108.5,
     "prob_vs_media": 0.579,
+    "fascia": "Platino",
     "squadra": {
      "nome": "Gin Tony FC",
      "sigla": "GIN",
@@ -1213,6 +1214,7 @@
     "partite": 3,
     "forma": 90.0,
     "prob_vs_media": 0.566,
+    "fascia": "Platino",
     "squadra": {
      "nome": "SOMMO FC",
      "sigla": "SOM",
@@ -1229,6 +1231,7 @@
     "partite": 3,
     "forma": 90.0,
     "prob_vs_media": 0.565,
+    "fascia": "Platino",
     "squadra": {
      "nome": "Milan & Shiro",
      "sigla": "MIL",
@@ -1245,6 +1248,7 @@
     "partite": 5,
     "forma": 84.8,
     "prob_vs_media": 0.569,
+    "fascia": "Platino",
     "squadra": {
      "nome": "Fresencvaros",
      "sigla": "FRE",
@@ -1261,6 +1265,7 @@
     "partite": 3,
     "forma": 44.6,
     "prob_vs_media": 0.531,
+    "fascia": "Oro",
     "squadra": {
      "nome": "Cardiff",
      "sigla": "CAR",
@@ -1277,6 +1282,7 @@
     "partite": 5,
     "forma": -10.9,
     "prob_vs_media": 0.478,
+    "fascia": "Oro",
     "squadra": {
      "nome": "FC Canzanella",
      "sigla": "CAN",
@@ -1293,6 +1299,7 @@
     "partite": 3,
     "forma": -16.4,
     "prob_vs_media": 0.492,
+    "fascia": "Oro",
     "squadra": {
      "nome": "BARÇELONARDO",
      "sigla": "BAR",
@@ -1309,6 +1316,7 @@
     "partite": 3,
     "forma": -33.7,
     "prob_vs_media": 0.478,
+    "fascia": "Oro",
     "squadra": {
      "nome": "Standard HEGI",
      "sigla": "STA",
@@ -1325,6 +1333,7 @@
     "partite": 3,
     "forma": -41.7,
     "prob_vs_media": 0.47,
+    "fascia": "Oro",
     "squadra": {
      "nome": "Union Sg",
      "sigla": "UNI",
@@ -1341,6 +1350,7 @@
     "partite": 5,
     "forma": -59.7,
     "prob_vs_media": 0.467,
+    "fascia": "Argento",
     "squadra": {
      "nome": "Real Sandro CF",
      "sigla": "RSF",
@@ -1357,6 +1367,7 @@
     "partite": 5,
     "forma": -116.5,
     "prob_vs_media": 0.404,
+    "fascia": "Argento",
     "squadra": {
      "nome": "Sassuoli",
      "sigla": "SAS",
@@ -1373,6 +1384,7 @@
     "partite": 3,
     "forma": -138.9,
     "prob_vs_media": 0.402,
+    "fascia": "Bronzo",
     "squadra": {
      "nome": "Friskoni FC",
      "sigla": "FRI",
@@ -1449,6 +1461,28 @@
      "Sassuoli": 1383.5,
      "Friskoni FC": 1361.1
     }
+   }
+  ],
+  "fasce": [
+   {
+    "nome": "Diamante",
+    "da": 1625
+   },
+   {
+    "nome": "Platino",
+    "da": 1550
+   },
+   {
+    "nome": "Oro",
+    "da": 1450
+   },
+   {
+    "nome": "Argento",
+    "da": 1375
+   },
+   {
+    "nome": "Bronzo",
+    "da": null
    }
   ],
   "bonus_coppe": [
