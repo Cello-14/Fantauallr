@@ -311,7 +311,33 @@ function renderMatchCardLast(partita) {
 
 function renderMatchCardNext(partita) {
     let eloBar = '';
-    if(partita.elo) {
+    const pr = partita.probabilita;
+    if(pr) {
+        // probabilità 1·X·2 del modello bayesiano (fantapunti simulati → gol con le soglie della lega)
+        const p1 = Math.round(pr["1"] * 100), pX = Math.round(pr["X"] * 100), p2 = 100 - p1 - pX;
+        const elo = partita.elo ? [partita.elo.casa.toFixed(0), partita.elo.trasferta.toFixed(0)] : ['-', '-'];
+        const passa = pr.passa_1 !== undefined ? `<div class="text-[11px] text-muted text-center mt-1">Con i supplementari passa: ${Math.round(pr.passa_1 * 100)}% · ${Math.round(pr.passa_2 * 100)}%</div>` : '';
+        eloBar = `
+            <div class="w-full max-w-sm mt-6">
+                <div class="flex justify-between text-xs text-muted mb-1">
+                    <span>Elo: ${elo[0]}</span>
+                    <span class="uppercase tracking-widest text-[10px]">Probabilità</span>
+                    <span>Elo: ${elo[1]}</span>
+                </div>
+                <div class="h-2 w-full bg-black/30 rounded-full overflow-hidden flex border border-theme">
+                    <div class="h-full bg-accent" style="width: ${p1}%"></div>
+                    <div class="h-full bg-white/40" style="width: ${pX}%"></div>
+                    <div class="h-full bg-white/15" style="width: ${p2}%"></div>
+                </div>
+                <div class="flex justify-between text-xs font-bold mt-1">
+                    <span class="text-accent">1 · ${p1}%</span>
+                    <span>X · ${pX}%</span>
+                    <span>2 · ${p2}%</span>
+                </div>
+                ${passa}
+            </div>
+        `;
+    } else if(partita.elo) {
         const pCasa = (partita.elo.atteso_casa * 100).toFixed(0);
         const pTras = (100 - pCasa).toFixed(0);
         eloBar = `
@@ -740,7 +766,7 @@ function renderElo(container) {
                     <li>Dopo ogni giornata la media torna a 1500: il rating dice quanto sei forte <b class="text-main">rispetto agli altri</b>.</li>
                     <li>Il rating segue l'<b class="text-main">allenatore</b>. Nelle prime 10 partite in carriera si muove il doppio; a inizio stagione si conserva un terzo della distanza da 1500.</li>
                     <li><b class="text-main">Fasce</b>${fasceTxt ? ': ' + fasceTxt : ''}.</li>
-                    <li><b class="text-main">Forma</b>: variazione nelle ultime 5 giornate. Nelle Prossime Sfide, l'indice di forza è il punteggio atteso secondo l'Elo (il pareggio vale mezzo punto).</li>
+                    <li><b class="text-main">Forma</b>: variazione nelle ultime 5 giornate. Le probabilità 1 · X · 2 delle Prossime Sfide non vengono dall'Elo ma dal modello statistico sui fantapunti.</li>
                 </ul>
             </div>
         </div>

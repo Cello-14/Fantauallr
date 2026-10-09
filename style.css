@@ -85,3 +85,5 @@ body {
 [data-theme="light"] .bg-white\/10 { background-color: rgba(0, 0, 0, 0.06); }
 [data-theme="light"] .bg-white\/20 { background-color: rgba(0, 0, 0, 0.12); }
 [data-theme="light"] .hover\:bg-white\/5:hover { background-color: rgba(0, 0, 0, 0.03); }
+[data-theme="light"] .bg-white\/40 { background-color: rgba(0, 0, 0, 0.30); }
+[data-theme="light"] .bg-white\/15 { background-color: rgba(0, 0, 0, 0.10); }

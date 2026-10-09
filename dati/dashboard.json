@@ -1,6 +1,6 @@
 {
  "versione_contratto": 1,
- "aggiornato": "2026-10-09T00:40",
+ "aggiornato": "2026-10-09T10:31",
  "lega": {
   "nome": "FANTAUALLR 2026-27",
   "stagione": "2026-27",
@@ -296,7 +296,20 @@
      "trasferta": 1383.5,
      "atteso_casa": 0.484
     },
-    "probabilita": null,
+    "probabilita": {
+     "1": 0.3422,
+     "X": 0.2554,
+     "2": 0.4024,
+     "risultato_probabile": [
+      1,
+      1
+     ],
+     "prob_risultato": 0.1076,
+     "fp_attesi": [
+      71.5,
+      72.2
+     ]
+    },
     "quote": null
    },
    {
@@ -319,7 +332,20 @@
      "trasferta": 1489.1,
      "atteso_casa": 0.54
     },
-    "probabilita": null,
+    "probabilita": {
+     "1": 0.3609,
+     "X": 0.249,
+     "2": 0.3901,
+     "risultato_probabile": [
+      1,
+      1
+     ],
+     "prob_risultato": 0.0975,
+     "fp_attesi": [
+      72.4,
+      72.8
+     ]
+    },
     "quote": null
    },
    {
@@ -342,7 +368,20 @@
      "trasferta": 1608.5,
      "atteso_casa": 0.483
     },
-    "probabilita": null,
+    "probabilita": {
+     "1": 0.4061,
+     "X": 0.243,
+     "2": 0.351,
+     "risultato_probabile": [
+      2,
+      2
+     ],
+     "prob_risultato": 0.094,
+     "fp_attesi": [
+      73.6,
+      72.9
+     ]
+    },
     "quote": null
    },
    {
@@ -365,7 +404,20 @@
      "trasferta": 1466.3,
      "atteso_casa": 0.481
     },
-    "probabilita": null,
+    "probabilita": {
+     "1": 0.4037,
+     "X": 0.2385,
+     "2": 0.3578,
+     "risultato_probabile": [
+      2,
+      1
+     ],
+     "prob_risultato": 0.0912,
+     "fp_attesi": [
+      73.5,
+      73.0
+     ]
+    },
     "quote": null
    },
    {
@@ -388,7 +440,20 @@
      "trasferta": 1483.6,
      "atteso_casa": 0.482
     },
-    "probabilita": null,
+    "probabilita": {
+     "1": 0.3595,
+     "X": 0.2404,
+     "2": 0.4,
+     "risultato_probabile": [
+      1,
+      1
+     ],
+     "prob_risultato": 0.0917,
+     "fp_attesi": [
+      72.6,
+      73.1
+     ]
+    },
     "quote": null
    },
    {
@@ -411,7 +476,20 @@
      "trasferta": 1590.0,
      "atteso_casa": 0.5
     },
-    "probabilita": null,
+    "probabilita": {
+     "1": 0.3616,
+     "X": 0.2401,
+     "2": 0.3983,
+     "risultato_probabile": [
+      2,
+      2
+     ],
+     "prob_risultato": 0.0912,
+     "fp_attesi": [
+      73.1,
+      73.5
+     ]
+    },
     "quote": null
    }
   ]
@@ -597,7 +675,20 @@
        "trasferta": 1383.5,
        "atteso_casa": 0.484
       },
-      "probabilita": null,
+      "probabilita": {
+       "1": 0.3422,
+       "X": 0.2554,
+       "2": 0.4024,
+       "risultato_probabile": [
+        1,
+        1
+       ],
+       "prob_risultato": 0.1076,
+       "fp_attesi": [
+        71.5,
+        72.2
+       ]
+      },
       "quote": null
      },
      {
@@ -620,7 +711,20 @@
        "trasferta": 1489.1,
        "atteso_casa": 0.54
       },
-      "probabilita": null,
+      "probabilita": {
+       "1": 0.3609,
+       "X": 0.249,
+       "2": 0.3901,
+       "risultato_probabile": [
+        1,
+        1
+       ],
+       "prob_risultato": 0.0975,
+       "fp_attesi": [
+        72.4,
+        72.8
+       ]
+      },
       "quote": null
      },
      {
@@ -643,7 +747,20 @@
        "trasferta": 1608.5,
        "atteso_casa": 0.483
       },
-      "probabilita": null,
+      "probabilita": {
+       "1": 0.4061,
+       "X": 0.243,
+       "2": 0.351,
+       "risultato_probabile": [
+        2,
+        2
+       ],
+       "prob_risultato": 0.094,
+       "fp_attesi": [
+        73.6,
+        72.9
+       ]
+      },
       "quote": null
      },
      {
@@ -666,7 +783,20 @@
        "trasferta": 1466.3,
        "atteso_casa": 0.481
       },
-      "probabilita": null,
+      "probabilita": {
+       "1": 0.4037,
+       "X": 0.2385,
+       "2": 0.3578,
+       "risultato_probabile": [
+        2,
+        1
+       ],
+       "prob_risultato": 0.0912,
+       "fp_attesi": [
+        73.5,
+        73.0
+       ]
+      },
       "quote": null
      },
      {
@@ -689,7 +819,20 @@
        "trasferta": 1483.6,
        "atteso_casa": 0.482
       },
-      "probabilita": null,
+      "probabilita": {
+       "1": 0.3595,
+       "X": 0.2404,
+       "2": 0.4,
+       "risultato_probabile": [
+        1,
+        1
+       ],
+       "prob_risultato": 0.0917,
+       "fp_attesi": [
+        72.6,
+        73.1
+       ]
+      },
       "quote": null
      },
      {
@@ -712,7 +855,20 @@
        "trasferta": 1590.0,
        "atteso_casa": 0.5
       },
-      "probabilita": null,
+      "probabilita": {
+       "1": 0.3616,
+       "X": 0.2401,
+       "2": 0.3983,
+       "risultato_probabile": [
+        2,
+        2
+       ],
+       "prob_risultato": 0.0912,
+       "fp_attesi": [
+        73.1,
+        73.5
+       ]
+      },
       "quote": null
      }
     ]
