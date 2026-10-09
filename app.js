@@ -199,24 +199,38 @@ function renderView() {
     }
 }
 
-// --- Previsioni: tabella squadre × posizioni (solo quando una posizione è diventata impossibile) ---
+// --- Previsioni: tabelle squadre × posizioni (ognuna solo quando una posizione è diventata impossibile) ---
 function renderPrevisioni(container) {
     const V = State.data.previsioni_stagione;
-    const T = Object.keys(V.posizioni).length;
-    if(!V.mostra_tabella) {
+    const visibili = (V.tabelle || []).filter(t => t.mostra);
+    if(!visibili.length) {
         container.innerHTML = `
             <div class="surface rounded-2xl p-10 text-center flex flex-col items-center justify-center border border-theme">
                 <span class="text-5xl mb-4 opacity-60">⏳</span>
                 <h3 class="text-xl font-bold mb-2">Tutto ancora possibile</h3>
-                <p class="text-muted max-w-md">Ogni squadra può ancora chiudere il Campionato in qualsiasi posizione. La tabella con la probabilità di ogni piazzamento comparirà quando almeno una posizione sarà diventata matematicamente impossibile per almeno una squadra.</p>
+                <p class="text-muted max-w-md">Ogni squadra può ancora chiudere il Campionato, il girone di Champions e la Coppa Formula 1 in qualsiasi posizione. Ogni tabella con le probabilità comparirà quando, in quella competizione, almeno una posizione sarà diventata matematicamente impossibile per almeno una squadra.</p>
             </div>`;
         return;
     }
-    // squadre nell'ordine della classifica attuale
-    let ordine = Object.keys(V.posizioni);
-    try { ordine = State.data.competizioni.Campionato.fasi[0].classifica.map(r => r.squadra.nome); } catch(e) {}
-    const punti = {};
-    try { State.data.competizioni.Campionato.fasi[0].classifica.forEach(r => punti[r.squadra.nome] = r.pt); } catch(e) {}
+    container.innerHTML = visibili.map(t => tabellaPrevisioni(t)).join('') +
+        `<p class="text-xs text-muted mt-3">Probabilità (%) da ${V.simulazioni.toLocaleString('it-IT')} stagioni simulate con il modello statistico sui fantapunti. Il punto (·) indica una posizione ormai matematicamente impossibile.${V.scala_f1_provvisoria ? ' Coppa: scala dei punti F1 provvisoria.' : ''}</p>`;
+}
+
+function tabellaPrevisioni(t) {
+    const nomi = Object.keys(t.posizioni);
+    const N = t.posizioni[nomi[0]].length;
+    // ordine e punti: classifica attuale della fase se c'è, altrimenti posizione media prevista
+    let ordine = null; const punti = {};
+    try {
+        for(const c of Object.values(State.data.competizioni)) {
+            const f = c.fasi.find(x => x.nome === t.fase);
+            if(f?.classifica) { ordine = f.classifica.map(r => r.squadra.nome).filter(n => nomi.includes(n)); f.classifica.forEach(r => punti[r.squadra.nome] = r.pt ?? r.pf1 ?? ''); }
+        }
+    } catch(e) {}
+    if(!ordine || ordine.length !== nomi.length) {
+        const media = n => t.posizioni[n].reduce((a, p, k) => a + p * (k + 1), 0);
+        ordine = [...nomi].sort((a, b) => media(a) - media(b));
+    }
     const scheda = nome => State.data.squadre.find(q => q.nome === nome) || { nome };
     const cella = (p, possibile) => {
         if(!possibile) return '<td class="text-center text-muted">·</td>';
@@ -225,26 +239,28 @@ function renderPrevisioni(container) {
         const alfa = Math.min(0.85, 0.08 + p * 1.6);
         return `<td class="text-center font-mono px-0 sm:px-1" style="background: rgba(190, 242, 100, ${alfa.toFixed(2)}); color: ${p > 0.3 ? '#111' : 'inherit'}">${txt}</td>`;
     };
+    const extra = t.extra ? `<th class="py-2 px-0.5 sm:px-1 text-accent">${t.extra.etichetta.slice(0, 4)}<span class="hidden sm:inline">${t.extra.etichetta.slice(4)}</span></th>` : '';
     const righe = ordine.map((nome, i) => {
-        const poss = V.posizioni_possibili?.[nome] || Array.from({length: T}, (_, k) => k + 1);
+        const poss = t.possibili?.[nome] || Array.from({length: N}, (_, k) => k + 1);
+        const ex = t.extra ? `<td class="py-2 px-0.5 sm:px-1 text-center font-bold text-accent">${Math.round((t.extra.valori[nome] || 0) * 100)}</td>` : '';
         return `<tr class="border-b border-theme">
             <td class="py-2 px-1 text-center text-muted hidden sm:table-cell">${i + 1}</td>
             <td class="py-2 px-0.5 sm:px-1"><div class="flex items-center gap-2 min-w-0">${renderStemma(scheda(nome), 'w-5 h-5 sm:w-6 sm:h-6')}<span class="hidden sm:inline truncate max-w-[130px] font-semibold">${nome}</span></div></td>
             <td class="py-2 px-0.5 sm:px-1 text-center font-bold">${punti[nome] ?? ''}</td>
-            ${V.posizioni[nome].map((p, k) => cella(p, poss.includes(k + 1))).join('')}
+            ${t.posizioni[nome].map((p, k) => cella(p, poss.includes(k + 1))).join('')}${ex}
         </tr>`;
     }).join('');
-    container.innerHTML = `
+    return `
+        <h2 class="font-bold text-xl mb-3 mt-6 first:mt-0">${t.titolo}</h2>
         <div class="surface rounded-2xl border border-theme overflow-hidden">
             <table class="w-full text-[10px] sm:text-sm border-collapse">
                 <thead class="border-b border-theme bg-black/10 text-muted uppercase">
                     <tr><th class="py-2 px-1 hidden sm:table-cell">#</th><th class="py-2 px-0.5 sm:px-1 text-left"><span class="hidden sm:inline">Squadra</span></th><th class="py-2 px-0.5 sm:px-1">Pt</th>
-                    ${Array.from({length: T}, (_, k) => `<th class="py-2 px-0 sm:px-1">${k + 1}<span class="hidden sm:inline">ª</span></th>`).join('')}</tr>
+                    ${Array.from({length: N}, (_, k) => `<th class="py-2 px-0 sm:px-1">${k + 1}<span class="hidden sm:inline">ª</span></th>`).join('')}${extra}</tr>
                 </thead>
                 <tbody>${righe}</tbody>
             </table>
-        </div>
-        <p class="text-xs text-muted mt-3">Probabilità (%) di chiudere il Campionato in ogni posizione, da ${V.simulazioni.toLocaleString('it-IT')} stagioni simulate con il modello statistico sui fantapunti. Il punto (·) indica una posizione ormai matematicamente impossibile.</p>`;
+        </div>`;
 }
 
 // --- STREAMING_CHUNK:View - Home (Carousels & Widgets)... ---
