@@ -168,6 +168,13 @@ function renderView() {
             renderMercato(container);
             break;
         case 'previsioni':
+            if(State.data?.previsioni_stagione) {
+                title.innerText = 'Previsioni';
+                subtitle.innerText = 'Probabilità di fine stagione';
+                renderPrevisioni(container);
+                break;
+            }
+            // senza simulazione: messaggio come le altre sezioni in arrivo
         case 'quote':
         case 'scommettitori': {
             const info = {
@@ -190,6 +197,54 @@ function renderView() {
             break;
         }
     }
+}
+
+// --- Previsioni: tabella squadre × posizioni (solo quando una posizione è diventata impossibile) ---
+function renderPrevisioni(container) {
+    const V = State.data.previsioni_stagione;
+    const T = Object.keys(V.posizioni).length;
+    if(!V.mostra_tabella) {
+        container.innerHTML = `
+            <div class="surface rounded-2xl p-10 text-center flex flex-col items-center justify-center border border-theme">
+                <span class="text-5xl mb-4 opacity-60">⏳</span>
+                <h3 class="text-xl font-bold mb-2">Tutto ancora possibile</h3>
+                <p class="text-muted max-w-md">Ogni squadra può ancora chiudere il Campionato in qualsiasi posizione. La tabella con la probabilità di ogni piazzamento comparirà quando almeno una posizione sarà diventata matematicamente impossibile per almeno una squadra.</p>
+            </div>`;
+        return;
+    }
+    // squadre nell'ordine della classifica attuale
+    let ordine = Object.keys(V.posizioni);
+    try { ordine = State.data.competizioni.Campionato.fasi[0].classifica.map(r => r.squadra.nome); } catch(e) {}
+    const punti = {};
+    try { State.data.competizioni.Campionato.fasi[0].classifica.forEach(r => punti[r.squadra.nome] = r.pt); } catch(e) {}
+    const scheda = nome => State.data.squadre.find(q => q.nome === nome) || { nome };
+    const cella = (p, possibile) => {
+        if(!possibile) return '<td class="text-center text-muted">·</td>';
+        const v = p * 100;
+        const txt = v === 0 ? '0' : v < 1 ? '<1' : v.toFixed(0);
+        const alfa = Math.min(0.85, 0.08 + p * 1.6);
+        return `<td class="text-center font-mono px-0 sm:px-1" style="background: rgba(190, 242, 100, ${alfa.toFixed(2)}); color: ${p > 0.3 ? '#111' : 'inherit'}">${txt}</td>`;
+    };
+    const righe = ordine.map((nome, i) => {
+        const poss = V.posizioni_possibili?.[nome] || Array.from({length: T}, (_, k) => k + 1);
+        return `<tr class="border-b border-theme">
+            <td class="py-2 px-1 text-center text-muted hidden sm:table-cell">${i + 1}</td>
+            <td class="py-2 px-0.5 sm:px-1"><div class="flex items-center gap-2 min-w-0">${renderStemma(scheda(nome), 'w-5 h-5 sm:w-6 sm:h-6')}<span class="hidden sm:inline truncate max-w-[130px] font-semibold">${nome}</span></div></td>
+            <td class="py-2 px-0.5 sm:px-1 text-center font-bold">${punti[nome] ?? ''}</td>
+            ${V.posizioni[nome].map((p, k) => cella(p, poss.includes(k + 1))).join('')}
+        </tr>`;
+    }).join('');
+    container.innerHTML = `
+        <div class="surface rounded-2xl border border-theme overflow-hidden">
+            <table class="w-full text-[10px] sm:text-sm border-collapse">
+                <thead class="border-b border-theme bg-black/10 text-muted uppercase">
+                    <tr><th class="py-2 px-1 hidden sm:table-cell">#</th><th class="py-2 px-0.5 sm:px-1 text-left"><span class="hidden sm:inline">Squadra</span></th><th class="py-2 px-0.5 sm:px-1">Pt</th>
+                    ${Array.from({length: T}, (_, k) => `<th class="py-2 px-0 sm:px-1">${k + 1}<span class="hidden sm:inline">ª</span></th>`).join('')}</tr>
+                </thead>
+                <tbody>${righe}</tbody>
+            </table>
+        </div>
+        <p class="text-xs text-muted mt-3">Probabilità (%) di chiudere il Campionato in ogni posizione, da ${V.simulazioni.toLocaleString('it-IT')} stagioni simulate con il modello statistico sui fantapunti. Il punto (·) indica una posizione ormai matematicamente impossibile.</p>`;
 }
 
 // --- STREAMING_CHUNK:View - Home (Carousels & Widgets)... ---
