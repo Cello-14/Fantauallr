@@ -1,6 +1,6 @@
 {
  "versione_contratto": 1,
- "aggiornato": "2026-10-10T00:09",
+ "aggiornato": "2026-10-10T00:11",
  "lega": {
   "nome": "FANTAUALLR 2026-27",
   "stagione": "2026-27",
@@ -1364,23 +1364,6 @@
    },
    {
     "allenatori": [
-     "Edo"
-    ],
-    "rating": 1590.0,
-    "variazione": 90.0,
-    "partite": 3,
-    "forma": 90.0,
-    "prob_vs_media": 0.566,
-    "fascia": "Platino",
-    "squadra": {
-     "nome": "SOMMO FC",
-     "sigla": "SOM",
-     "stemma": "stemmi/SOM.png",
-     "colore": "#B09050"
-    }
-   },
-   {
-    "allenatori": [
      "Dario"
     ],
     "rating": 1590.0,
@@ -1394,6 +1377,23 @@
      "sigla": "MIL",
      "stemma": "stemmi/MIL.png",
      "colore": "#B01010"
+    }
+   },
+   {
+    "allenatori": [
+     "Edo"
+    ],
+    "rating": 1590.0,
+    "variazione": 90.0,
+    "partite": 3,
+    "forma": 90.0,
+    "prob_vs_media": 0.566,
+    "fascia": "Platino",
+    "squadra": {
+     "nome": "SOMMO FC",
+     "sigla": "SOM",
+     "stemma": "stemmi/SOM.png",
+     "colore": "#B09050"
     }
    },
    {
