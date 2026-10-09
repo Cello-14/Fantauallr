@@ -1,6 +1,6 @@
 {
  "versione_contratto": 1,
- "aggiornato": "2026-10-09T13:54",
+ "aggiornato": "2026-10-10T00:09",
  "lega": {
   "nome": "FANTAUALLR 2026-27",
   "stagione": "2026-27",
@@ -3572,6 +3572,259 @@
     "n": 10,
     "prevista": 0.439,
     "osservata": 0.3
+   }
+  ]
+ },
+ "quote": {
+  "giornata": 6,
+  "chiusura": "2026-10-10T14:55",
+  "margine": 0.05,
+  "partite": [
+   {
+    "competizione": "Campionato",
+    "fase": "Campionato",
+    "casa": {
+     "nome": "Friskoni FC",
+     "sigla": "FRI",
+     "stemma": "stemmi/FRI.png",
+     "colore": "#705030"
+    },
+    "trasferta": {
+     "nome": "Sassuoli",
+     "sigla": "SAS",
+     "stemma": "stemmi/SAS.png",
+     "colore": "#309050"
+    },
+    "elo": {
+     "casa": 1361.1,
+     "trasferta": 1383.5,
+     "atteso_casa": 0.484
+    },
+    "probabilita": {
+     "1": 0.3422,
+     "X": 0.2554,
+     "2": 0.4024,
+     "risultato_probabile": [
+      1,
+      1
+     ],
+     "prob_risultato": 0.1076,
+     "fp_attesi": [
+      71.5,
+      72.2
+     ]
+    },
+    "quote": {
+     "1": 2.78,
+     "X": 3.73,
+     "2": 2.37
+    },
+    "finale": false
+   },
+   {
+    "competizione": "Campionato",
+    "fase": "Campionato",
+    "casa": {
+     "nome": "Cardiff",
+     "sigla": "CAR",
+     "stemma": "stemmi/CAR.png",
+     "colore": "#3050B0"
+    },
+    "trasferta": {
+     "nome": "FC Canzanella",
+     "sigla": "CAN",
+     "stemma": "stemmi/CAN.png",
+     "colore": "#1070B0"
+    },
+    "elo": {
+     "casa": 1544.6,
+     "trasferta": 1489.1,
+     "atteso_casa": 0.54
+    },
+    "probabilita": {
+     "1": 0.3609,
+     "X": 0.249,
+     "2": 0.3901,
+     "risultato_probabile": [
+      1,
+      1
+     ],
+     "prob_risultato": 0.0975,
+     "fp_attesi": [
+      72.4,
+      72.8
+     ]
+    },
+    "quote": {
+     "1": 2.64,
+     "X": 3.82,
+     "2": 2.44
+    },
+    "finale": false
+   },
+   {
+    "competizione": "Campionato",
+    "fase": "Campionato",
+    "casa": {
+     "nome": "Fresencvaros",
+     "sigla": "FRE",
+     "stemma": "stemmi/FRE.png",
+     "colore": "#107050"
+    },
+    "trasferta": {
+     "nome": "Gin Tony FC",
+     "sigla": "GIN",
+     "stemma": "stemmi/GIN.png",
+     "colore": "#F0D030"
+    },
+    "elo": {
+     "casa": 1584.8,
+     "trasferta": 1608.5,
+     "atteso_casa": 0.483
+    },
+    "probabilita": {
+     "1": 0.4061,
+     "X": 0.243,
+     "2": 0.351,
+     "risultato_probabile": [
+      2,
+      2
+     ],
+     "prob_risultato": 0.094,
+     "fp_attesi": [
+      73.6,
+      72.9
+     ]
+    },
+    "quote": {
+     "1": 2.35,
+     "X": 3.92,
+     "2": 2.71
+    },
+    "finale": false
+   },
+   {
+    "competizione": "Campionato",
+    "fase": "Campionato",
+    "casa": {
+     "nome": "Real Sandro CF",
+     "sigla": "RSF",
+     "stemma": "stemmi/RSF.png",
+     "colore": "#B09030"
+    },
+    "trasferta": {
+     "nome": "Standard HEGI",
+     "sigla": "STA",
+     "stemma": "stemmi/STA.png",
+     "colore": "#909050"
+    },
+    "elo": {
+     "casa": 1440.3,
+     "trasferta": 1466.3,
+     "atteso_casa": 0.481
+    },
+    "probabilita": {
+     "1": 0.4037,
+     "X": 0.2385,
+     "2": 0.3578,
+     "risultato_probabile": [
+      2,
+      1
+     ],
+     "prob_risultato": 0.0912,
+     "fp_attesi": [
+      73.5,
+      73.0
+     ]
+    },
+    "quote": {
+     "1": 2.36,
+     "X": 3.99,
+     "2": 2.66
+    },
+    "finale": false
+   },
+   {
+    "competizione": "Campionato",
+    "fase": "Campionato",
+    "casa": {
+     "nome": "Union Sg",
+     "sigla": "UNI",
+     "stemma": "stemmi/UNI.png",
+     "colore": "#103050"
+    },
+    "trasferta": {
+     "nome": "BARÇELONARDO",
+     "sigla": "BAR",
+     "stemma": "stemmi/BAR.png",
+     "colore": "#B01050"
+    },
+    "elo": {
+     "casa": 1458.3,
+     "trasferta": 1483.6,
+     "atteso_casa": 0.482
+    },
+    "probabilita": {
+     "1": 0.3595,
+     "X": 0.2404,
+     "2": 0.4,
+     "risultato_probabile": [
+      1,
+      1
+     ],
+     "prob_risultato": 0.0917,
+     "fp_attesi": [
+      72.6,
+      73.1
+     ]
+    },
+    "quote": {
+     "1": 2.65,
+     "X": 3.96,
+     "2": 2.38
+    },
+    "finale": false
+   },
+   {
+    "competizione": "Campionato",
+    "fase": "Campionato",
+    "casa": {
+     "nome": "Milan & Shiro",
+     "sigla": "MIL",
+     "stemma": "stemmi/MIL.png",
+     "colore": "#B01010"
+    },
+    "trasferta": {
+     "nome": "SOMMO FC",
+     "sigla": "SOM",
+     "stemma": "stemmi/SOM.png",
+     "colore": "#B09050"
+    },
+    "elo": {
+     "casa": 1590.0,
+     "trasferta": 1590.0,
+     "atteso_casa": 0.5
+    },
+    "probabilita": {
+     "1": 0.3616,
+     "X": 0.2401,
+     "2": 0.3983,
+     "risultato_probabile": [
+      2,
+      2
+     ],
+     "prob_risultato": 0.0912,
+     "fp_attesi": [
+      73.1,
+      73.5
+     ]
+    },
+    "quote": {
+     "1": 2.63,
+     "X": 3.97,
+     "2": 2.39
+    },
+    "finale": false
    }
   ]
  },

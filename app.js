@@ -176,6 +176,12 @@ function renderView() {
             }
             // senza simulazione: messaggio come le altre sezioni in arrivo
         case 'quote':
+            if(State.view === 'quote' && State.data?.quote?.partite?.length) {
+                title.innerText = 'Quote';
+                subtitle.innerText = `Giornata ${gLega(State.data.quote.giornata)}`;
+                renderQuote(container);
+                break;
+            }
         case 'scommettitori': {
             const info = {
                 previsioni: ['Previsioni', 'Probabilità di fine stagione',
@@ -197,6 +203,40 @@ function renderView() {
             break;
         }
     }
+}
+
+// --- Quote della prossima giornata (3.6): le scommesse si apriranno con il login (fase 4) ---
+function renderQuote(container) {
+    const Q = State.data.quote;
+    const box = (esito, quota, prob) => `
+        <button disabled title="Scommesse in arrivo: servirà l'accesso con la tua email" class="flex-1 surface border border-theme rounded-xl py-2 flex flex-col items-center cursor-not-allowed">
+            <span class="text-[11px] text-muted">${esito}</span>
+            <span class="text-lg font-black">${quota.toFixed(2).replace('.', ',')}</span>
+            <span class="text-[10px] text-muted">${prob !== undefined ? Math.round(prob * 100) + '%' : ''}</span>
+        </button>`;
+    const card = p => {
+        const pr = p.probabilita || {};
+        const esiti = p.finale ? [['1', pr.passa_1], ['2', pr.passa_2]] : [['1', pr['1']], ['X', pr['X']], ['2', pr['2']]];
+        return `
+        <div class="surface rounded-2xl border border-theme p-4 flex flex-col gap-3">
+            <div class="flex justify-between items-center">
+                <span class="bg-white/10 text-xs px-3 py-1 rounded-full font-semibold border border-theme">${p.competizione === 'Campionato' ? 'Campionato' : p.fase}</span>
+                ${p.finale ? '<span class="text-[11px] text-muted">supplementari compresi</span>' : ''}
+            </div>
+            <div class="flex items-center justify-between gap-2">
+                <div class="flex items-center gap-2 min-w-0 w-1/2">${renderStemma(p.casa, 'w-8 h-8')}<span class="font-bold text-sm truncate">${p.casa.nome}</span></div>
+                <div class="flex items-center gap-2 min-w-0 w-1/2 justify-end"><span class="font-bold text-sm truncate text-right">${p.trasferta.nome}</span>${renderStemma(p.trasferta, 'w-8 h-8')}</div>
+            </div>
+            <div class="flex gap-2">${esiti.map(([e, prob]) => box(e, p.quote[e], prob)).join('')}</div>
+        </div>`;
+    };
+    container.innerHTML = `
+        <div class="surface rounded-2xl border border-theme p-4 mb-6 text-sm flex flex-wrap gap-x-6 gap-y-1">
+            <span><span class="text-muted">Chiusura:</span> <b>${Q.chiusura ? formatDate(Q.chiusura) : 'da definire'}</b></span>
+            <span class="text-muted">Le scommesse con crediti virtuali si apriranno con l'accesso via email.</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">${Q.partite.map(card).join('')}</div>
+        <p class="text-xs text-muted mt-4">Quote calcolate dal modello statistico sui fantapunti, con un margine del banco del ${Math.round(Q.margine * 100)}%. Sotto ogni quota la probabilità stimata dell'esito.</p>`;
 }
 
 // --- Previsioni: tabelle squadre × posizioni (ognuna solo quando una posizione è diventata impossibile) ---
