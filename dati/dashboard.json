@@ -1,6 +1,6 @@
 {
  "versione_contratto": 1,
- "aggiornato": "2026-10-10T00:23",
+ "aggiornato": "2026-10-10T00:42",
  "lega": {
   "nome": "FANTAUALLR 2026-27",
   "stagione": "2026-27",
@@ -491,6 +491,150 @@
      ]
     },
     "quote": null
+   },
+   {
+    "competizione": "Champions League",
+    "fase": "CL Girone A",
+    "casa": {
+     "nome": "BARÇELONARDO",
+     "sigla": "BAR",
+     "stemma": "stemmi/BAR.png",
+     "colore": "#B01050"
+    },
+    "trasferta": {
+     "nome": "Gin Tony FC",
+     "sigla": "GIN",
+     "stemma": "stemmi/GIN.png",
+     "colore": "#F0D030"
+    },
+    "elo": {
+     "casa": 1483.6,
+     "trasferta": 1608.5,
+     "atteso_casa": 0.411
+    },
+    "probabilita": {
+     "1": 0.3871,
+     "X": 0.2407,
+     "2": 0.3721,
+     "risultato_probabile": [
+      1,
+      1
+     ],
+     "prob_risultato": 0.0897,
+     "fp_attesi": [
+      73.1,
+      72.9
+     ]
+    },
+    "quote": null
+   },
+   {
+    "competizione": "Champions League",
+    "fase": "CL Girone A",
+    "casa": {
+     "nome": "Real Sandro CF",
+     "sigla": "RSF",
+     "stemma": "stemmi/RSF.png",
+     "colore": "#B09030"
+    },
+    "trasferta": {
+     "nome": "Friskoni FC",
+     "sigla": "FRI",
+     "stemma": "stemmi/FRI.png",
+     "colore": "#705030"
+    },
+    "elo": {
+     "casa": 1440.3,
+     "trasferta": 1361.1,
+     "atteso_casa": 0.557
+    },
+    "probabilita": {
+     "1": 0.4645,
+     "X": 0.2374,
+     "2": 0.2981,
+     "risultato_probabile": [
+      2,
+      1
+     ],
+     "prob_risultato": 0.1019,
+     "fp_attesi": [
+      73.5,
+      71.5
+     ]
+    },
+    "quote": null
+   },
+   {
+    "competizione": "Champions League",
+    "fase": "CL Girone B",
+    "casa": {
+     "nome": "SOMMO FC",
+     "sigla": "SOM",
+     "stemma": "stemmi/SOM.png",
+     "colore": "#B09050"
+    },
+    "trasferta": {
+     "nome": "Fresencvaros",
+     "sigla": "FRE",
+     "stemma": "stemmi/FRE.png",
+     "colore": "#107050"
+    },
+    "elo": {
+     "casa": 1590.0,
+     "trasferta": 1584.8,
+     "atteso_casa": 0.504
+    },
+    "probabilita": {
+     "1": 0.3778,
+     "X": 0.2375,
+     "2": 0.3847,
+     "risultato_probabile": [
+      2,
+      2
+     ],
+     "prob_risultato": 0.0922,
+     "fp_attesi": [
+      73.5,
+      73.6
+     ]
+    },
+    "quote": null
+   },
+   {
+    "competizione": "Champions League",
+    "fase": "CL Girone B",
+    "casa": {
+     "nome": "Cardiff",
+     "sigla": "CAR",
+     "stemma": "stemmi/CAR.png",
+     "colore": "#3050B0"
+    },
+    "trasferta": {
+     "nome": "Milan & Shiro",
+     "sigla": "MIL",
+     "stemma": "stemmi/MIL.png",
+     "colore": "#B01010"
+    },
+    "elo": {
+     "casa": 1544.6,
+     "trasferta": 1590.0,
+     "atteso_casa": 0.467
+    },
+    "probabilita": {
+     "1": 0.3518,
+     "X": 0.2436,
+     "2": 0.4046,
+     "risultato_probabile": [
+      1,
+      1
+     ],
+     "prob_risultato": 0.094,
+     "fp_attesi": [
+      72.4,
+      73.1
+     ]
+    },
+    "quote": null
    }
   ]
  },
@@ -931,7 +1075,155 @@
      }
     ]
    },
-   "prossimo": null
+   "prossimo": {
+    "giornata": 6,
+    "partite": [
+     {
+      "competizione": "Champions League",
+      "fase": "CL Girone A",
+      "casa": {
+       "nome": "BARÇELONARDO",
+       "sigla": "BAR",
+       "stemma": "stemmi/BAR.png",
+       "colore": "#B01050"
+      },
+      "trasferta": {
+       "nome": "Gin Tony FC",
+       "sigla": "GIN",
+       "stemma": "stemmi/GIN.png",
+       "colore": "#F0D030"
+      },
+      "elo": {
+       "casa": 1483.6,
+       "trasferta": 1608.5,
+       "atteso_casa": 0.411
+      },
+      "probabilita": {
+       "1": 0.3871,
+       "X": 0.2407,
+       "2": 0.3721,
+       "risultato_probabile": [
+        1,
+        1
+       ],
+       "prob_risultato": 0.0897,
+       "fp_attesi": [
+        73.1,
+        72.9
+       ]
+      },
+      "quote": null
+     },
+     {
+      "competizione": "Champions League",
+      "fase": "CL Girone A",
+      "casa": {
+       "nome": "Real Sandro CF",
+       "sigla": "RSF",
+       "stemma": "stemmi/RSF.png",
+       "colore": "#B09030"
+      },
+      "trasferta": {
+       "nome": "Friskoni FC",
+       "sigla": "FRI",
+       "stemma": "stemmi/FRI.png",
+       "colore": "#705030"
+      },
+      "elo": {
+       "casa": 1440.3,
+       "trasferta": 1361.1,
+       "atteso_casa": 0.557
+      },
+      "probabilita": {
+       "1": 0.4645,
+       "X": 0.2374,
+       "2": 0.2981,
+       "risultato_probabile": [
+        2,
+        1
+       ],
+       "prob_risultato": 0.1019,
+       "fp_attesi": [
+        73.5,
+        71.5
+       ]
+      },
+      "quote": null
+     },
+     {
+      "competizione": "Champions League",
+      "fase": "CL Girone B",
+      "casa": {
+       "nome": "SOMMO FC",
+       "sigla": "SOM",
+       "stemma": "stemmi/SOM.png",
+       "colore": "#B09050"
+      },
+      "trasferta": {
+       "nome": "Fresencvaros",
+       "sigla": "FRE",
+       "stemma": "stemmi/FRE.png",
+       "colore": "#107050"
+      },
+      "elo": {
+       "casa": 1590.0,
+       "trasferta": 1584.8,
+       "atteso_casa": 0.504
+      },
+      "probabilita": {
+       "1": 0.3778,
+       "X": 0.2375,
+       "2": 0.3847,
+       "risultato_probabile": [
+        2,
+        2
+       ],
+       "prob_risultato": 0.0922,
+       "fp_attesi": [
+        73.5,
+        73.6
+       ]
+      },
+      "quote": null
+     },
+     {
+      "competizione": "Champions League",
+      "fase": "CL Girone B",
+      "casa": {
+       "nome": "Cardiff",
+       "sigla": "CAR",
+       "stemma": "stemmi/CAR.png",
+       "colore": "#3050B0"
+      },
+      "trasferta": {
+       "nome": "Milan & Shiro",
+       "sigla": "MIL",
+       "stemma": "stemmi/MIL.png",
+       "colore": "#B01010"
+      },
+      "elo": {
+       "casa": 1544.6,
+       "trasferta": 1590.0,
+       "atteso_casa": 0.467
+      },
+      "probabilita": {
+       "1": 0.3518,
+       "X": 0.2436,
+       "2": 0.4046,
+       "risultato_probabile": [
+        1,
+        1
+       ],
+       "prob_risultato": 0.094,
+       "fp_attesi": [
+        72.4,
+        73.1
+       ]
+      },
+      "quote": null
+     }
+    ]
+   }
   }
  ],
  "competizioni": {
@@ -1308,9 +1600,218 @@
      ]
     },
     {
-     "nome": "CL Girone",
+     "nome": "CL Girone A",
      "tipo": "girone_italiana",
-     "stato": "da_iniziare"
+     "stato": "in_corso",
+     "classifica": [
+      {
+       "g": 0,
+       "v": 0,
+       "n": 0,
+       "p": 0,
+       "gf": 0,
+       "gs": 0,
+       "dr": 0,
+       "fp": 0.0,
+       "pen": 0,
+       "pt": 0,
+       "fm": 0,
+       "pos": 1,
+       "squadra": {
+        "nome": "BARÇELONARDO",
+        "sigla": "BAR",
+        "stemma": "stemmi/BAR.png",
+        "colore": "#B01050"
+       }
+      },
+      {
+       "g": 0,
+       "v": 0,
+       "n": 0,
+       "p": 0,
+       "gf": 0,
+       "gs": 0,
+       "dr": 0,
+       "fp": 0.0,
+       "pen": 0,
+       "pt": 0,
+       "fm": 0,
+       "pos": 1,
+       "squadra": {
+        "nome": "Friskoni FC",
+        "sigla": "FRI",
+        "stemma": "stemmi/FRI.png",
+        "colore": "#705030"
+       }
+      },
+      {
+       "g": 0,
+       "v": 0,
+       "n": 0,
+       "p": 0,
+       "gf": 0,
+       "gs": 0,
+       "dr": 0,
+       "fp": 0.0,
+       "pen": 0,
+       "pt": 0,
+       "fm": 0,
+       "pos": 1,
+       "squadra": {
+        "nome": "Gin Tony FC",
+        "sigla": "GIN",
+        "stemma": "stemmi/GIN.png",
+        "colore": "#F0D030"
+       }
+      },
+      {
+       "g": 0,
+       "v": 0,
+       "n": 0,
+       "p": 0,
+       "gf": 0,
+       "gs": 0,
+       "dr": 0,
+       "fp": 0.0,
+       "pen": 0,
+       "pt": 0,
+       "fm": 0,
+       "pos": 1,
+       "squadra": {
+        "nome": "Real Sandro CF",
+        "sigla": "RSF",
+        "stemma": "stemmi/RSF.png",
+        "colore": "#B09030"
+       }
+      },
+      {
+       "g": 0,
+       "v": 0,
+       "n": 0,
+       "p": 0,
+       "gf": 0,
+       "gs": 0,
+       "dr": 0,
+       "fp": 0.0,
+       "pen": 0,
+       "pt": 0,
+       "fm": 0,
+       "pos": 1,
+       "squadra": {
+        "nome": "Union Sg",
+        "sigla": "UNI",
+        "stemma": "stemmi/UNI.png",
+        "colore": "#103050"
+       }
+      }
+     ]
+    },
+    {
+     "nome": "CL Girone B",
+     "tipo": "girone_italiana",
+     "stato": "in_corso",
+     "classifica": [
+      {
+       "g": 0,
+       "v": 0,
+       "n": 0,
+       "p": 0,
+       "gf": 0,
+       "gs": 0,
+       "dr": 0,
+       "fp": 0.0,
+       "pen": 0,
+       "pt": 0,
+       "fm": 0,
+       "pos": 1,
+       "squadra": {
+        "nome": "Cardiff",
+        "sigla": "CAR",
+        "stemma": "stemmi/CAR.png",
+        "colore": "#3050B0"
+       }
+      },
+      {
+       "g": 0,
+       "v": 0,
+       "n": 0,
+       "p": 0,
+       "gf": 0,
+       "gs": 0,
+       "dr": 0,
+       "fp": 0.0,
+       "pen": 0,
+       "pt": 0,
+       "fm": 0,
+       "pos": 1,
+       "squadra": {
+        "nome": "Fresencvaros",
+        "sigla": "FRE",
+        "stemma": "stemmi/FRE.png",
+        "colore": "#107050"
+       }
+      },
+      {
+       "g": 0,
+       "v": 0,
+       "n": 0,
+       "p": 0,
+       "gf": 0,
+       "gs": 0,
+       "dr": 0,
+       "fp": 0.0,
+       "pen": 0,
+       "pt": 0,
+       "fm": 0,
+       "pos": 1,
+       "squadra": {
+        "nome": "Milan & Shiro",
+        "sigla": "MIL",
+        "stemma": "stemmi/MIL.png",
+        "colore": "#B01010"
+       }
+      },
+      {
+       "g": 0,
+       "v": 0,
+       "n": 0,
+       "p": 0,
+       "gf": 0,
+       "gs": 0,
+       "dr": 0,
+       "fp": 0.0,
+       "pen": 0,
+       "pt": 0,
+       "fm": 0,
+       "pos": 1,
+       "squadra": {
+        "nome": "SOMMO FC",
+        "sigla": "SOM",
+        "stemma": "stemmi/SOM.png",
+        "colore": "#B09050"
+       }
+      },
+      {
+       "g": 0,
+       "v": 0,
+       "n": 0,
+       "p": 0,
+       "gf": 0,
+       "gs": 0,
+       "dr": 0,
+       "fp": 0.0,
+       "pen": 0,
+       "pt": 0,
+       "fm": 0,
+       "pos": 1,
+       "squadra": {
+        "nome": "Standard HEGI",
+        "sigla": "STA",
+        "stemma": "stemmi/STA.png",
+        "colore": "#909050"
+       }
+      }
+     ]
     },
     {
      "nome": "CL Semifinali",
@@ -1648,7 +2149,11 @@
     "punti": 10.0
    },
    {
-    "fase": "CL Girone",
+    "fase": "CL Girone A",
+    "punti": 40.0
+   },
+   {
+    "fase": "CL Girone B",
     "punti": 40.0
    },
    {
@@ -2353,145 +2858,180 @@
     "extra": null
    },
    {
-    "titolo": "Champions League – Girone",
-    "fase": "CL Girone",
+    "titolo": "Champions League – Girone A",
+    "fase": "CL Girone A",
     "mostra": false,
     "posizioni": {
      "Gin Tony FC": [
-      0.0961,
-      0.0981,
-      0.1007,
-      0.1016,
-      0.1022,
-      0.1016,
-      0.1041,
-      0.1013,
-      0.0995,
-      0.0948
-     ],
-     "SOMMO FC": [
-      0.1254,
-      0.1179,
-      0.1116,
-      0.1063,
-      0.1013,
-      0.0979,
-      0.0934,
-      0.0881,
-      0.0833,
-      0.0748
-     ],
-     "Fresencvaros": [
-      0.129,
-      0.1194,
-      0.1116,
-      0.1067,
-      0.1024,
-      0.0967,
-      0.092,
-      0.0871,
-      0.0823,
-      0.0727
-     ],
-     "Milan & Shiro": [
-      0.1007,
-      0.1032,
-      0.1036,
-      0.1048,
-      0.1039,
-      0.1029,
-      0.0995,
-      0.0992,
-      0.0945,
-      0.0877
-     ],
-     "Cardiff": [
-      0.079,
-      0.0859,
-      0.0909,
-      0.095,
-      0.0989,
-      0.1019,
-      0.1067,
-      0.111,
-      0.114,
-      0.1166
+      0.2077,
+      0.2094,
+      0.2065,
+      0.1986,
+      0.1778
      ],
      "BARÇELONARDO": [
-      0.1072,
-      0.105,
-      0.1038,
-      0.1019,
-      0.1018,
-      0.1008,
-      0.099,
-      0.0979,
-      0.0944,
-      0.088
-     ],
-     "Standard HEGI": [
-      0.0973,
-      0.0999,
-      0.1007,
-      0.1022,
-      0.1018,
-      0.1032,
-      0.1017,
-      0.1017,
-      0.0978,
-      0.0936
+      0.2243,
+      0.2143,
+      0.2039,
+      0.1909,
+      0.1666
      ],
      "Union Sg": [
-      0.0827,
-      0.0891,
-      0.0942,
-      0.0977,
-      0.1,
-      0.1042,
-      0.1062,
-      0.1082,
-      0.1105,
-      0.1071
+      0.1838,
+      0.1992,
+      0.2066,
+      0.2109,
+      0.1996
      ],
      "Real Sandro CF": [
-      0.1249,
-      0.1164,
-      0.1118,
-      0.1064,
-      0.1029,
-      0.0979,
-      0.0939,
-      0.0879,
-      0.083,
-      0.075
+      0.2583,
+      0.2232,
+      0.1997,
+      0.1755,
+      0.1433
      ],
      "Friskoni FC": [
-      0.0576,
-      0.0651,
-      0.0712,
-      0.0773,
-      0.0847,
-      0.0928,
-      0.1034,
-      0.1176,
-      0.1407,
-      0.1896
+      0.1259,
+      0.154,
+      0.1833,
+      0.2241,
+      0.3127
      ]
     },
-    "possibili": null,
+    "possibili": {
+     "BARÇELONARDO": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "Friskoni FC": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "Gin Tony FC": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "Real Sandro CF": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "Union Sg": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ]
+    },
     "extra": {
      "etichetta": "Semifinali",
      "valori": {
-      "Gin Tony FC": 0.3965,
-      "SOMMO FC": 0.4611,
-      "Fresencvaros": 0.4667,
-      "Milan & Shiro": 0.4122,
-      "Cardiff": 0.3508,
-      "BARÇELONARDO": 0.418,
-      "Standard HEGI": 0.4001,
-      "Union Sg": 0.3638,
-      "Real Sandro CF": 0.4596,
-      "Friskoni FC": 0.2712
+      "Gin Tony FC": 0.4171,
+      "BARÇELONARDO": 0.4386,
+      "Union Sg": 0.3829,
+      "Real Sandro CF": 0.4815,
+      "Friskoni FC": 0.2799
+     }
+    }
+   },
+   {
+    "titolo": "Champions League – Girone B",
+    "fase": "CL Girone B",
+    "mostra": false,
+    "posizioni": {
+     "SOMMO FC": [
+      0.228,
+      0.216,
+      0.1998,
+      0.1878,
+      0.1683
+     ],
+     "Fresencvaros": [
+      0.234,
+      0.2154,
+      0.2014,
+      0.1842,
+      0.165
+     ],
+     "Milan & Shiro": [
+      0.1939,
+      0.1984,
+      0.2033,
+      0.2049,
+      0.1995
+     ],
+     "Cardiff": [
+      0.1574,
+      0.1753,
+      0.1949,
+      0.2157,
+      0.2567
+     ],
+     "Standard HEGI": [
+      0.1867,
+      0.1949,
+      0.2006,
+      0.2074,
+      0.2105
+     ]
+    },
+    "possibili": {
+     "Cardiff": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "Fresencvaros": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "Milan & Shiro": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "SOMMO FC": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "Standard HEGI": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ]
+    },
+    "extra": {
+     "etichetta": "Semifinali",
+     "valori": {
+      "SOMMO FC": 0.444,
+      "Fresencvaros": 0.4494,
+      "Milan & Shiro": 0.3923,
+      "Cardiff": 0.3327,
+      "Standard HEGI": 0.3816
      }
     }
    },
@@ -2877,17 +3417,17 @@
      "Friskoni FC": 0.0
     }
    },
-   "CL Girone": {
+   "CL Girone A": {
     "competizione": "Champions League",
     "tipo": "girone_italiana",
     "partecipa": {
      "Gin Tony FC": 1.0,
-     "SOMMO FC": 1.0,
-     "Fresencvaros": 1.0,
-     "Milan & Shiro": 1.0,
-     "Cardiff": 1.0,
+     "SOMMO FC": 0.0,
+     "Fresencvaros": 0.0,
+     "Milan & Shiro": 0.0,
+     "Cardiff": 0.0,
      "BARÇELONARDO": 1.0,
-     "Standard HEGI": 1.0,
+     "Standard HEGI": 0.0,
      "FC Canzanella": 0.0,
      "Union Sg": 1.0,
      "Real Sandro CF": 1.0,
@@ -2896,177 +3436,221 @@
     },
     "posizioni": {
      "Gin Tony FC": [
-      0.0961,
-      0.0981,
-      0.1007,
-      0.1016,
-      0.1022,
-      0.1016,
-      0.1041,
-      0.1013,
-      0.0995,
-      0.0948
-     ],
-     "SOMMO FC": [
-      0.1254,
-      0.1179,
-      0.1116,
-      0.1063,
-      0.1013,
-      0.0979,
-      0.0934,
-      0.0881,
-      0.0833,
-      0.0748
-     ],
-     "Fresencvaros": [
-      0.129,
-      0.1194,
-      0.1116,
-      0.1067,
-      0.1024,
-      0.0967,
-      0.092,
-      0.0871,
-      0.0823,
-      0.0727
-     ],
-     "Milan & Shiro": [
-      0.1007,
-      0.1032,
-      0.1036,
-      0.1048,
-      0.1039,
-      0.1029,
-      0.0995,
-      0.0992,
-      0.0945,
-      0.0877
-     ],
-     "Cardiff": [
-      0.079,
-      0.0859,
-      0.0909,
-      0.095,
-      0.0989,
-      0.1019,
-      0.1067,
-      0.111,
-      0.114,
-      0.1166
+      0.2077,
+      0.2094,
+      0.2065,
+      0.1986,
+      0.1778
      ],
      "BARÇELONARDO": [
-      0.1072,
-      0.105,
-      0.1038,
-      0.1019,
-      0.1018,
-      0.1008,
-      0.099,
-      0.0979,
-      0.0944,
-      0.088
-     ],
-     "Standard HEGI": [
-      0.0973,
-      0.0999,
-      0.1007,
-      0.1022,
-      0.1018,
-      0.1032,
-      0.1017,
-      0.1017,
-      0.0978,
-      0.0936
+      0.2243,
+      0.2143,
+      0.2039,
+      0.1909,
+      0.1666
      ],
      "Union Sg": [
-      0.0827,
-      0.0891,
-      0.0942,
-      0.0977,
-      0.1,
-      0.1042,
-      0.1062,
-      0.1082,
-      0.1105,
-      0.1071
+      0.1838,
+      0.1992,
+      0.2066,
+      0.2109,
+      0.1996
      ],
      "Real Sandro CF": [
-      0.1249,
-      0.1164,
-      0.1118,
-      0.1064,
-      0.1029,
-      0.0979,
-      0.0939,
-      0.0879,
-      0.083,
-      0.075
+      0.2583,
+      0.2232,
+      0.1997,
+      0.1755,
+      0.1433
      ],
      "Friskoni FC": [
-      0.0576,
-      0.0651,
-      0.0712,
-      0.0773,
-      0.0847,
-      0.0928,
-      0.1034,
-      0.1176,
-      0.1407,
-      0.1896
+      0.1259,
+      0.154,
+      0.1833,
+      0.2241,
+      0.3127
      ]
     },
     "mostra_tabella": false,
-    "posizioni_possibili": null
+    "posizioni_possibili": {
+     "BARÇELONARDO": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "Friskoni FC": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "Gin Tony FC": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "Real Sandro CF": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "Union Sg": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ]
+    }
+   },
+   "CL Girone B": {
+    "competizione": "Champions League",
+    "tipo": "girone_italiana",
+    "partecipa": {
+     "Gin Tony FC": 0.0,
+     "SOMMO FC": 1.0,
+     "Fresencvaros": 1.0,
+     "Milan & Shiro": 1.0,
+     "Cardiff": 1.0,
+     "BARÇELONARDO": 0.0,
+     "Standard HEGI": 1.0,
+     "FC Canzanella": 0.0,
+     "Union Sg": 0.0,
+     "Real Sandro CF": 0.0,
+     "Sassuoli": 0.0,
+     "Friskoni FC": 0.0
+    },
+    "posizioni": {
+     "SOMMO FC": [
+      0.228,
+      0.216,
+      0.1998,
+      0.1878,
+      0.1683
+     ],
+     "Fresencvaros": [
+      0.234,
+      0.2154,
+      0.2014,
+      0.1842,
+      0.165
+     ],
+     "Milan & Shiro": [
+      0.1939,
+      0.1984,
+      0.2033,
+      0.2049,
+      0.1995
+     ],
+     "Cardiff": [
+      0.1574,
+      0.1753,
+      0.1949,
+      0.2157,
+      0.2567
+     ],
+     "Standard HEGI": [
+      0.1867,
+      0.1949,
+      0.2006,
+      0.2074,
+      0.2105
+     ]
+    },
+    "mostra_tabella": false,
+    "posizioni_possibili": {
+     "Cardiff": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "Fresencvaros": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "Milan & Shiro": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "SOMMO FC": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ],
+     "Standard HEGI": [
+      1,
+      2,
+      3,
+      4,
+      5
+     ]
+    }
    },
    "CL Semifinali": {
     "competizione": "Champions League",
     "tipo": "eliminazione_AR",
     "partecipa": {
-     "Gin Tony FC": 0.3965,
-     "SOMMO FC": 0.4611,
-     "Fresencvaros": 0.4667,
-     "Milan & Shiro": 0.4122,
-     "Cardiff": 0.3508,
-     "BARÇELONARDO": 0.418,
-     "Standard HEGI": 0.4001,
+     "Gin Tony FC": 0.4171,
+     "SOMMO FC": 0.444,
+     "Fresencvaros": 0.4494,
+     "Milan & Shiro": 0.3923,
+     "Cardiff": 0.3327,
+     "BARÇELONARDO": 0.4386,
+     "Standard HEGI": 0.3816,
      "FC Canzanella": 0.0,
-     "Union Sg": 0.3638,
-     "Real Sandro CF": 0.4596,
+     "Union Sg": 0.3829,
+     "Real Sandro CF": 0.4815,
      "Sassuoli": 0.0,
-     "Friskoni FC": 0.2712
+     "Friskoni FC": 0.2799
     }
    },
    "CL Finale": {
     "competizione": "Champions League",
     "tipo": "finale_secca",
     "partecipa": {
-     "Gin Tony FC": 0.1945,
-     "SOMMO FC": 0.2418,
-     "Fresencvaros": 0.2458,
-     "Milan & Shiro": 0.2055,
-     "Cardiff": 0.1648,
-     "BARÇELONARDO": 0.2121,
-     "Standard HEGI": 0.1975,
+     "Gin Tony FC": 0.2008,
+     "SOMMO FC": 0.2344,
+     "Fresencvaros": 0.2402,
+     "Milan & Shiro": 0.2002,
+     "Cardiff": 0.162,
+     "BARÇELONARDO": 0.2186,
+     "Standard HEGI": 0.1927,
      "FC Canzanella": 0.0,
-     "Union Sg": 0.1746,
-     "Real Sandro CF": 0.2392,
+     "Union Sg": 0.1821,
+     "Real Sandro CF": 0.243,
      "Sassuoli": 0.0,
-     "Friskoni FC": 0.1241
+     "Friskoni FC": 0.126
     },
     "vince": {
-     "Gin Tony FC": 0.0962,
-     "SOMMO FC": 0.1241,
-     "Fresencvaros": 0.1269,
-     "Milan & Shiro": 0.1028,
-     "Cardiff": 0.0787,
-     "BARÇELONARDO": 0.1072,
-     "Standard HEGI": 0.0978,
+     "Gin Tony FC": 0.0979,
+     "SOMMO FC": 0.1204,
+     "Fresencvaros": 0.125,
+     "Milan & Shiro": 0.1003,
+     "Cardiff": 0.0782,
+     "BARÇELONARDO": 0.1095,
+     "Standard HEGI": 0.096,
      "FC Canzanella": 0.0,
-     "Union Sg": 0.0855,
-     "Real Sandro CF": 0.1224,
+     "Union Sg": 0.0888,
+     "Real Sandro CF": 0.1248,
      "Sassuoli": 0.0,
-     "Friskoni FC": 0.0584
+     "Friskoni FC": 0.059
     }
    },
    "Coppa Formula1": {
@@ -3823,6 +4407,170 @@
      "1": 2.63,
      "X": 3.97,
      "2": 2.39
+    },
+    "finale": false
+   },
+   {
+    "competizione": "Champions League",
+    "fase": "CL Girone A",
+    "casa": {
+     "nome": "BARÇELONARDO",
+     "sigla": "BAR",
+     "stemma": "stemmi/BAR.png",
+     "colore": "#B01050"
+    },
+    "trasferta": {
+     "nome": "Gin Tony FC",
+     "sigla": "GIN",
+     "stemma": "stemmi/GIN.png",
+     "colore": "#F0D030"
+    },
+    "elo": {
+     "casa": 1483.6,
+     "trasferta": 1608.5,
+     "atteso_casa": 0.411
+    },
+    "probabilita": {
+     "1": 0.3871,
+     "X": 0.2407,
+     "2": 0.3721,
+     "risultato_probabile": [
+      1,
+      1
+     ],
+     "prob_risultato": 0.0897,
+     "fp_attesi": [
+      73.1,
+      72.9
+     ]
+    },
+    "quote": {
+     "1": 2.46,
+     "X": 3.96,
+     "2": 2.56
+    },
+    "finale": false
+   },
+   {
+    "competizione": "Champions League",
+    "fase": "CL Girone A",
+    "casa": {
+     "nome": "Real Sandro CF",
+     "sigla": "RSF",
+     "stemma": "stemmi/RSF.png",
+     "colore": "#B09030"
+    },
+    "trasferta": {
+     "nome": "Friskoni FC",
+     "sigla": "FRI",
+     "stemma": "stemmi/FRI.png",
+     "colore": "#705030"
+    },
+    "elo": {
+     "casa": 1440.3,
+     "trasferta": 1361.1,
+     "atteso_casa": 0.557
+    },
+    "probabilita": {
+     "1": 0.4645,
+     "X": 0.2374,
+     "2": 0.2981,
+     "risultato_probabile": [
+      2,
+      1
+     ],
+     "prob_risultato": 0.1019,
+     "fp_attesi": [
+      73.5,
+      71.5
+     ]
+    },
+    "quote": {
+     "1": 2.05,
+     "X": 4.01,
+     "2": 3.19
+    },
+    "finale": false
+   },
+   {
+    "competizione": "Champions League",
+    "fase": "CL Girone B",
+    "casa": {
+     "nome": "SOMMO FC",
+     "sigla": "SOM",
+     "stemma": "stemmi/SOM.png",
+     "colore": "#B09050"
+    },
+    "trasferta": {
+     "nome": "Fresencvaros",
+     "sigla": "FRE",
+     "stemma": "stemmi/FRE.png",
+     "colore": "#107050"
+    },
+    "elo": {
+     "casa": 1590.0,
+     "trasferta": 1584.8,
+     "atteso_casa": 0.504
+    },
+    "probabilita": {
+     "1": 0.3778,
+     "X": 0.2375,
+     "2": 0.3847,
+     "risultato_probabile": [
+      2,
+      2
+     ],
+     "prob_risultato": 0.0922,
+     "fp_attesi": [
+      73.5,
+      73.6
+     ]
+    },
+    "quote": {
+     "1": 2.52,
+     "X": 4.01,
+     "2": 2.48
+    },
+    "finale": false
+   },
+   {
+    "competizione": "Champions League",
+    "fase": "CL Girone B",
+    "casa": {
+     "nome": "Cardiff",
+     "sigla": "CAR",
+     "stemma": "stemmi/CAR.png",
+     "colore": "#3050B0"
+    },
+    "trasferta": {
+     "nome": "Milan & Shiro",
+     "sigla": "MIL",
+     "stemma": "stemmi/MIL.png",
+     "colore": "#B01010"
+    },
+    "elo": {
+     "casa": 1544.6,
+     "trasferta": 1590.0,
+     "atteso_casa": 0.467
+    },
+    "probabilita": {
+     "1": 0.3518,
+     "X": 0.2436,
+     "2": 0.4046,
+     "risultato_probabile": [
+      1,
+      1
+     ],
+     "prob_risultato": 0.094,
+     "fp_attesi": [
+      72.4,
+      73.1
+     ]
+    },
+    "quote": {
+     "1": 2.71,
+     "X": 3.91,
+     "2": 2.35
     },
     "finale": false
    }
