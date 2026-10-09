@@ -1,6 +1,6 @@
 {
  "versione_contratto": 1,
- "aggiornato": "2026-10-09T11:10",
+ "aggiornato": "2026-10-09T12:11",
  "lega": {
   "nome": "FANTAUALLR 2026-27",
   "stagione": "2026-27",
@@ -3475,6 +3475,105 @@
     }
    }
   }
+ },
+ "validazione": {
+  "verdetto": {
+   "partite_valutate": 14,
+   "modello_batte_riferimenti": false,
+   "modello_peggiore": false,
+   "elo_da_ricalibrare": false,
+   "avviso": false,
+   "messaggio": "Dati non ancora sufficienti (14 partite valutate): nessuna differenza significativa."
+  },
+  "medie": {
+   "modello": {
+    "rps": 0.2488,
+    "logloss": 1.1084,
+    "brier": 0.6736
+   },
+   "frequenze": {
+    "rps": 0.2424,
+    "logloss": 1.1007,
+    "brier": 0.6674
+   },
+   "elo_10": {
+    "rps": 0.2398,
+    "logloss": 1.0927,
+    "brier": 0.6622
+   },
+   "elo_15": {
+    "rps": 0.2388,
+    "logloss": 1.09,
+    "brier": 0.6603
+   },
+   "elo_20": {
+    "rps": 0.238,
+    "logloss": 1.0877,
+    "brier": 0.6587
+   },
+   "elo_30": {
+    "rps": 0.2368,
+    "logloss": 1.0845,
+    "brier": 0.6562
+   },
+   "elo_40": {
+    "rps": 0.236,
+    "logloss": 1.0829,
+    "brier": 0.6547
+   }
+  },
+  "confronti": {
+   "modello vs frequenze": {
+    "diff_rps": 0.0064,
+    "errore_std": 0.0149,
+    "significativo": false
+   },
+   "modello vs elo_20": {
+    "diff_rps": 0.0108,
+    "errore_std": 0.0085,
+    "significativo": false
+   },
+   "elo K=10 vs K=20": {
+    "diff_logloss": 0.005,
+    "errore_std": 0.0101,
+    "significativo": false
+   },
+   "elo K=15 vs K=20": {
+    "diff_logloss": 0.0023,
+    "errore_std": 0.005,
+    "significativo": false
+   },
+   "elo K=30 vs K=20": {
+    "diff_logloss": -0.0033,
+    "errore_std": 0.01,
+    "significativo": false
+   },
+   "elo K=40 vs K=20": {
+    "diff_logloss": -0.0048,
+    "errore_std": 0.0201,
+    "significativo": false
+   }
+  },
+  "calibrazione_modello": [
+   {
+    "fascia": "20-30%",
+    "n": 15,
+    "prevista": 0.238,
+    "osservata": 0.2
+   },
+   {
+    "fascia": "30-40%",
+    "n": 17,
+    "prevista": 0.355,
+    "osservata": 0.471
+   },
+   {
+    "fascia": "40-50%",
+    "n": 10,
+    "prevista": 0.439,
+    "osservata": 0.3
+   }
+  ]
  },
  "scommesse": null
 }
