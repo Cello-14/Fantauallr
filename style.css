@@ -43,6 +43,8 @@ body {
 .text-accent { color: var(--accent); }
 .bg-danger { background-color: var(--danger); color: white; }
 .text-danger { color: var(--danger); }
+.border-accent { border-color: var(--accent); }
+.border-danger { border-color: var(--danger); }
 
 /* Scrollbar personalizzata per le tabelle */
 .custom-scrollbar::-webkit-scrollbar { height: 6px; width: 6px; }

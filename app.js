@@ -61,6 +61,7 @@ async function initApp() {
         State.data = null;
     }
     
+    initSupabase();
     updateHeader();
     renderView();
 }
@@ -182,7 +183,15 @@ function renderView() {
                 renderQuote(container);
                 break;
             }
-        case 'scommettitori': {
+        case 'scommettitori':
+            if(State.view === 'scommettitori' && Bet.sb) {
+                title.innerText = 'Classifica Scommettitori';
+                subtitle.innerText = 'Chi scommette meglio';
+                renderScommettitori(container);
+                break;
+            }
+        // eslint-disable-next-line no-fallthrough
+        case 'segnaposto': {
             const info = {
                 previsioni: ['Previsioni', 'Probabilità di fine stagione',
                     "Tabella con la probabilità di ogni squadra di chiudere il Campionato in ciascuna posizione. Comparirà quando almeno una posizione sarà diventata matematicamente impossibile per almeno una squadra."],
@@ -205,38 +214,205 @@ function renderView() {
     }
 }
 
-// --- Quote della prossima giornata (3.6): le scommesse si apriranno con il login (fase 4) ---
-function renderQuote(container) {
+// --- Scommesse (fase 4): database Supabase. La chiave è PUBBLICA: la sicurezza sta nelle regole del database
+// (solo i membri della lega, solo le proprie scommesse, 100 crediti a giornata, chiusura all'inizio della giornata).
+const SUPABASE_URL = 'https://gfpkptpmnlnzaarrrczf.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_4Nk7dNnqpVI0mJB6cC3Dtg_Z_3Gn0e2';
+const Bet = { sb: null, sessione: null, profilo: null, schedina: {}, quoteDb: null, messaggio: null, mie: [] };
+
+function initSupabase() {
+    try {
+        if(!window.supabase?.createClient) return;
+        Bet.sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        Bet.sb.auth.onAuthStateChange((evento, sessione) => {
+            Bet.sessione = sessione;
+            Bet.profilo = null;
+            if(['quote', 'scommettitori'].includes(State.view)) renderView();
+        });
+    } catch(e) { console.error('Supabase non disponibile', e); Bet.sb = null; }
+}
+
+const idPartita = (p, Q) => `${State.data.lega.stagione}|${Q.giornata}|${p.fase}|${p.casa.nome}|${p.trasferta.nome}`;
+const fmtQuota = q => (q === null || q === undefined) ? '–' : Number(q).toFixed(2).replace('.', ',');
+const esc = t => String(t ?? '').replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+
+// riquadro accesso / profilo, usato da Quote e Classifica Scommettitori
+function bloccoAccesso() {
+    if(!Bet.sb) return '';
+    if(!Bet.sessione) return `
+        <form id="form-accesso" class="surface rounded-2xl border border-theme p-4 mb-6 flex flex-col sm:flex-row gap-3 sm:items-center">
+            <span class="text-sm flex-1"><b>Accedi per scommettere</b> <span class="text-muted">· riceverai un link via email, nessuna password</span></span>
+            <input id="email-accesso" type="email" required placeholder="la tua email" class="surface border border-theme rounded-lg px-3 py-2 text-sm min-w-0 sm:w-64">
+            <button class="bg-accent text-black font-bold rounded-lg px-4 py-2 text-sm">Ricevi il link</button>
+        </form>`;
+    const p = Bet.profilo;
+    return `
+        <div class="surface rounded-2xl border border-theme p-4 mb-6 flex flex-wrap gap-x-6 gap-y-2 items-center text-sm">
+            <span>${p ? `Ciao <b>${esc(p.soprannome)}</b>` : (p === false ? '<span class="text-danger">La tua email non è nella lista dei membri della lega</span>' : 'Accesso in corso…')}</span>
+            ${p ? `<span><span class="text-muted">Crediti di questa giornata:</span> <b>${p.crediti_residui}</b> / 100</span>` : ''}
+            <button id="esci" class="ml-auto text-muted hover:text-main underline">Esci</button>
+        </div>`;
+}
+
+function collegaAccesso(container) {
+    container.querySelector('#form-accesso')?.addEventListener('submit', async ev => {
+        ev.preventDefault();
+        const email = container.querySelector('#email-accesso').value.trim().toLowerCase();
+        const { error } = await Bet.sb.auth.signInWithOtp({ email, options: { emailRedirectTo: location.origin + location.pathname } });
+        Bet.messaggio = error ? { ok: false, testo: 'Invio non riuscito: ' + error.message } : { ok: true, testo: `Link inviato a ${email}: aprilo da questo dispositivo.` };
+        renderView();
+    });
+    container.querySelector('#esci')?.addEventListener('click', async () => { await Bet.sb.auth.signOut(); Bet.schedina = {}; renderView(); });
+}
+
+const bloccoMessaggio = () => Bet.messaggio
+    ? `<div class="rounded-xl p-3 mb-4 text-sm border ${Bet.messaggio.ok ? 'border-accent text-accent' : 'border-danger text-danger'}">${esc(Bet.messaggio.testo)}</div>` : '';
+
+async function caricaProfilo(Q) {
+    if(!Bet.sb || !Bet.sessione) return;
+    const { data, error } = await Bet.sb.rpc('mio_profilo', { p_stagione: State.data.lega.stagione, p_giornata: Q.giornata });
+    Bet.profilo = (!error && data?.length) ? data[0] : false;
+    const r = await Bet.sb.from('scommesse').select('id, giornata, importo, quota, stato, vincita, creata, selezioni(partita_id, esito, quota)')
+        .eq('stagione', State.data.lega.stagione).order('creata', { ascending: false }).limit(30);
+    Bet.mie = r.data || [];
+}
+
+// --- Quote della prossima giornata: quote dal database (si muovono con le puntate) o, senza database, dal sito
+async function renderQuote(container) {
     const Q = State.data.quote;
-    const box = (esito, quota, prob) => `
-        <button disabled title="Scommesse in arrivo: servirà l'accesso con la tua email" class="flex-1 surface border border-theme rounded-xl py-2 flex flex-col items-center cursor-not-allowed">
-            <span class="text-[11px] text-muted">${esito}</span>
-            <span class="text-lg font-black">${quota.toFixed(2).replace('.', ',')}</span>
-            <span class="text-[10px] text-muted">${prob !== undefined ? Math.round(prob * 100) + '%' : ''}</span>
+    if(Bet.sb) {
+        const r = await Bet.sb.rpc('quote_giornata', { p_stagione: State.data.lega.stagione, p_giornata: Q.giornata });
+        Bet.quoteDb = (!r.error && r.data?.length) ? Object.fromEntries(r.data.map(x => [x.partita_id, x])) : null;
+        await caricaProfilo(Q);
+    }
+    if(State.view !== 'quote') return;
+    const puoi = !!(Bet.profilo && Bet.quoteDb);
+    const box = (p, esito, quota, prob, aperta) => {
+        const id = idPartita(p, Q), scelto = Bet.schedina[id]?.esito === esito;
+        const attivo = puoi && aperta && quota;
+        return `
+        <button ${attivo ? '' : 'disabled'} data-partita="${esc(id)}" data-esito="${esito}" data-quota="${quota}"
+            class="esito-btn flex-1 border rounded-xl py-2 flex flex-col items-center transition-colors ${scelto ? 'bg-accent text-black border-accent' : 'surface border-theme'} ${attivo ? 'hover:border-accent cursor-pointer' : 'cursor-not-allowed'}">
+            <span class="text-[11px] ${scelto ? '' : 'text-muted'}">${esito}</span>
+            <span class="text-lg font-black">${fmtQuota(quota)}</span>
+            <span class="text-[10px] ${scelto ? '' : 'text-muted'}">${prob !== undefined ? Math.round(prob * 100) + '%' : ''}</span>
         </button>`;
+    };
     const card = p => {
-        const pr = p.probabilita || {};
+        const pr = p.probabilita || {}, db = Bet.quoteDb?.[idPartita(p, Q)];
+        const q = db ? { '1': db.q1, 'X': db.qx, '2': db.q2 } : p.quote;
+        const aperta = db ? db.aperta : true;
         const esiti = p.finale ? [['1', pr.passa_1], ['2', pr.passa_2]] : [['1', pr['1']], ['X', pr['X']], ['2', pr['2']]];
         return `
         <div class="surface rounded-2xl border border-theme p-4 flex flex-col gap-3">
             <div class="flex justify-between items-center">
                 <span class="bg-white/10 text-xs px-3 py-1 rounded-full font-semibold border border-theme">${p.competizione === 'Campionato' ? 'Campionato' : p.fase}</span>
-                ${p.finale ? '<span class="text-[11px] text-muted">supplementari compresi</span>' : ''}
+                ${!aperta ? '<span class="text-[11px] text-danger">chiusa</span>' : p.finale ? '<span class="text-[11px] text-muted">supplementari compresi</span>' : ''}
             </div>
             <div class="flex items-center justify-between gap-2">
                 <div class="flex items-center gap-2 min-w-0 w-1/2">${renderStemma(p.casa, 'w-8 h-8')}<span class="font-bold text-sm truncate">${p.casa.nome}</span></div>
                 <div class="flex items-center gap-2 min-w-0 w-1/2 justify-end"><span class="font-bold text-sm truncate text-right">${p.trasferta.nome}</span>${renderStemma(p.trasferta, 'w-8 h-8')}</div>
             </div>
-            <div class="flex gap-2">${esiti.map(([e, prob]) => box(e, p.quote[e], prob)).join('')}</div>
+            <div class="flex gap-2">${esiti.map(([e, prob]) => box(p, e, q[e], prob, aperta)).join('')}</div>
         </div>`;
     };
+    // schedina
+    const sel = Object.entries(Bet.schedina);
+    const quotaTot = sel.reduce((a, [, v]) => a * v.quota, 1);
+    const schedina = !puoi ? '' : `
+        <div class="surface rounded-2xl border ${sel.length ? 'border-accent' : 'border-theme'} p-4 mb-6">
+            <h3 class="font-bold mb-2">Schedina ${sel.length > 1 ? '<span class="text-xs text-muted font-normal">· multipla: vinci solo se le indovini tutte</span>' : ''}</h3>
+            ${sel.length ? `
+                <ul class="text-sm mb-3 space-y-1">${sel.map(([id, v]) => `<li class="flex justify-between gap-2"><span class="truncate">${esc(v.nome)} · <b>${v.esito}</b></span><span class="font-mono">${fmtQuota(v.quota)}</span></li>`).join('')}</ul>
+                <div class="flex flex-wrap items-center gap-3">
+                    <span class="text-sm">Quota <b class="font-mono">${fmtQuota(quotaTot)}</b></span>
+                    <input id="importo" type="number" min="1" max="${Bet.profilo.crediti_residui}" value="${Math.min(10, Bet.profilo.crediti_residui)}" class="surface border border-theme rounded-lg px-3 py-2 text-sm w-24">
+                    <span class="text-sm text-muted">crediti → vincita <b id="vincita-pot" class="text-main font-mono">${fmtQuota(quotaTot * Math.min(10, Bet.profilo.crediti_residui))}</b></span>
+                    <button id="scommetti" class="ml-auto bg-accent text-black font-bold rounded-lg px-4 py-2 text-sm" ${Bet.profilo.crediti_residui < 1 ? 'disabled' : ''}>Scommetti</button>
+                    <button id="svuota" class="text-muted underline text-sm">Svuota</button>
+                </div>` : '<p class="text-sm text-muted">Clicca una quota per aggiungerla. Più quote insieme formano una multipla (al massimo una per partita).</p>'}
+        </div>`;
+    const stato = { aperta: 'in attesa', vinta: 'vinta', persa: 'persa', annullata: 'annullata' };
+    const mie = !(Bet.profilo && Bet.mie.length) ? '' : `
+        <h3 class="font-bold text-lg mt-8 mb-3">Le mie scommesse</h3>
+        <div class="flex flex-col gap-2">${Bet.mie.map(b => `
+            <div class="surface rounded-xl border border-theme p-3 text-sm flex flex-wrap gap-x-4 gap-y-1 items-center">
+                <span class="text-muted">G. ${gLega(b.giornata)}</span>
+                <span class="flex-1 min-w-0 truncate">${b.selezioni.map(x => esc(x.partita_id.split('|').slice(3).join(' – ')) + ' <b>' + x.esito + '</b>').join(' · ')}</span>
+                <span class="font-mono">${b.importo} × ${fmtQuota(b.quota)}</span>
+                <span class="font-bold ${b.stato === 'vinta' ? 'text-accent' : b.stato === 'persa' ? 'text-danger' : 'text-muted'}">${stato[b.stato]}${b.stato === 'vinta' ? ' +' + fmtQuota(b.vincita) : ''}</span>
+            </div>`).join('')}</div>`;
     container.innerHTML = `
+        ${bloccoMessaggio()}${bloccoAccesso()}
         <div class="surface rounded-2xl border border-theme p-4 mb-6 text-sm flex flex-wrap gap-x-6 gap-y-1">
             <span><span class="text-muted">Chiusura:</span> <b>${Q.chiusura ? formatDate(Q.chiusura) : 'da definire'}</b></span>
-            <span class="text-muted">Le scommesse con crediti virtuali si apriranno con l'accesso via email.</span>
+            <span class="text-muted">${puoi ? 'Le quote si muovono con le puntate: vale quella del momento in cui scommetti.' : Bet.sb ? 'Accedi con la tua email per scommettere con crediti virtuali.' : "Le scommesse con crediti virtuali si apriranno con l'accesso via email."}</span>
         </div>
+        ${schedina}
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">${Q.partite.map(card).join('')}</div>
-        <p class="text-xs text-muted mt-4">Quote calcolate dal modello statistico sui fantapunti, con un margine del banco del ${Math.round(Q.margine * 100)}%. Sotto ogni quota la probabilità stimata dell'esito.</p>`;
+        ${mie}
+        <p class="text-xs text-muted mt-4">Quote dal modello statistico sui fantapunti${Bet.quoteDb ? ' e dalle puntate dei membri' : ''}, con un margine del banco del ${Math.round(Q.margine * 100)}%. Sotto ogni quota la probabilità stimata dal modello. Si gioca solo con crediti virtuali: 100 per giornata, quelli non spesi si perdono.</p>`;
+    collegaAccesso(container);
+    container.querySelectorAll('.esito-btn:not([disabled])').forEach(b => b.addEventListener('click', () => {
+        const id = b.dataset.partita, nomi = id.split('|').slice(3).join(' – ');
+        if(Bet.schedina[id]?.esito === b.dataset.esito) delete Bet.schedina[id];
+        else Bet.schedina[id] = { esito: b.dataset.esito, quota: Number(b.dataset.quota), nome: nomi };
+        Bet.messaggio = null;
+        renderQuote(container);
+    }));
+    container.querySelector('#importo')?.addEventListener('input', e => {
+        const v = Number(e.target.value) || 0;
+        container.querySelector('#vincita-pot').textContent = fmtQuota(quotaTot * v);
+    });
+    container.querySelector('#svuota')?.addEventListener('click', () => { Bet.schedina = {}; renderQuote(container); });
+    container.querySelector('#scommetti')?.addEventListener('click', async ev => {
+        ev.target.disabled = true;
+        const importo = parseInt(container.querySelector('#importo').value, 10);
+        const selezioni = Object.entries(Bet.schedina).map(([partita_id, v]) => ({ partita_id, esito: v.esito }));
+        const { error } = await Bet.sb.rpc('piazza_scommessa', { p_selezioni: selezioni, p_importo: importo });
+        Bet.messaggio = error ? { ok: false, testo: error.message } : { ok: true, testo: 'Scommessa registrata!' };
+        if(!error) Bet.schedina = {};
+        renderQuote(container);
+    });
+}
+
+// --- Classifica Scommettitori (dal database): stagione o di sempre
+async function renderScommettitori(container) {
+    const sempre = State.scommettitoriSempre === true;
+    const { data, error } = await Bet.sb.rpc('classifica_scommettitori', { p_stagione: sempre ? null : State.data.lega.stagione });
+    if(Bet.sessione && Bet.profilo === null && State.data.quote) await caricaProfilo(State.data.quote);
+    if(State.view !== 'scommettitori') return;
+    const righe = (data || []).map((r, i) => `
+        <tr class="border-b border-theme">
+            <td class="py-2 px-2 text-center text-muted">${i + 1}</td>
+            <td class="py-2 px-2 font-semibold">${esc(r.soprannome)}</td>
+            <td class="py-2 px-2 text-right font-mono font-bold ${r.netto > 0 ? 'text-accent' : r.netto < 0 ? 'text-danger' : ''}">${r.netto > 0 ? '+' : ''}${fmtQuota(r.netto)}</td>
+            <td class="py-2 px-2 text-right font-mono">${r.rendimento > 0 ? '+' : ''}${String(r.rendimento).replace('.', ',')}%</td>
+            <td class="py-2 px-2 text-center">${r.vinte}/${r.scommesse}</td>
+            <td class="py-2 px-2 text-center hidden sm:table-cell font-mono">${fmtQuota(r.quota_max_vinta)}</td>
+            <td class="py-2 px-2 text-center hidden sm:table-cell">${r.pronostici_indovinati}</td>
+            <td class="py-2 px-2 text-center hidden sm:table-cell font-mono">${fmtQuota(r.multipla_piu_ricca)}</td>
+        </tr>`).join('');
+    container.innerHTML = `
+        ${bloccoMessaggio()}${bloccoAccesso()}
+        <div class="flex gap-2 mb-4">
+            <button data-sempre="0" class="tab-scomm text-sm font-semibold px-4 py-1.5 rounded-full border border-theme ${!sempre ? 'bg-accent text-black' : 'text-muted'}">Stagione ${State.data.lega.stagione}</button>
+            <button data-sempre="1" class="tab-scomm text-sm font-semibold px-4 py-1.5 rounded-full border border-theme ${sempre ? 'bg-accent text-black' : 'text-muted'}">Di sempre</button>
+        </div>
+        ${error ? `<div class="surface rounded-2xl border border-theme p-8 text-center text-muted">Classifica non disponibile al momento.</div>`
+        : !righe ? `<div class="surface rounded-2xl border border-theme p-8 text-center text-muted">Ancora nessuna scommessa conclusa. La classifica comparirà dopo la prima giornata con scommesse.</div>`
+        : `<div class="surface rounded-2xl border border-theme overflow-hidden">
+            <table class="w-full text-sm border-collapse">
+                <thead class="border-b border-theme bg-black/10 text-xs uppercase text-muted">
+                    <tr><th class="py-2 px-2">#</th><th class="py-2 px-2 text-left">Giocatore</th><th class="py-2 px-2 text-right">Netto</th>
+                    <th class="py-2 px-2 text-right" title="Guadagno ÷ crediti puntati">Rend.</th><th class="py-2 px-2" title="Scommesse vinte / giocate">Vinte</th>
+                    <th class="py-2 px-2 hidden sm:table-cell">Quota max vinta</th><th class="py-2 px-2 hidden sm:table-cell" title="Pronostici indovinati, anche dentro le multiple">Pronostici</th>
+                    <th class="py-2 px-2 hidden sm:table-cell">Multipla più ricca</th></tr>
+                </thead><tbody>${righe}</tbody>
+            </table></div>
+            <p class="text-xs text-muted mt-3">Ordine per guadagno netto in crediti (vincite − crediti puntati) sulle scommesse concluse: chi salta una giornata resta a 0. Il rendimento mostra chi è bravo indipendentemente da quanto gioca.</p>`}`;
+    collegaAccesso(container);
+    container.querySelectorAll('.tab-scomm').forEach(b => b.addEventListener('click', () => { State.scommettitoriSempre = b.dataset.sempre === '1'; renderScommettitori(container); }));
 }
 
 // --- Previsioni: tabelle squadre × posizioni (ognuna solo quando una posizione è diventata impossibile) ---
