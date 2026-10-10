@@ -799,9 +799,9 @@ function renderClassifiche(container) {
     };
 
     const html = `
-        <div class="flex gap-2 overflow-x-auto hide-scrollbar mb-6 pb-2" id="comp-tabs">
+        <div class="flex flex-wrap gap-2 mb-6 pb-2" id="comp-tabs">
             ${compNames.map(name => `
-                <button class="comp-tab whitespace-nowrap px-6 py-2 rounded-full text-sm font-bold border transition-colors ${name === activeComp ? 'bg-accent border-accent' : 'surface border-theme text-muted hover:bg-white/5'}" data-comp="${name}">
+                <button class="comp-tab whitespace-nowrap px-4 sm:px-6 py-2 rounded-full text-sm font-bold border transition-colors ${name === activeComp ? 'bg-accent border-accent' : 'surface border-theme text-muted hover:bg-white/5'}" data-comp="${name}">
                     ${name}
                 </button>
             `).join('')}
@@ -838,9 +838,9 @@ function renderGirone(fase, compName) {
                 </td>
                 <td class="px-1 py-3 sm:p-3 text-center font-black text-lg flex items-center justify-center">${r.pt}${penBadge}</td>
                 <td class="px-1 py-3 sm:p-3 text-center text-sm hidden sm:table-cell">${r.g}</td>
-                <td class="px-1 py-3 sm:p-3 text-center text-sm hidden sm:table-cell text-accent">${r.v}</td>
+                <td class="px-1 py-3 sm:p-3 text-center text-sm hidden sm:table-cell ${r.v ? 'text-accent' : 'text-muted'}">${r.v}</td>
                 <td class="px-1 py-3 sm:p-3 text-center text-sm hidden sm:table-cell text-muted">${r.n}</td>
-                <td class="px-1 py-3 sm:p-3 text-center text-sm hidden sm:table-cell text-danger">${r.p}</td>
+                <td class="px-1 py-3 sm:p-3 text-center text-sm hidden sm:table-cell ${r.p ? 'text-danger' : 'text-muted'}">${r.p}</td>
                 <td class="px-1 py-3 sm:p-3 text-center text-sm hidden md:table-cell">${r.gf}</td>
                 <td class="px-1 py-3 sm:p-3 text-center text-sm hidden md:table-cell">${r.gs}</td>
                 <td class="px-1 py-3 sm:p-3 text-center text-sm font-mono ${getColorClass(r.dr)}">${r.dr > 0 ? '+'+r.dr : r.dr}</td>
