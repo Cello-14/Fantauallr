@@ -1230,17 +1230,80 @@ function raggruppaOperazioni(ops) {
     return Object.values(gruppi).sort((a, b) => String(b[0].data || '').localeCompare(String(a[0].data || '')));
 }
 
+// colori dei ruoli come su Leghe
+const COLORI_RUOLO = { P: '#f59e0b', D: '#22c55e', C: '#3b82f6', A: '#ef4444' };
+const badgeRuolo = r => r ? `<span class="inline-flex items-center justify-center w-5 h-5 rounded text-[11px] font-black flex-shrink-0" style="background:${COLORI_RUOLO[r] || '#888'};color:#fff">${r}</span>` : '';
+const schedaSquadra = nome => State.data.squadre.find(q => q.nome === nome) || { nome };
+const dataBreve = d => d ? formatDate(String(d).slice(0, 10)) : '';
+
+// finestra di mercato di un'operazione (dalla data)
+function finestraDi(op, finestre) {
+    // la finestra aperta più di recente prima dell'operazione (quelle senza chiusura valgono fino alla successiva)
+    const d = String(op.data || '').slice(0, 10);
+    const ok = (finestre || []).filter(f => f.apertura && d >= f.apertura && (!f.chiusura || d <= f.chiusura))
+                               .sort((a, b) => b.apertura.localeCompare(a.apertura));
+    return ok[0]?.descrizione || 'Altre operazioni';
+}
+
 function renderOperazione(righe) {
     const o = righe[0];
     const squadre = [...new Set(righe.flatMap(r => [r.da_squadra, r.a_squadra]).filter(Boolean))];
-    const titolo = (o.tipo === 'scambio' && squadre.length === 2) ? `${squadre[0]} ⇄ ${squadre[1]}` : ((o.tipo || 'operazione').charAt(0).toUpperCase() + (o.tipo || 'operazione').slice(1).replace('_', ' '));
+    const giocatore = r => `<div class="flex items-center gap-2 py-1 min-w-0">${badgeRuolo(r.ruolo)}<span class="text-sm font-semibold leading-tight break-words min-w-0">${esc(r.giocatore)}${r.note ? ` <span class="text-[10px] text-muted font-normal whitespace-nowrap">${esc(r.note)}</span>` : ''}</span></div>`;
+    if(o.tipo === 'scambio' && squadre.length === 2) {
+        const [s1, s2] = squadre;
+        const lato = s => {
+            const q = schedaSquadra(s), arrivi = righe.filter(r => r.a_squadra === s);
+            const cred = arrivi.reduce((t, r) => t + (Number(r.crediti) || 0), 0);
+            return `
+            <div class="flex-1 min-w-0">
+                <div class="flex flex-col items-center gap-1 mb-2 pb-2 border-b-2" style="border-color:${q.colore || 'var(--border)'}">
+                    ${renderStemma(q, 'w-10 h-10')}
+                    <span class="font-bold text-xs text-center leading-tight">${esc(s)}</span>
+                </div>
+                <div class="text-[10px] uppercase tracking-wider text-muted mb-1">Riceve</div>
+                ${arrivi.map(giocatore).join('')}
+                ${cred ? `<div class="text-xs text-accent font-semibold mt-1">+ ${cred} crediti</div>` : ''}
+            </div>`;
+        };
+        return `
+        <div class="surface p-4 rounded-2xl border border-theme">
+            <div class="flex justify-between items-center mb-3 text-xs text-muted"><span class="font-semibold uppercase tracking-wider">Scambio</span><span>${dataBreve(o.data)}</span></div>
+            <div class="flex gap-3 items-start">${lato(s1)}<div class="text-2xl text-muted self-center pt-2">⇄</div>${lato(s2)}</div>
+        </div>`;
+    }
+    const tipo = (o.tipo || 'operazione').replace('_', ' ');
     return `
-        <div class="surface p-4 rounded-xl border border-theme">
-            <div class="flex justify-between items-center mb-2">
-                <span class="font-bold text-sm">${titolo}</span>
-                <span class="text-xs text-muted">${o.data ? formatDate(String(o.data).slice(0, 10)) : (o.giornata ? 'G. ' + gLega(o.giornata) : '')}</span>
-            </div>
-            ${righe.map(r => `<div class="py-1.5 border-t border-theme first:border-t-0"><div class="text-sm">${r.ruolo ? `<span class="inline-block w-5 font-bold text-muted">${r.ruolo}</span>` : ''}${r.giocatore || ''}</div><div class="text-xs text-muted ${r.ruolo ? 'pl-5' : ''}">${r.da_squadra || 'svincolati'} → ${r.a_squadra || 'svincolati'}${r.crediti ? ` · ${r.crediti} crediti` : ''}</div></div>`).join('')}
+        <div class="surface p-4 rounded-2xl border border-theme">
+            <div class="flex justify-between items-center mb-2 text-xs text-muted"><span class="font-semibold uppercase tracking-wider">${esc(tipo)}</span><span>${dataBreve(o.data)}</span></div>
+            ${righe.map(r => `<div class="flex items-center gap-2">${renderStemma(schedaSquadra(r.a_squadra || r.da_squadra), 'w-7 h-7')}<div class="min-w-0">${giocatore(r)}<div class="text-xs text-muted">${esc(r.da_squadra || 'svincolati')} → ${esc(r.a_squadra || 'svincolati')}${r.crediti ? ` · ${r.crediti} crediti` : ''}</div></div></div>`).join('')}
+        </div>`;
+}
+
+function bilancioMercato(ops) {
+    const b = {};
+    const voce = s => (b[s] ||= { op: new Set(), in: 0, out: 0, credIn: 0, credOut: 0 });
+    ops.forEach(r => {
+        if(r.a_squadra) { const v = voce(r.a_squadra); v.op.add(r.id_operazione); v.in++; v.credOut += Number(r.crediti) || 0; }
+        if(r.da_squadra) { const v = voce(r.da_squadra); v.op.add(r.id_operazione); v.out++; v.credIn += Number(r.crediti) || 0; }
+    });
+    const conCrediti = ops.some(r => r.crediti);
+    const righe = Object.entries(b).sort((x, y) => y[1].op.size - x[1].op.size || y[1].in - x[1].in).map(([s, v]) => `
+        <tr class="border-b border-theme">
+            <td class="py-2 px-2"><div class="flex items-center gap-2 min-w-0">${renderStemma(schedaSquadra(s), 'w-6 h-6')}<span class="truncate max-w-[120px] sm:max-w-none font-semibold">${esc(s)}</span></div></td>
+            <td class="py-2 px-2 text-center">${v.op.size}</td>
+            <td class="py-2 px-2 text-center text-accent font-semibold">+${v.in}</td>
+            <td class="py-2 px-2 text-center text-danger font-semibold">−${v.out}</td>
+            ${conCrediti ? `<td class="py-2 px-2 text-center hidden sm:table-cell">${v.credOut || '–'}</td><td class="py-2 px-2 text-center hidden sm:table-cell">${v.credIn || '–'}</td>` : ''}
+        </tr>`).join('');
+    return `
+        <h3 class="font-bold text-lg mt-8 mb-3">Bilancio per squadra</h3>
+        <div class="surface rounded-2xl border border-theme overflow-hidden">
+            <table class="w-full text-sm border-collapse">
+                <thead class="border-b border-theme bg-black/10 text-xs uppercase text-muted"><tr>
+                    <th class="py-2 px-2 text-left">Squadra</th><th class="py-2 px-2"><span class="sm:hidden">Op.</span><span class="hidden sm:inline">Operazioni</span></th><th class="py-2 px-2"><span class="sm:hidden">In</span><span class="hidden sm:inline">Entrati</span></th><th class="py-2 px-2"><span class="sm:hidden">Out</span><span class="hidden sm:inline">Usciti</span></th>
+                    ${conCrediti ? '<th class="py-2 px-2 hidden sm:table-cell">Crediti spesi</th><th class="py-2 px-2 hidden sm:table-cell">Crediti incassati</th>' : ''}
+                </tr></thead><tbody>${righe}</tbody>
+            </table>
         </div>`;
 }
 
@@ -1249,23 +1312,29 @@ function renderMercato(container) {
     if(!m) { container.innerHTML = 'Nessun dato'; return; }
 
     const bannerClass = m.aperto ? 'bg-accent/10 border-accent/50 text-accent' : 'bg-white/5 border-theme text-muted';
-    const bannerText = m.aperto 
+    const bannerText = m.aperto
         ? `⚽ Mercato APERTO fino al ${formatDate(m.finestra_aperta.fino_al)}`
         : (m.prossima_finestra ? `🔒 Mercato CHIUSO &middot; Prossima finestra: ${m.prossima_finestra.descrizione} (${formatDate(m.prossima_finestra.dal)}${m.prossima_finestra.al ? ' - ' + formatDate(m.prossima_finestra.al) : ''})` : '🔒 Mercato CHIUSO');
 
+    // filtro per finestra (le finestre con almeno un'operazione, dalla più recente)
+    const finestre = [...new Set(m.operazioni.map(o => finestraDi(o, m.finestre)))];
+    if(!finestre.includes(State.finestraMercato)) State.finestraMercato = null;
+    const ops = State.finestraMercato ? m.operazioni.filter(o => finestraDi(o, m.finestre) === State.finestraMercato) : m.operazioni;
+    const pulsante = (val, testo) => `<button data-finestra="${esc(val ?? '')}" class="filtro-finestra text-sm font-semibold px-4 py-1.5 rounded-full border border-theme ${State.finestraMercato === val ? 'bg-accent text-black' : 'text-muted'}">${esc(testo)}</button>`;
+
     container.innerHTML = `
-        <div class="p-4 rounded-xl border ${bannerClass} text-center font-medium mb-6">
-            ${bannerText}
+        <div class="p-4 rounded-xl border ${bannerClass} text-center font-medium mb-6">${bannerText}</div>
+        ${finestre.length > 1 ? `<div class="flex flex-wrap gap-2 mb-4">${pulsante(null, 'Tutte')}${finestre.map(f => pulsante(f, f)).join('')}</div>` : ''}
+        <h3 class="font-bold text-lg mb-4">Operazioni${finestre.length === 1 ? ` <span class="text-sm text-muted font-normal">· ${esc(finestre[0])}</span>` : ''}</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+            ${ops.length > 0
+                ? raggruppaOperazioni(ops).map(renderOperazione).join('')
+                : `<div class="col-span-full text-center p-8 surface rounded-xl border border-theme border-dashed text-muted">Nessuna operazione registrata in questa finestra.</div>`}
         </div>
-        
-        <h3 class="font-bold text-lg mb-4">Ultime Operazioni</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            ${m.operazioni.length > 0 
-                ? raggruppaOperazioni(m.operazioni).map(renderOperazione).join('')
-                : `<div class="col-span-full text-center p-8 surface rounded-xl border border-theme border-dashed text-muted">Nessuna operazione registrata in questa finestra.</div>`
-            }
-        </div>
-    `;
+        ${ops.length ? bilancioMercato(ops) : ''}`;
+    container.querySelectorAll('.filtro-finestra').forEach(b => b.addEventListener('click', () => {
+        State.finestraMercato = b.dataset.finestra || null; renderMercato(container);
+    }));
 }
 
 // --- STREAMING_CHUNK:Bootstrapping... ---

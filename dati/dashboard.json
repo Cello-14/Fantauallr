@@ -1,6 +1,6 @@
 {
  "versione_contratto": 1,
- "aggiornato": "2026-10-10T13:17",
+ "aggiornato": "2026-10-10T13:30",
  "lega": {
   "nome": "FANTAUALLR 2026-27",
   "stagione": "2026-27",
@@ -2494,6 +2494,38 @@
   "probabilita": null
  },
  "mercato": {
+  "finestre": [
+   {
+    "apertura": "2026-09-02",
+    "chiusura": null,
+    "descrizione": "Post asta iniziale (fino all'inizio della giornata successiva)"
+   },
+   {
+    "apertura": "2026-09-21",
+    "chiusura": "2026-10-10",
+    "descrizione": "Pausa nazionali di settembre"
+   },
+   {
+    "apertura": "2026-11-09",
+    "chiusura": "2026-11-21",
+    "descrizione": "Pausa nazionali di novembre"
+   },
+   {
+    "apertura": "2026-12-21",
+    "chiusura": "2027-01-02",
+    "descrizione": "Periodo natalizio"
+   },
+   {
+    "apertura": null,
+    "chiusura": null,
+    "descrizione": "Settimana dopo l'asta di riparazione (fino all'inizio della giornata seguente)"
+   },
+   {
+    "apertura": "2027-03-22",
+    "chiusura": "2027-04-03",
+    "descrizione": "Pausa nazionali di marzo"
+   }
+  ],
   "aperto": true,
   "finestra_aperta": {
    "descrizione": "Pausa nazionali di settembre",
@@ -2504,7 +2536,368 @@
    "dal": "2026-11-09",
    "al": "2026-11-21"
   },
-  "operazioni": []
+  "operazioni": [
+   {
+    "id_operazione": "M01",
+    "data": "2026-09-22T13:16:00",
+    "giornata": null,
+    "tipo": "scambio",
+    "giocatore": "Gueye",
+    "ruolo": "C",
+    "da_squadra": "Cardiff",
+    "a_squadra": "Sassuoli",
+    "crediti": null,
+    "note": "UDI"
+   },
+   {
+    "id_operazione": "M01",
+    "data": "2026-09-22T13:16:00",
+    "giornata": null,
+    "tipo": "scambio",
+    "giocatore": "Lucca",
+    "ruolo": "A",
+    "da_squadra": "Sassuoli",
+    "a_squadra": "Cardiff",
+    "crediti": null,
+    "note": "NAP"
+   },
+   {
+    "id_operazione": "M02",
+    "data": "2026-09-24T13:24:00",
+    "giornata": null,
+    "tipo": "scambio",
+    "giocatore": "Simeone",
+    "ruolo": "A",
+    "da_squadra": "Standard HEGI",
+    "a_squadra": "Sassuoli",
+    "crediti": null,
+    "note": "TOR"
+   },
+   {
+    "id_operazione": "M02",
+    "data": "2026-09-24T13:24:00",
+    "giornata": null,
+    "tipo": "scambio",
+    "giocatore": "Odgaard",
+    "ruolo": "C",
+    "da_squadra": "Standard HEGI",
+    "a_squadra": "Sassuoli",
+    "crediti": null,
+    "note": "BOL"
+   },
+   {
+    "id_operazione": "M02",
+    "data": "2026-09-24T13:24:00",
+    "giornata": null,
+    "tipo": "scambio",
+    "giocatore": "Gonzalez N.",
+    "ruolo": "C",
+    "da_squadra": "Sassuoli",
+    "a_squadra": "Standard HEGI",
+    "crediti": null,
+    "note": "JUV"
+   },
+   {
+    "id_operazione": "M02",
+    "data": "2026-09-24T13:24:00",
+    "giornata": null,
+    "tipo": "scambio",
+    "giocatore": "Castro S.",
+    "ruolo": "A",
+    "da_squadra": "Sassuoli",
+    "a_squadra": "Standard HEGI",
+    "crediti": null,
+    "note": "ROM"
+   },
+   {
+    "id_operazione": "M03",
+    "data": "2026-10-02T13:28:00",
+    "giornata": null,
+    "tipo": "scambio",
+    "giocatore": "Gudmundsson A.",
+    "ruolo": "A",
+    "da_squadra": "Standard HEGI",
+    "a_squadra": "Milan & Shiro",
+    "crediti": null,
+    "note": "LAZ"
+   },
+   {
+    "id_operazione": "M03",
+    "data": "2026-10-02T13:28:00",
+    "giornata": null,
+    "tipo": "scambio",
+    "giocatore": "Adopo",
+    "ruolo": "C",
+    "da_squadra": "Milan & Shiro",
+    "a_squadra": "Standard HEGI",
+    "crediti": null,
+    "note": "CAG"
+   },
+   {
+    "id_operazione": "M04",
+    "data": "2026-10-03T00:56:00",
+    "giornata": null,
+    "tipo": "scambio",
+    "giocatore": "Stankovic F.",
+    "ruolo": "P",
+    "da_squadra": "FC Canzanella",
+    "a_squadra": "Real Sandro CF",
+    "crediti": null,
+    "note": "VEN"
+   },
+   {
+    "id_operazione": "M04",
+    "data": "2026-10-03T00:56:00",
+    "giornata": null,
+    "tipo": "scambio",
+    "giocatore": "Liberali",
+    "ruolo": "C",
+    "da_squadra": "FC Canzanella",
+    "a_squadra": "Real Sandro CF",
+    "crediti": null,
+    "note": "COM"
+   },
+   {
+    "id_operazione": "M04",
+    "data": "2026-10-03T00:56:00",
+    "giornata": null,
+    "tipo": "scambio",
+    "giocatore": "Kessiè",
+    "ruolo": "C",
+    "da_squadra": "Real Sandro CF",
+    "a_squadra": "FC Canzanella",
+    "crediti": null,
+    "note": "ATA"
+   },
+   {
+    "id_operazione": "M04",
+    "data": "2026-10-03T00:56:00",
+    "giornata": null,
+    "tipo": "scambio",
+    "giocatore": "Grabara",
+    "ruolo": "P",
+    "da_squadra": "Real Sandro CF",
+    "a_squadra": "FC Canzanella",
+    "crediti": null,
+    "note": "JUV"
+   },
+   {
+    "id_operazione": "M05",
+    "data": "2026-10-03T00:56:00",
+    "giornata": null,
+    "tipo": "scambio",
+    "giocatore": "Kessiè",
+    "ruolo": "C",
+    "da_squadra": "FC Canzanella",
+    "a_squadra": "Union Sg",
+    "crediti": null,
+    "note": "ATA"
+   },
+   {
+    "id_operazione": "M05",
+    "data": "2026-10-03T00:56:00",
+    "giornata": null,
+    "tipo": "scambio",
+    "giocatore": "Krstovic",
+    "ruolo": "A",
+    "da_squadra": "FC Canzanella",
+    "a_squadra": "Union Sg",
+    "crediti": null,
+    "note": "ATA"
+   },
+   {
+    "id_operazione": "M05",
+    "data": "2026-10-03T00:56:00",
+    "giornata": null,
+    "tipo": "scambio",
+    "giocatore": "Berardi",
+    "ruolo": "A",
+    "da_squadra": "Union Sg",
+    "a_squadra": "FC Canzanella",
+    "crediti": null,
+    "note": "SAS"
+   },
+   {
+    "id_operazione": "M05",
+    "data": "2026-10-03T00:56:00",
+    "giornata": null,
+    "tipo": "scambio",
+    "giocatore": "Modric",
+    "ruolo": "C",
+    "da_squadra": "Union Sg",
+    "a_squadra": "FC Canzanella",
+    "crediti": null,
+    "note": "MIL"
+   },
+   {
+    "id_operazione": "M06",
+    "data": "2026-10-05T22:33:00",
+    "giornata": null,
+    "tipo": "scambio",
+    "giocatore": "Scalvini",
+    "ruolo": "D",
+    "da_squadra": "Gin Tony FC",
+    "a_squadra": "SOMMO FC",
+    "crediti": null,
+    "note": "ATA"
+   },
+   {
+    "id_operazione": "M06",
+    "data": "2026-10-05T22:33:00",
+    "giornata": null,
+    "tipo": "scambio",
+    "giocatore": "Mbangula",
+    "ruolo": "A",
+    "da_squadra": "Gin Tony FC",
+    "a_squadra": "SOMMO FC",
+    "crediti": null,
+    "note": "BOL"
+   },
+   {
+    "id_operazione": "M06",
+    "data": "2026-10-05T22:33:00",
+    "giornata": null,
+    "tipo": "scambio",
+    "giocatore": "Ndour",
+    "ruolo": "C",
+    "da_squadra": "SOMMO FC",
+    "a_squadra": "Gin Tony FC",
+    "crediti": null,
+    "note": "FIO"
+   },
+   {
+    "id_operazione": "M06",
+    "data": "2026-10-05T22:33:00",
+    "giornata": null,
+    "tipo": "scambio",
+    "giocatore": "Bella-Kotchap",
+    "ruolo": "D",
+    "da_squadra": "SOMMO FC",
+    "a_squadra": "Gin Tony FC",
+    "crediti": null,
+    "note": "VEN"
+   },
+   {
+    "id_operazione": "M07",
+    "data": "2026-10-09T09:16:00",
+    "giornata": null,
+    "tipo": "scambio",
+    "giocatore": "Vasquez",
+    "ruolo": "D",
+    "da_squadra": "SOMMO FC",
+    "a_squadra": "Friskoni FC",
+    "crediti": null,
+    "note": "GEN"
+   },
+   {
+    "id_operazione": "M07",
+    "data": "2026-10-09T09:16:00",
+    "giornata": null,
+    "tipo": "scambio",
+    "giocatore": "Van Der Brempt",
+    "ruolo": "D",
+    "da_squadra": "SOMMO FC",
+    "a_squadra": "Friskoni FC",
+    "crediti": null,
+    "note": "SAS"
+   },
+   {
+    "id_operazione": "M07",
+    "data": "2026-10-09T09:16:00",
+    "giornata": null,
+    "tipo": "scambio",
+    "giocatore": "Rodriguez Je.",
+    "ruolo": "D",
+    "da_squadra": "SOMMO FC",
+    "a_squadra": "Friskoni FC",
+    "crediti": null,
+    "note": "COM"
+   },
+   {
+    "id_operazione": "M07",
+    "data": "2026-10-09T09:16:00",
+    "giornata": null,
+    "tipo": "scambio",
+    "giocatore": "Olivera",
+    "ruolo": "D",
+    "da_squadra": "Friskoni FC",
+    "a_squadra": "SOMMO FC",
+    "crediti": null,
+    "note": "NAP"
+   },
+   {
+    "id_operazione": "M07",
+    "data": "2026-10-09T09:16:00",
+    "giornata": null,
+    "tipo": "scambio",
+    "giocatore": "Sutalo J.",
+    "ruolo": "D",
+    "da_squadra": "Friskoni FC",
+    "a_squadra": "SOMMO FC",
+    "crediti": null,
+    "note": "LAZ"
+   },
+   {
+    "id_operazione": "M07",
+    "data": "2026-10-09T09:16:00",
+    "giornata": null,
+    "tipo": "scambio",
+    "giocatore": "Goncalves P.",
+    "ruolo": "C",
+    "da_squadra": "Friskoni FC",
+    "a_squadra": "SOMMO FC",
+    "crediti": null,
+    "note": "FIO"
+   },
+   {
+    "id_operazione": "M08",
+    "data": "2026-10-09T14:50:00",
+    "giornata": null,
+    "tipo": "scambio",
+    "giocatore": "Olivera",
+    "ruolo": "D",
+    "da_squadra": "SOMMO FC",
+    "a_squadra": "Real Sandro CF",
+    "crediti": null,
+    "note": "NAP"
+   },
+   {
+    "id_operazione": "M08",
+    "data": "2026-10-09T14:50:00",
+    "giornata": null,
+    "tipo": "scambio",
+    "giocatore": "Kaiki",
+    "ruolo": "D",
+    "da_squadra": "SOMMO FC",
+    "a_squadra": "Real Sandro CF",
+    "crediti": null,
+    "note": "COM"
+   },
+   {
+    "id_operazione": "M08",
+    "data": "2026-10-09T14:50:00",
+    "giornata": null,
+    "tipo": "scambio",
+    "giocatore": "Doekhi",
+    "ruolo": "D",
+    "da_squadra": "Real Sandro CF",
+    "a_squadra": "SOMMO FC",
+    "crediti": null,
+    "note": "LAZ"
+   },
+   {
+    "id_operazione": "M08",
+    "data": "2026-10-09T14:50:00",
+    "giornata": null,
+    "tipo": "scambio",
+    "giocatore": "Idzes",
+    "ruolo": "D",
+    "da_squadra": "Real Sandro CF",
+    "a_squadra": "SOMMO FC",
+    "crediti": null,
+    "note": "SAS"
+   }
+  ]
  },
  "previsioni_stagione": {
   "simulazioni": 250000,
