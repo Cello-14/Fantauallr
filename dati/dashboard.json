@@ -1,6 +1,6 @@
 {
  "versione_contratto": 1,
- "aggiornato": "2026-10-10T13:35",
+ "aggiornato": "2026-10-10T13:37",
  "lega": {
   "nome": "FANTAUALLR 2026-27",
   "stagione": "2026-27",
@@ -2807,7 +2807,7 @@
     "giornata": null,
     "tipo": "scambio",
     "giocatore": "Rodriguez Je.",
-    "ruolo": "D",
+    "ruolo": "C",
     "da_squadra": "SOMMO FC",
     "a_squadra": "Friskoni FC",
     "crediti": null,
@@ -2843,7 +2843,7 @@
     "giornata": null,
     "tipo": "scambio",
     "giocatore": "Goncalves P.",
-    "ruolo": "D",
+    "ruolo": "C",
     "da_squadra": "Friskoni FC",
     "a_squadra": "SOMMO FC",
     "crediti": null,
