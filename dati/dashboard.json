@@ -1,6 +1,6 @@
 {
  "versione_contratto": 1,
- "aggiornato": "2026-10-10T13:48",
+ "aggiornato": "2026-10-11T13:26",
  "lega": {
   "nome": "FANTAUALLR 2026-27",
   "stagione": "2026-27",
@@ -2526,11 +2526,8 @@
     "descrizione": "Pausa nazionali di marzo"
    }
   ],
-  "aperto": true,
-  "finestra_aperta": {
-   "descrizione": "Pausa nazionali di settembre",
-   "fino_al": "2026-10-10"
-  },
+  "aperto": false,
+  "finestra_aperta": null,
   "prossima_finestra": {
    "descrizione": "Pausa nazionali di novembre",
    "dal": "2026-11-09",
