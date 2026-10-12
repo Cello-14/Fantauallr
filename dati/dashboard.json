@@ -1,6 +1,6 @@
 {
  "versione_contratto": 1,
- "aggiornato": "2026-10-12T15:10",
+ "aggiornato": "2026-10-12T23:27",
  "lega": {
   "nome": "FANTAUALLR 2026-27",
   "stagione": "2026-27",
@@ -4448,6 +4448,2338 @@
      "Friskoni FC": 0.0476
     }
    }
+  }
+ },
+ "partite": [
+  {
+   "g": 3,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Cardiff",
+   "trasf": "Milan & Shiro",
+   "fp": [
+    61.5,
+    76.5
+   ],
+   "gol": [
+    0,
+    2
+   ]
+  },
+  {
+   "g": 3,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Sassuoli",
+   "trasf": "Union Sg",
+   "fp": [
+    75.5,
+    79.0
+   ],
+   "gol": [
+    2,
+    3
+   ]
+  },
+  {
+   "g": 3,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "BARÇELONARDO",
+   "trasf": "Gin Tony FC",
+   "fp": [
+    70.0,
+    72.0
+   ],
+   "gol": [
+    1,
+    2
+   ]
+  },
+  {
+   "g": 3,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Standard HEGI",
+   "trasf": "Friskoni FC",
+   "fp": [
+    81.0,
+    69.0
+   ],
+   "gol": [
+    4,
+    1
+   ]
+  },
+  {
+   "g": 3,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "FC Canzanella",
+   "trasf": "Real Sandro CF",
+   "fp": [
+    74.0,
+    75.0
+   ],
+   "gol": [
+    2,
+    2
+   ]
+  },
+  {
+   "g": 3,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "SOMMO FC",
+   "trasf": "Fresencvaros",
+   "fp": [
+    88.0,
+    77.0
+   ],
+   "gol": [
+    5,
+    3
+   ]
+  },
+  {
+   "g": 3,
+   "c": "Champions League",
+   "f": "CL Playoff",
+   "casa": "Real Sandro CF",
+   "trasf": "Sassuoli",
+   "fp": [
+    75.0,
+    75.5
+   ],
+   "gol": [
+    2,
+    2
+   ]
+  },
+  {
+   "g": 3,
+   "c": "Champions League",
+   "f": "CL Playoff",
+   "casa": "Fresencvaros",
+   "trasf": "FC Canzanella",
+   "fp": [
+    77.0,
+    74.0
+   ],
+   "gol": [
+    3,
+    2
+   ]
+  },
+  {
+   "g": 4,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Friskoni FC",
+   "trasf": "Cardiff",
+   "fp": [
+    63.0,
+    70.5
+   ],
+   "gol": [
+    0,
+    1
+   ]
+  },
+  {
+   "g": 4,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Fresencvaros",
+   "trasf": "BARÇELONARDO",
+   "fp": [
+    77.0,
+    69.0
+   ],
+   "gol": [
+    3,
+    1
+   ]
+  },
+  {
+   "g": 4,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Real Sandro CF",
+   "trasf": "SOMMO FC",
+   "fp": [
+    76.5,
+    72.0
+   ],
+   "gol": [
+    2,
+    2
+   ]
+  },
+  {
+   "g": 4,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Union Sg",
+   "trasf": "FC Canzanella",
+   "fp": [
+    69.0,
+    72.0
+   ],
+   "gol": [
+    1,
+    2
+   ]
+  },
+  {
+   "g": 4,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Milan & Shiro",
+   "trasf": "Sassuoli",
+   "fp": [
+    69.5,
+    68.5
+   ],
+   "gol": [
+    1,
+    1
+   ]
+  },
+  {
+   "g": 4,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Gin Tony FC",
+   "trasf": "Standard HEGI",
+   "fp": [
+    80.0,
+    76.0
+   ],
+   "gol": [
+    3,
+    2
+   ]
+  },
+  {
+   "g": 4,
+   "c": "Champions League",
+   "f": "CL Playoff",
+   "casa": "Sassuoli",
+   "trasf": "Real Sandro CF",
+   "fp": [
+    68.5,
+    76.5
+   ],
+   "gol": [
+    1,
+    2
+   ]
+  },
+  {
+   "g": 4,
+   "c": "Champions League",
+   "f": "CL Playoff",
+   "casa": "FC Canzanella",
+   "trasf": "Fresencvaros",
+   "fp": [
+    72.0,
+    72.5
+   ],
+   "gol": [
+    2,
+    2
+   ]
+  },
+  {
+   "g": 5,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Sassuoli",
+   "trasf": "Cardiff",
+   "fp": [
+    65.0,
+    77.5
+   ],
+   "gol": [
+    0,
+    3
+   ]
+  },
+  {
+   "g": 5,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "BARÇELONARDO",
+   "trasf": "Real Sandro CF",
+   "fp": [
+    86.5,
+    76.0
+   ],
+   "gol": [
+    5,
+    2
+   ]
+  },
+  {
+   "g": 5,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Standard HEGI",
+   "trasf": "Fresencvaros",
+   "fp": [
+    62.0,
+    75.0
+   ],
+   "gol": [
+    0,
+    2
+   ]
+  },
+  {
+   "g": 5,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "FC Canzanella",
+   "trasf": "Milan & Shiro",
+   "fp": [
+    71.5,
+    75.5
+   ],
+   "gol": [
+    1,
+    2
+   ]
+  },
+  {
+   "g": 5,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "SOMMO FC",
+   "trasf": "Union Sg",
+   "fp": [
+    72.5,
+    68.0
+   ],
+   "gol": [
+    2,
+    1
+   ]
+  },
+  {
+   "g": 5,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Gin Tony FC",
+   "trasf": "Friskoni FC",
+   "fp": [
+    69.0,
+    65.5
+   ],
+   "gol": [
+    1,
+    0
+   ]
+  },
+  {
+   "g": 6,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Friskoni FC",
+   "trasf": "Sassuoli"
+  },
+  {
+   "g": 6,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Cardiff",
+   "trasf": "FC Canzanella"
+  },
+  {
+   "g": 6,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Fresencvaros",
+   "trasf": "Gin Tony FC"
+  },
+  {
+   "g": 6,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Real Sandro CF",
+   "trasf": "Standard HEGI"
+  },
+  {
+   "g": 6,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Union Sg",
+   "trasf": "BARÇELONARDO"
+  },
+  {
+   "g": 6,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Milan & Shiro",
+   "trasf": "SOMMO FC"
+  },
+  {
+   "g": 6,
+   "c": "Champions League",
+   "f": "CL Girone A",
+   "casa": "BARÇELONARDO",
+   "trasf": "Gin Tony FC"
+  },
+  {
+   "g": 6,
+   "c": "Champions League",
+   "f": "CL Girone A",
+   "casa": "Real Sandro CF",
+   "trasf": "Friskoni FC"
+  },
+  {
+   "g": 6,
+   "c": "Champions League",
+   "f": "CL Girone B",
+   "casa": "SOMMO FC",
+   "trasf": "Fresencvaros"
+  },
+  {
+   "g": 6,
+   "c": "Champions League",
+   "f": "CL Girone B",
+   "casa": "Cardiff",
+   "trasf": "Milan & Shiro"
+  },
+  {
+   "g": 7,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Fresencvaros",
+   "trasf": "Friskoni FC"
+  },
+  {
+   "g": 7,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "BARÇELONARDO",
+   "trasf": "Milan & Shiro"
+  },
+  {
+   "g": 7,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Standard HEGI",
+   "trasf": "Union Sg"
+  },
+  {
+   "g": 7,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "FC Canzanella",
+   "trasf": "Sassuoli"
+  },
+  {
+   "g": 7,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "SOMMO FC",
+   "trasf": "Cardiff"
+  },
+  {
+   "g": 7,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Gin Tony FC",
+   "trasf": "Real Sandro CF"
+  },
+  {
+   "g": 8,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Friskoni FC",
+   "trasf": "FC Canzanella"
+  },
+  {
+   "g": 8,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Cardiff",
+   "trasf": "BARÇELONARDO"
+  },
+  {
+   "g": 8,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Sassuoli",
+   "trasf": "SOMMO FC"
+  },
+  {
+   "g": 8,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Real Sandro CF",
+   "trasf": "Fresencvaros"
+  },
+  {
+   "g": 8,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Union Sg",
+   "trasf": "Gin Tony FC"
+  },
+  {
+   "g": 8,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Milan & Shiro",
+   "trasf": "Standard HEGI"
+  },
+  {
+   "g": 8,
+   "c": "Champions League",
+   "f": "CL Girone A",
+   "casa": "Friskoni FC",
+   "trasf": "Union Sg"
+  },
+  {
+   "g": 8,
+   "c": "Champions League",
+   "f": "CL Girone A",
+   "casa": "Gin Tony FC",
+   "trasf": "Real Sandro CF"
+  },
+  {
+   "g": 8,
+   "c": "Champions League",
+   "f": "CL Girone B",
+   "casa": "Fresencvaros",
+   "trasf": "Cardiff"
+  },
+  {
+   "g": 8,
+   "c": "Champions League",
+   "f": "CL Girone B",
+   "casa": "Standard HEGI",
+   "trasf": "SOMMO FC"
+  },
+  {
+   "g": 9,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Fresencvaros",
+   "trasf": "Union Sg"
+  },
+  {
+   "g": 9,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "BARÇELONARDO",
+   "trasf": "Sassuoli"
+  },
+  {
+   "g": 9,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Real Sandro CF",
+   "trasf": "Friskoni FC"
+  },
+  {
+   "g": 9,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Standard HEGI",
+   "trasf": "Cardiff"
+  },
+  {
+   "g": 9,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "SOMMO FC",
+   "trasf": "FC Canzanella"
+  },
+  {
+   "g": 9,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Gin Tony FC",
+   "trasf": "Milan & Shiro"
+  },
+  {
+   "g": 10,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Friskoni FC",
+   "trasf": "SOMMO FC"
+  },
+  {
+   "g": 10,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Cardiff",
+   "trasf": "Gin Tony FC"
+  },
+  {
+   "g": 10,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Sassuoli",
+   "trasf": "Standard HEGI"
+  },
+  {
+   "g": 10,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Union Sg",
+   "trasf": "Real Sandro CF"
+  },
+  {
+   "g": 10,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "FC Canzanella",
+   "trasf": "BARÇELONARDO"
+  },
+  {
+   "g": 10,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Milan & Shiro",
+   "trasf": "Fresencvaros"
+  },
+  {
+   "g": 10,
+   "c": "Champions League",
+   "f": "CL Girone A",
+   "casa": "BARÇELONARDO",
+   "trasf": "Friskoni FC"
+  },
+  {
+   "g": 10,
+   "c": "Champions League",
+   "f": "CL Girone A",
+   "casa": "Union Sg",
+   "trasf": "Real Sandro CF"
+  },
+  {
+   "g": 10,
+   "c": "Champions League",
+   "f": "CL Girone B",
+   "casa": "SOMMO FC",
+   "trasf": "Milan & Shiro"
+  },
+  {
+   "g": 10,
+   "c": "Champions League",
+   "f": "CL Girone B",
+   "casa": "Standard HEGI",
+   "trasf": "Fresencvaros"
+  },
+  {
+   "g": 11,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Fresencvaros",
+   "trasf": "Cardiff"
+  },
+  {
+   "g": 11,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "BARÇELONARDO",
+   "trasf": "SOMMO FC"
+  },
+  {
+   "g": 11,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Real Sandro CF",
+   "trasf": "Milan & Shiro"
+  },
+  {
+   "g": 11,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Union Sg",
+   "trasf": "Friskoni FC"
+  },
+  {
+   "g": 11,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Standard HEGI",
+   "trasf": "FC Canzanella"
+  },
+  {
+   "g": 11,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Gin Tony FC",
+   "trasf": "Sassuoli"
+  },
+  {
+   "g": 12,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Cardiff",
+   "trasf": "Real Sandro CF"
+  },
+  {
+   "g": 12,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Sassuoli",
+   "trasf": "Fresencvaros"
+  },
+  {
+   "g": 12,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "BARÇELONARDO",
+   "trasf": "Friskoni FC"
+  },
+  {
+   "g": 12,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "FC Canzanella",
+   "trasf": "Gin Tony FC"
+  },
+  {
+   "g": 12,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Milan & Shiro",
+   "trasf": "Union Sg"
+  },
+  {
+   "g": 12,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "SOMMO FC",
+   "trasf": "Standard HEGI"
+  },
+  {
+   "g": 12,
+   "c": "Champions League",
+   "f": "CL Girone A",
+   "casa": "Union Sg",
+   "trasf": "Gin Tony FC"
+  },
+  {
+   "g": 12,
+   "c": "Champions League",
+   "f": "CL Girone A",
+   "casa": "Real Sandro CF",
+   "trasf": "BARÇELONARDO"
+  },
+  {
+   "g": 12,
+   "c": "Champions League",
+   "f": "CL Girone B",
+   "casa": "Milan & Shiro",
+   "trasf": "Standard HEGI"
+  },
+  {
+   "g": 12,
+   "c": "Champions League",
+   "f": "CL Girone B",
+   "casa": "Cardiff",
+   "trasf": "SOMMO FC"
+  },
+  {
+   "g": 13,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Friskoni FC",
+   "trasf": "Milan & Shiro"
+  },
+  {
+   "g": 13,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Fresencvaros",
+   "trasf": "FC Canzanella"
+  },
+  {
+   "g": 13,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Real Sandro CF",
+   "trasf": "Sassuoli"
+  },
+  {
+   "g": 13,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Union Sg",
+   "trasf": "Cardiff"
+  },
+  {
+   "g": 13,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Standard HEGI",
+   "trasf": "BARÇELONARDO"
+  },
+  {
+   "g": 13,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Gin Tony FC",
+   "trasf": "SOMMO FC"
+  },
+  {
+   "g": 14,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Milan & Shiro",
+   "trasf": "Cardiff"
+  },
+  {
+   "g": 14,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Union Sg",
+   "trasf": "Sassuoli"
+  },
+  {
+   "g": 14,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Gin Tony FC",
+   "trasf": "BARÇELONARDO"
+  },
+  {
+   "g": 14,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Friskoni FC",
+   "trasf": "Standard HEGI"
+  },
+  {
+   "g": 14,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Real Sandro CF",
+   "trasf": "FC Canzanella"
+  },
+  {
+   "g": 14,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Fresencvaros",
+   "trasf": "SOMMO FC"
+  },
+  {
+   "g": 14,
+   "c": "Champions League",
+   "f": "CL Girone A",
+   "casa": "BARÇELONARDO",
+   "trasf": "Union Sg"
+  },
+  {
+   "g": 14,
+   "c": "Champions League",
+   "f": "CL Girone A",
+   "casa": "Gin Tony FC",
+   "trasf": "Friskoni FC"
+  },
+  {
+   "g": 14,
+   "c": "Champions League",
+   "f": "CL Girone B",
+   "casa": "Fresencvaros",
+   "trasf": "Milan & Shiro"
+  },
+  {
+   "g": 14,
+   "c": "Champions League",
+   "f": "CL Girone B",
+   "casa": "Standard HEGI",
+   "trasf": "Cardiff"
+  },
+  {
+   "g": 15,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Cardiff",
+   "trasf": "Friskoni FC"
+  },
+  {
+   "g": 15,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "BARÇELONARDO",
+   "trasf": "Fresencvaros"
+  },
+  {
+   "g": 15,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "SOMMO FC",
+   "trasf": "Real Sandro CF"
+  },
+  {
+   "g": 15,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "FC Canzanella",
+   "trasf": "Union Sg"
+  },
+  {
+   "g": 15,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Sassuoli",
+   "trasf": "Milan & Shiro"
+  },
+  {
+   "g": 15,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Standard HEGI",
+   "trasf": "Gin Tony FC"
+  },
+  {
+   "g": 16,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Cardiff",
+   "trasf": "Sassuoli"
+  },
+  {
+   "g": 16,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Real Sandro CF",
+   "trasf": "BARÇELONARDO"
+  },
+  {
+   "g": 16,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Fresencvaros",
+   "trasf": "Standard HEGI"
+  },
+  {
+   "g": 16,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Milan & Shiro",
+   "trasf": "FC Canzanella"
+  },
+  {
+   "g": 16,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Union Sg",
+   "trasf": "SOMMO FC"
+  },
+  {
+   "g": 16,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Friskoni FC",
+   "trasf": "Gin Tony FC"
+  },
+  {
+   "g": 16,
+   "c": "Champions League",
+   "f": "CL Girone A",
+   "casa": "Gin Tony FC",
+   "trasf": "BARÇELONARDO"
+  },
+  {
+   "g": 16,
+   "c": "Champions League",
+   "f": "CL Girone A",
+   "casa": "Friskoni FC",
+   "trasf": "Real Sandro CF"
+  },
+  {
+   "g": 16,
+   "c": "Champions League",
+   "f": "CL Girone B",
+   "casa": "Fresencvaros",
+   "trasf": "SOMMO FC"
+  },
+  {
+   "g": 16,
+   "c": "Champions League",
+   "f": "CL Girone B",
+   "casa": "Milan & Shiro",
+   "trasf": "Cardiff"
+  },
+  {
+   "g": 17,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Sassuoli",
+   "trasf": "Friskoni FC"
+  },
+  {
+   "g": 17,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "FC Canzanella",
+   "trasf": "Cardiff"
+  },
+  {
+   "g": 17,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Gin Tony FC",
+   "trasf": "Fresencvaros"
+  },
+  {
+   "g": 17,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Standard HEGI",
+   "trasf": "Real Sandro CF"
+  },
+  {
+   "g": 17,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "BARÇELONARDO",
+   "trasf": "Union Sg"
+  },
+  {
+   "g": 17,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "SOMMO FC",
+   "trasf": "Milan & Shiro"
+  },
+  {
+   "g": 18,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Friskoni FC",
+   "trasf": "Fresencvaros"
+  },
+  {
+   "g": 18,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Milan & Shiro",
+   "trasf": "BARÇELONARDO"
+  },
+  {
+   "g": 18,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Union Sg",
+   "trasf": "Standard HEGI"
+  },
+  {
+   "g": 18,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Sassuoli",
+   "trasf": "FC Canzanella"
+  },
+  {
+   "g": 18,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Cardiff",
+   "trasf": "SOMMO FC"
+  },
+  {
+   "g": 18,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Real Sandro CF",
+   "trasf": "Gin Tony FC"
+  },
+  {
+   "g": 18,
+   "c": "Champions League",
+   "f": "CL Girone A",
+   "casa": "Union Sg",
+   "trasf": "Friskoni FC"
+  },
+  {
+   "g": 18,
+   "c": "Champions League",
+   "f": "CL Girone A",
+   "casa": "Real Sandro CF",
+   "trasf": "Gin Tony FC"
+  },
+  {
+   "g": 18,
+   "c": "Champions League",
+   "f": "CL Girone B",
+   "casa": "Cardiff",
+   "trasf": "Fresencvaros"
+  },
+  {
+   "g": 18,
+   "c": "Champions League",
+   "f": "CL Girone B",
+   "casa": "SOMMO FC",
+   "trasf": "Standard HEGI"
+  },
+  {
+   "g": 19,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "FC Canzanella",
+   "trasf": "Friskoni FC"
+  },
+  {
+   "g": 19,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "BARÇELONARDO",
+   "trasf": "Cardiff"
+  },
+  {
+   "g": 19,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "SOMMO FC",
+   "trasf": "Sassuoli"
+  },
+  {
+   "g": 19,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Fresencvaros",
+   "trasf": "Real Sandro CF"
+  },
+  {
+   "g": 19,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Gin Tony FC",
+   "trasf": "Union Sg"
+  },
+  {
+   "g": 19,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Standard HEGI",
+   "trasf": "Milan & Shiro"
+  },
+  {
+   "g": 20,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Union Sg",
+   "trasf": "Fresencvaros"
+  },
+  {
+   "g": 20,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Sassuoli",
+   "trasf": "BARÇELONARDO"
+  },
+  {
+   "g": 20,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Friskoni FC",
+   "trasf": "Real Sandro CF"
+  },
+  {
+   "g": 20,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Cardiff",
+   "trasf": "Standard HEGI"
+  },
+  {
+   "g": 20,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "FC Canzanella",
+   "trasf": "SOMMO FC"
+  },
+  {
+   "g": 20,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Milan & Shiro",
+   "trasf": "Gin Tony FC"
+  },
+  {
+   "g": 20,
+   "c": "Champions League",
+   "f": "CL Girone A",
+   "casa": "Friskoni FC",
+   "trasf": "BARÇELONARDO"
+  },
+  {
+   "g": 20,
+   "c": "Champions League",
+   "f": "CL Girone A",
+   "casa": "Real Sandro CF",
+   "trasf": "Union Sg"
+  },
+  {
+   "g": 20,
+   "c": "Champions League",
+   "f": "CL Girone B",
+   "casa": "Milan & Shiro",
+   "trasf": "SOMMO FC"
+  },
+  {
+   "g": 20,
+   "c": "Champions League",
+   "f": "CL Girone B",
+   "casa": "Fresencvaros",
+   "trasf": "Standard HEGI"
+  },
+  {
+   "g": 21,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "SOMMO FC",
+   "trasf": "Friskoni FC"
+  },
+  {
+   "g": 21,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Gin Tony FC",
+   "trasf": "Cardiff"
+  },
+  {
+   "g": 21,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Standard HEGI",
+   "trasf": "Sassuoli"
+  },
+  {
+   "g": 21,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Real Sandro CF",
+   "trasf": "Union Sg"
+  },
+  {
+   "g": 21,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "BARÇELONARDO",
+   "trasf": "FC Canzanella"
+  },
+  {
+   "g": 21,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Fresencvaros",
+   "trasf": "Milan & Shiro"
+  },
+  {
+   "g": 22,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Cardiff",
+   "trasf": "Fresencvaros"
+  },
+  {
+   "g": 22,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "SOMMO FC",
+   "trasf": "BARÇELONARDO"
+  },
+  {
+   "g": 22,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Milan & Shiro",
+   "trasf": "Real Sandro CF"
+  },
+  {
+   "g": 22,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Friskoni FC",
+   "trasf": "Union Sg"
+  },
+  {
+   "g": 22,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "FC Canzanella",
+   "trasf": "Standard HEGI"
+  },
+  {
+   "g": 22,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Sassuoli",
+   "trasf": "Gin Tony FC"
+  },
+  {
+   "g": 22,
+   "c": "Champions League",
+   "f": "CL Girone A",
+   "casa": "Gin Tony FC",
+   "trasf": "Union Sg"
+  },
+  {
+   "g": 22,
+   "c": "Champions League",
+   "f": "CL Girone A",
+   "casa": "BARÇELONARDO",
+   "trasf": "Real Sandro CF"
+  },
+  {
+   "g": 22,
+   "c": "Champions League",
+   "f": "CL Girone B",
+   "casa": "Standard HEGI",
+   "trasf": "Milan & Shiro"
+  },
+  {
+   "g": 22,
+   "c": "Champions League",
+   "f": "CL Girone B",
+   "casa": "SOMMO FC",
+   "trasf": "Cardiff"
+  },
+  {
+   "g": 23,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Real Sandro CF",
+   "trasf": "Cardiff"
+  },
+  {
+   "g": 23,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Fresencvaros",
+   "trasf": "Sassuoli"
+  },
+  {
+   "g": 23,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Friskoni FC",
+   "trasf": "BARÇELONARDO"
+  },
+  {
+   "g": 23,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Gin Tony FC",
+   "trasf": "FC Canzanella"
+  },
+  {
+   "g": 23,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Union Sg",
+   "trasf": "Milan & Shiro"
+  },
+  {
+   "g": 23,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Standard HEGI",
+   "trasf": "SOMMO FC"
+  },
+  {
+   "g": 24,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Milan & Shiro",
+   "trasf": "Friskoni FC"
+  },
+  {
+   "g": 24,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "FC Canzanella",
+   "trasf": "Fresencvaros"
+  },
+  {
+   "g": 24,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Sassuoli",
+   "trasf": "Real Sandro CF"
+  },
+  {
+   "g": 24,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Cardiff",
+   "trasf": "Union Sg"
+  },
+  {
+   "g": 24,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "BARÇELONARDO",
+   "trasf": "Standard HEGI"
+  },
+  {
+   "g": 24,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "SOMMO FC",
+   "trasf": "Gin Tony FC"
+  },
+  {
+   "g": 24,
+   "c": "Champions League",
+   "f": "CL Girone A",
+   "casa": "Union Sg",
+   "trasf": "BARÇELONARDO"
+  },
+  {
+   "g": 24,
+   "c": "Champions League",
+   "f": "CL Girone A",
+   "casa": "Friskoni FC",
+   "trasf": "Gin Tony FC"
+  },
+  {
+   "g": 24,
+   "c": "Champions League",
+   "f": "CL Girone B",
+   "casa": "Milan & Shiro",
+   "trasf": "Fresencvaros"
+  },
+  {
+   "g": 24,
+   "c": "Champions League",
+   "f": "CL Girone B",
+   "casa": "Cardiff",
+   "trasf": "Standard HEGI"
+  },
+  {
+   "g": 25,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Cardiff",
+   "trasf": "Milan & Shiro"
+  },
+  {
+   "g": 25,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Sassuoli",
+   "trasf": "Union Sg"
+  },
+  {
+   "g": 25,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "BARÇELONARDO",
+   "trasf": "Gin Tony FC"
+  },
+  {
+   "g": 25,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Standard HEGI",
+   "trasf": "Friskoni FC"
+  },
+  {
+   "g": 25,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "FC Canzanella",
+   "trasf": "Real Sandro CF"
+  },
+  {
+   "g": 25,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "SOMMO FC",
+   "trasf": "Fresencvaros"
+  },
+  {
+   "g": 26,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Friskoni FC",
+   "trasf": "Cardiff"
+  },
+  {
+   "g": 26,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Fresencvaros",
+   "trasf": "BARÇELONARDO"
+  },
+  {
+   "g": 26,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Real Sandro CF",
+   "trasf": "SOMMO FC"
+  },
+  {
+   "g": 26,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Union Sg",
+   "trasf": "FC Canzanella"
+  },
+  {
+   "g": 26,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Milan & Shiro",
+   "trasf": "Sassuoli"
+  },
+  {
+   "g": 26,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Gin Tony FC",
+   "trasf": "Standard HEGI"
+  },
+  {
+   "g": 27,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Sassuoli",
+   "trasf": "Cardiff"
+  },
+  {
+   "g": 27,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "BARÇELONARDO",
+   "trasf": "Real Sandro CF"
+  },
+  {
+   "g": 27,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Standard HEGI",
+   "trasf": "Fresencvaros"
+  },
+  {
+   "g": 27,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "FC Canzanella",
+   "trasf": "Milan & Shiro"
+  },
+  {
+   "g": 27,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "SOMMO FC",
+   "trasf": "Union Sg"
+  },
+  {
+   "g": 27,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Gin Tony FC",
+   "trasf": "Friskoni FC"
+  },
+  {
+   "g": 28,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Friskoni FC",
+   "trasf": "Sassuoli"
+  },
+  {
+   "g": 28,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Cardiff",
+   "trasf": "FC Canzanella"
+  },
+  {
+   "g": 28,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Fresencvaros",
+   "trasf": "Gin Tony FC"
+  },
+  {
+   "g": 28,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Real Sandro CF",
+   "trasf": "Standard HEGI"
+  },
+  {
+   "g": 28,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Union Sg",
+   "trasf": "BARÇELONARDO"
+  },
+  {
+   "g": 28,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Milan & Shiro",
+   "trasf": "SOMMO FC"
+  },
+  {
+   "g": 29,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Fresencvaros",
+   "trasf": "Friskoni FC"
+  },
+  {
+   "g": 29,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "BARÇELONARDO",
+   "trasf": "Milan & Shiro"
+  },
+  {
+   "g": 29,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Standard HEGI",
+   "trasf": "Union Sg"
+  },
+  {
+   "g": 29,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "FC Canzanella",
+   "trasf": "Sassuoli"
+  },
+  {
+   "g": 29,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "SOMMO FC",
+   "trasf": "Cardiff"
+  },
+  {
+   "g": 29,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Gin Tony FC",
+   "trasf": "Real Sandro CF"
+  },
+  {
+   "g": 30,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Friskoni FC",
+   "trasf": "FC Canzanella"
+  },
+  {
+   "g": 30,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Cardiff",
+   "trasf": "BARÇELONARDO"
+  },
+  {
+   "g": 30,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Sassuoli",
+   "trasf": "SOMMO FC"
+  },
+  {
+   "g": 30,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Real Sandro CF",
+   "trasf": "Fresencvaros"
+  },
+  {
+   "g": 30,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Union Sg",
+   "trasf": "Gin Tony FC"
+  },
+  {
+   "g": 30,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Milan & Shiro",
+   "trasf": "Standard HEGI"
+  },
+  {
+   "g": 31,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Fresencvaros",
+   "trasf": "Union Sg"
+  },
+  {
+   "g": 31,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "BARÇELONARDO",
+   "trasf": "Sassuoli"
+  },
+  {
+   "g": 31,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Real Sandro CF",
+   "trasf": "Friskoni FC"
+  },
+  {
+   "g": 31,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Standard HEGI",
+   "trasf": "Cardiff"
+  },
+  {
+   "g": 31,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "SOMMO FC",
+   "trasf": "FC Canzanella"
+  },
+  {
+   "g": 31,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Gin Tony FC",
+   "trasf": "Milan & Shiro"
+  },
+  {
+   "g": 32,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Friskoni FC",
+   "trasf": "SOMMO FC"
+  },
+  {
+   "g": 32,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Cardiff",
+   "trasf": "Gin Tony FC"
+  },
+  {
+   "g": 32,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Sassuoli",
+   "trasf": "Standard HEGI"
+  },
+  {
+   "g": 32,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Union Sg",
+   "trasf": "Real Sandro CF"
+  },
+  {
+   "g": 32,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "FC Canzanella",
+   "trasf": "BARÇELONARDO"
+  },
+  {
+   "g": 32,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Milan & Shiro",
+   "trasf": "Fresencvaros"
+  },
+  {
+   "g": 33,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Fresencvaros",
+   "trasf": "Cardiff"
+  },
+  {
+   "g": 33,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "BARÇELONARDO",
+   "trasf": "SOMMO FC"
+  },
+  {
+   "g": 33,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Real Sandro CF",
+   "trasf": "Milan & Shiro"
+  },
+  {
+   "g": 33,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Union Sg",
+   "trasf": "Friskoni FC"
+  },
+  {
+   "g": 33,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Standard HEGI",
+   "trasf": "FC Canzanella"
+  },
+  {
+   "g": 33,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Gin Tony FC",
+   "trasf": "Sassuoli"
+  },
+  {
+   "g": 34,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Cardiff",
+   "trasf": "Real Sandro CF"
+  },
+  {
+   "g": 34,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Sassuoli",
+   "trasf": "Fresencvaros"
+  },
+  {
+   "g": 34,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "BARÇELONARDO",
+   "trasf": "Friskoni FC"
+  },
+  {
+   "g": 34,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "FC Canzanella",
+   "trasf": "Gin Tony FC"
+  },
+  {
+   "g": 34,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Milan & Shiro",
+   "trasf": "Union Sg"
+  },
+  {
+   "g": 34,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "SOMMO FC",
+   "trasf": "Standard HEGI"
+  },
+  {
+   "g": 35,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Friskoni FC",
+   "trasf": "Milan & Shiro"
+  },
+  {
+   "g": 35,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Fresencvaros",
+   "trasf": "FC Canzanella"
+  },
+  {
+   "g": 35,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Real Sandro CF",
+   "trasf": "Sassuoli"
+  },
+  {
+   "g": 35,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Union Sg",
+   "trasf": "Cardiff"
+  },
+  {
+   "g": 35,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Standard HEGI",
+   "trasf": "BARÇELONARDO"
+  },
+  {
+   "g": 35,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Gin Tony FC",
+   "trasf": "SOMMO FC"
+  },
+  {
+   "g": 36,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Milan & Shiro",
+   "trasf": "Cardiff"
+  },
+  {
+   "g": 36,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Union Sg",
+   "trasf": "Sassuoli"
+  },
+  {
+   "g": 36,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Gin Tony FC",
+   "trasf": "BARÇELONARDO"
+  },
+  {
+   "g": 36,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Friskoni FC",
+   "trasf": "Standard HEGI"
+  },
+  {
+   "g": 36,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Real Sandro CF",
+   "trasf": "FC Canzanella"
+  },
+  {
+   "g": 36,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Fresencvaros",
+   "trasf": "SOMMO FC"
+  },
+  {
+   "g": 37,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Cardiff",
+   "trasf": "Friskoni FC"
+  },
+  {
+   "g": 37,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "BARÇELONARDO",
+   "trasf": "Fresencvaros"
+  },
+  {
+   "g": 37,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "SOMMO FC",
+   "trasf": "Real Sandro CF"
+  },
+  {
+   "g": 37,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "FC Canzanella",
+   "trasf": "Union Sg"
+  },
+  {
+   "g": 37,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Sassuoli",
+   "trasf": "Milan & Shiro"
+  },
+  {
+   "g": 37,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Standard HEGI",
+   "trasf": "Gin Tony FC"
+  },
+  {
+   "g": 38,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Cardiff",
+   "trasf": "Sassuoli"
+  },
+  {
+   "g": 38,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Real Sandro CF",
+   "trasf": "BARÇELONARDO"
+  },
+  {
+   "g": 38,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Fresencvaros",
+   "trasf": "Standard HEGI"
+  },
+  {
+   "g": 38,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Milan & Shiro",
+   "trasf": "FC Canzanella"
+  },
+  {
+   "g": 38,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Union Sg",
+   "trasf": "SOMMO FC"
+  },
+  {
+   "g": 38,
+   "c": "Campionato",
+   "f": "Campionato",
+   "casa": "Friskoni FC",
+   "trasf": "Gin Tony FC"
+  }
+ ],
+ "statistiche": {
+  "giornata": 5,
+  "giornata_migliore": {
+   "giornata": 5,
+   "squadra": "BARÇELONARDO",
+   "fp": 86.5,
+   "gol": 5
+  },
+  "giornata_peggiore": {
+   "giornata": 5,
+   "squadra": "Standard HEGI",
+   "fp": 62.0,
+   "gol": 0
+  },
+  "stagione_migliore": {
+   "giornata": 3,
+   "squadra": "SOMMO FC",
+   "fp": 88.0,
+   "gol": 5
+  },
+  "stagione_peggiore": {
+   "giornata": 3,
+   "squadra": "Cardiff",
+   "fp": 61.5,
+   "gol": 0
+  },
+  "media_lega": 72.93,
+  "partita_piu_gol": {
+   "giornata": 3,
+   "competizione": "Campionato",
+   "fase": "Campionato",
+   "casa": "SOMMO FC",
+   "trasferta": "Fresencvaros",
+   "gol": [
+    5,
+    3
+   ],
+   "fp": [
+    88.0,
+    77.0
+   ]
+  },
+  "vittoria_piu_larga": {
+   "giornata": 5,
+   "competizione": "Campionato",
+   "fase": "Campionato",
+   "casa": "Sassuoli",
+   "trasferta": "Cardiff",
+   "gol": [
+    0,
+    3
+   ],
+   "fp": [
+    65.0,
+    77.5
+   ]
+  },
+  "beffa": null,
+  "fortuna": [
+   {
+    "squadra": "Gin Tony FC",
+    "reali": 9.0,
+    "meritati": 5.0,
+    "fortuna": 4.0
+   },
+   {
+    "squadra": "Milan & Shiro",
+    "reali": 7.0,
+    "meritati": 3.73,
+    "fortuna": 3.27
+   },
+   {
+    "squadra": "Cardiff",
+    "reali": 6.0,
+    "meritati": 3.36,
+    "fortuna": 2.64
+   },
+   {
+    "squadra": "SOMMO FC",
+    "reali": 7.0,
+    "meritati": 6.82,
+    "fortuna": 0.18
+   },
+   {
+    "squadra": "FC Canzanella",
+    "reali": 4.0,
+    "meritati": 4.09,
+    "fortuna": -0.09
+   },
+   {
+    "squadra": "Friskoni FC",
+    "reali": 0.0,
+    "meritati": 0.55,
+    "fortuna": -0.55
+   },
+   {
+    "squadra": "Union Sg",
+    "reali": 3.0,
+    "meritati": 3.91,
+    "fortuna": -0.91
+   },
+   {
+    "squadra": "Sassuoli",
+    "reali": 1.0,
+    "meritati": 2.0,
+    "fortuna": -1.0
+   },
+   {
+    "squadra": "BARÇELONARDO",
+    "reali": 3.0,
+    "meritati": 4.0,
+    "fortuna": -1.0
+   },
+   {
+    "squadra": "Fresencvaros",
+    "reali": 6.0,
+    "meritati": 7.0,
+    "fortuna": -1.0
+   },
+   {
+    "squadra": "Standard HEGI",
+    "reali": 3.0,
+    "meritati": 4.82,
+    "fortuna": -1.82
+   },
+   {
+    "squadra": "Real Sandro CF",
+    "reali": 2.0,
+    "meritati": 5.0,
+    "fortuna": -3.0
+   }
+  ],
+  "media_fp": {
+   "Cardiff": 69.83,
+   "Milan & Shiro": 73.83,
+   "Sassuoli": 69.67,
+   "Union Sg": 72.0,
+   "BARÇELONARDO": 75.17,
+   "Gin Tony FC": 73.67,
+   "Standard HEGI": 73.0,
+   "Friskoni FC": 65.83,
+   "FC Canzanella": 72.5,
+   "Real Sandro CF": 75.83,
+   "SOMMO FC": 77.5,
+   "Fresencvaros": 76.33
+  },
+  "forma": {
+   "Cardiff": [
+    "P",
+    "V",
+    "V"
+   ],
+   "Milan & Shiro": [
+    "V",
+    "N",
+    "V"
+   ],
+   "Sassuoli": [
+    "P",
+    "N",
+    "P"
+   ],
+   "Union Sg": [
+    "V",
+    "P",
+    "P"
+   ],
+   "BARÇELONARDO": [
+    "P",
+    "P",
+    "V"
+   ],
+   "Gin Tony FC": [
+    "V",
+    "V",
+    "V"
+   ],
+   "Standard HEGI": [
+    "V",
+    "P",
+    "P"
+   ],
+   "Friskoni FC": [
+    "P",
+    "P",
+    "P"
+   ],
+   "FC Canzanella": [
+    "N",
+    "V",
+    "P"
+   ],
+   "Real Sandro CF": [
+    "N",
+    "N",
+    "P"
+   ],
+   "SOMMO FC": [
+    "V",
+    "N",
+    "V"
+   ],
+   "Fresencvaros": [
+    "P",
+    "V",
+    "V"
+   ]
+  },
+  "serie_vittorie": [
+   "Gin Tony FC",
+   3
+  ],
+  "serie_imbattuta": [
+   "Milan & Shiro",
+   3
+  ],
+  "serie_sconfitte": [
+   "Friskoni FC",
+   3
+  ]
+ },
+ "albo": [
+  {
+   "stagione": "2025-26",
+   "Campionato": "Guido",
+   "Coppa": "Guido",
+   "Champions": "Frisko"
+  },
+  {
+   "stagione": "2024-25",
+   "Campionato": "Edo",
+   "Coppa": "Guido",
+   "Champions": "Fresa"
+  },
+  {
+   "stagione": "2023-24",
+   "Campionato": "Gigi",
+   "Coppa": "Frisko",
+   "Champions": "Sazo"
+  },
+  {
+   "stagione": "2022-23",
+   "Campionato": "Gigi",
+   "Coppa": "Salomons"
+  },
+  {
+   "stagione": "2021-22",
+   "Campionato": "Lispa",
+   "Coppa": "Toni"
+  },
+  {
+   "stagione": "2020-21",
+   "Campionato": "Toni",
+   "Coppa": "Dario"
+  },
+  {
+   "stagione": "2019-20",
+   "Campionato": "Toni"
+  }
+ ],
+ "forza": {
+  "Fresencvaros": {
+   "media": 0.71,
+   "q05": -1.33,
+   "q95": 3.69,
+   "prob_sopra_media": 0.667
+  },
+  "SOMMO FC": {
+   "media": 0.64,
+   "q05": -1.42,
+   "q95": 3.56,
+   "prob_sopra_media": 0.648
+  },
+  "Real Sandro CF": {
+   "media": 0.64,
+   "q05": -1.44,
+   "q95": 3.54,
+   "prob_sopra_media": 0.658
+  },
+  "BARÇELONARDO": {
+   "media": 0.26,
+   "q05": -2.08,
+   "q95": 2.98,
+   "prob_sopra_media": 0.561
+  },
+  "Milan & Shiro": {
+   "media": 0.23,
+   "q05": -1.86,
+   "q95": 2.62,
+   "prob_sopra_media": 0.559
+  },
+  "Standard HEGI": {
+   "media": 0.1,
+   "q05": -2.16,
+   "q95": 2.57,
+   "prob_sopra_media": 0.525
+  },
+  "Gin Tony FC": {
+   "media": 0.09,
+   "q05": -2.17,
+   "q95": 2.41,
+   "prob_sopra_media": 0.525
+  },
+  "FC Canzanella": {
+   "media": -0.05,
+   "q05": -2.29,
+   "q95": 2.18,
+   "prob_sopra_media": 0.489
+  },
+  "Union Sg": {
+   "media": -0.21,
+   "q05": -2.66,
+   "q95": 1.95,
+   "prob_sopra_media": 0.439
+  },
+  "Cardiff": {
+   "media": -0.41,
+   "q05": -3.17,
+   "q95": 1.75,
+   "prob_sopra_media": 0.411
+  },
+  "Sassuoli": {
+   "media": -0.64,
+   "q05": -3.5,
+   "q95": 1.4,
+   "prob_sopra_media": 0.34
+  },
+  "Friskoni FC": {
+   "media": -1.36,
+   "q05": -5.28,
+   "q95": 0.82,
+   "prob_sopra_media": 0.239
   }
  },
  "validazione": {

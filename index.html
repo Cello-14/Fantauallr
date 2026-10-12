@@ -3,14 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FANTAUALLR Dashboard</title>
+    <title>FANTAUALLR 2026-27</title>
+    <meta name="description" content="Classifiche, rating Elo, previsioni, quote e scommesse (crediti virtuali) della lega FANTAUALLR.">
+    <!-- anteprima del link (WhatsApp, Telegram…) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="FANTAUALLR">
+    <meta property="og:title" content="FANTAUALLR 2026-27">
+    <meta property="og:description" content="Classifiche, rating Elo, previsioni, quote e scommesse della lega.">
+    <meta property="og:url" content="https://cello-14.github.io/Fantauallr/">
+    <meta property="og:image" content="https://cello-14.github.io/Fantauallr/anteprima.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- installabile come app sul telefono -->
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="apple-touch-icon" href="icona-180.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="FANTAUALLR">
+    <meta name="theme-color" content="#161816">
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23c4ff00'/%3E%3Ctext x='16' y='22' font-size='18' font-family='Arial' font-weight='bold' text-anchor='middle' fill='%23000'%3EF%3C/text%3E%3C/svg%3E">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="vendor/chart.min.js"></script>
     <script src="vendor/supabase.min.js"></script>
     
-    <link rel="stylesheet" href="tailwind.css?v=20261012151028">
-    <link rel="stylesheet" href="style.css?v=20261012151028">
+    <link rel="stylesheet" href="tailwind.css?v=20261012232725">
+    <link rel="stylesheet" href="style.css?v=20261012232725">
 </head>
 <body class="min-h-screen flex flex-col md:flex-row">
 
@@ -43,6 +60,14 @@
             <button data-view="classifiche" class="nav-btn flex items-center gap-3 w-full text-left p-3 rounded-xl hover:bg-white/5 transition-colors font-medium text-muted">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
                 Classifiche
+            </button>
+            <button data-view="calendario" class="nav-btn flex items-center gap-3 w-full text-left p-3 rounded-xl hover:bg-white/5 transition-colors font-medium text-muted">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                Calendario
+            </button>
+            <button data-view="statistiche" class="nav-btn flex items-center gap-3 w-full text-left p-3 rounded-xl hover:bg-white/5 transition-colors font-medium text-muted">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
+                Statistiche
             </button>
             <button data-view="elo" class="nav-btn flex items-center gap-3 w-full text-left p-3 rounded-xl hover:bg-white/5 transition-colors font-medium text-muted">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
@@ -120,6 +145,6 @@
 
     </main>
 
-    <script src="app.js?v=20261012151028"></script>
+    <script src="app.js?v=20261012232725"></script>
 </body>
 </html>

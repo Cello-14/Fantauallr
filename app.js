@@ -92,7 +92,21 @@ function toggleTheme() {
     if(State.chartInstance) renderEloChart(); // Ridisegna per colori
 }
 
+function apriSquadra(nome) {
+    if(State.view !== 'squadra') State.vistaPrecedente = State.view;
+    State.squadraSel = nome;
+    State.view = 'squadra';
+    document.querySelectorAll('.nav-btn').forEach(b => { b.classList.remove('bg-white/10', 'text-main'); b.classList.add('text-muted'); });
+    renderView();
+    window.scrollTo({ top: 0 });
+}
+
 function bindEvents() {
+    // qualsiasi elemento con data-squadra apre la scheda di quella squadra
+    document.getElementById('view-container').addEventListener('click', e => {
+        const el = e.target.closest('[data-squadra]');
+        if(el && !e.target.closest('button.esito-btn, input, form')) apriSquadra(el.dataset.squadra);
+    });
     document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
     document.getElementById('mobile-menu-btn').addEventListener('click', () => {
         const sidebar = document.getElementById('sidebar');
@@ -162,6 +176,21 @@ function renderView() {
             title.innerText = 'Ranking Allenatori';
             subtitle.innerText = 'Storico pluriennale';
             renderRanking(container);
+            break;
+        case 'calendario':
+            title.innerText = 'Calendario';
+            subtitle.innerText = 'Tutte le giornate di tutte le competizioni';
+            renderCalendario(container);
+            break;
+        case 'statistiche':
+            title.innerText = 'Statistiche';
+            subtitle.innerText = 'Record, serie e classifica della fortuna';
+            renderStatistiche(container);
+            break;
+        case 'squadra':
+            title.innerText = State.squadraSel || 'Squadra';
+            subtitle.innerText = 'Scheda della squadra';
+            renderSquadra(container);
             break;
         case 'mercato':
             title.innerText = 'Mercato';
@@ -310,8 +339,8 @@ async function renderQuote(container) {
                 ${!aperta ? '<span class="text-[11px] text-danger">chiusa</span>' : p.finale ? '<span class="text-[11px] text-muted">supplementari compresi</span>' : ''}
             </div>
             <div class="flex items-center justify-between gap-2">
-                <div class="flex items-center gap-2 min-w-0 w-1/2">${renderStemma(p.casa, 'w-8 h-8')}<span class="font-bold text-sm truncate">${p.casa.nome}</span></div>
-                <div class="flex items-center gap-2 min-w-0 w-1/2 justify-end"><span class="font-bold text-sm truncate text-right">${p.trasferta.nome}</span>${renderStemma(p.trasferta, 'w-8 h-8')}</div>
+                <div class="flex items-center gap-2 min-w-0 w-1/2">${renderStemma(p.casa, 'w-8 h-8')}<span class="font-bold text-sm truncate" data-squadra="${esc(p.casa.nome)}">${p.casa.nome}</span></div>
+                <div class="flex items-center gap-2 min-w-0 w-1/2 justify-end"><span class="font-bold text-sm truncate text-right" data-squadra="${esc(p.trasferta.nome)}">${p.trasferta.nome}</span>${renderStemma(p.trasferta, 'w-8 h-8')}</div>
             </div>
             <div class="flex gap-2">${esiti.map(([e, prob]) => box(p, e, q[e], prob, aperta)).join('')}</div>
         </div>`;
@@ -345,7 +374,7 @@ async function renderQuote(container) {
     container.innerHTML = `
         ${bloccoMessaggio()}${bloccoAccesso()}
         <div class="surface rounded-2xl border border-theme p-4 mb-6 text-sm flex flex-wrap gap-x-6 gap-y-1">
-            <span><span class="text-muted">Chiusura:</span> <b>${Q.chiusura ? formatDate(Q.chiusura) : 'da definire'}</b></span>
+            <span><span class="text-muted">Chiusura:</span> <b>${Q.chiusura ? formatDate(Q.chiusura) : 'da definire'}</b> <span class="conto-rovescia text-accent text-xs"></span></span>
             <span class="text-muted">${puoi ? 'Le quote si muovono con le puntate: vale quella del momento in cui scommetti.' : Bet.sb ? 'Accedi con la tua email per scommettere con crediti virtuali.' : "Le scommesse con crediti virtuali si apriranno con l'accesso via email."}</span>
         </div>
         ${schedina}
@@ -353,6 +382,7 @@ async function renderQuote(container) {
         ${mie}
         <p class="text-xs text-muted mt-4">Quote dal modello statistico sui fantapunti${Bet.quoteDb ? ' e dalle puntate dei membri' : ''}, con un margine del banco del ${Math.round(Q.margine * 100)}%. Sotto ogni quota la probabilità stimata dal modello. Si gioca solo con crediti virtuali: 100 per giornata, quelli non spesi si perdono.</p>`;
     collegaAccesso(container);
+    if(Q.chiusura) avviaContoAllaRovescia(Q.chiusura);
     container.querySelectorAll('.esito-btn:not([disabled])').forEach(b => b.addEventListener('click', () => {
         const id = b.dataset.partita, nomi = id.split('|').slice(3).join(' – ');
         if(Bet.schedina[id]?.esito === b.dataset.esito) delete Bet.schedina[id];
@@ -461,7 +491,7 @@ function tabellaPrevisioni(t) {
         const ex = t.extra ? `<td class="py-2 px-0.5 sm:px-1 text-center font-bold text-accent">${Math.round((t.extra.valori[nome] || 0) * 100)}</td>` : '';
         return `<tr class="border-b border-theme">
             <td class="py-2 px-1 text-center text-muted hidden sm:table-cell">${i + 1}</td>
-            <td class="py-2 px-0.5 sm:px-1"><div class="flex items-center gap-2 min-w-0">${renderStemma(scheda(nome), 'w-5 h-5 sm:w-6 sm:h-6')}<span class="hidden sm:inline truncate max-w-[130px] font-semibold">${nome}</span></div></td>
+            <td class="py-2 px-0.5 sm:px-1"><div class="flex items-center gap-2 min-w-0" data-squadra="${esc(nome)}" title="${esc(nome)}">${renderStemma(scheda(nome), 'w-5 h-5 sm:w-6 sm:h-6')}<span class="hidden sm:inline truncate max-w-[130px] font-semibold">${nome}</span></div></td>
             <td class="py-2 px-0.5 sm:px-1 text-center font-bold">${punti[nome] ?? ''}</td>
             ${t.posizioni[nome].map((p, k) => cella(p, poss.includes(k + 1))).join('')}${ex}
         </tr>`;
@@ -487,7 +517,7 @@ function renderHome(container) {
     const turni = d.turni || [{ competizione: 'Campionato', ultimo: d.ultima_giornata, prossimo: d.prossima_giornata }];
     
     // Widgets
-    let marketText = "Chiuso";
+    let marketText = d.mercato?.prossima_finestra?.dal ? `Chiuso · riapre ${formatDate(d.mercato.prossima_finestra.dal)}` : "Chiuso";
     let marketColor = "text-danger";
     if(d.mercato?.aperto) {
         marketText = `Aperto fino al ${formatDate(d.mercato.finestra_aperta?.fino_al)}`;
@@ -518,6 +548,7 @@ function renderHome(container) {
             <div class="surface p-4 rounded-2xl border border-theme flex flex-col justify-center">
                 <span class="text-xs text-muted font-semibold uppercase tracking-wider mb-1">Scadenza formazioni${pGiornata?.giornata ? ' · G. ' + gLega(pGiornata.giornata) : ''}</span>
                 <span class="font-bold text-sm leading-tight">${pGiornata?.scadenza_formazioni ? formatDate(pGiornata.scadenza_formazioni) + (pGiornata.scadenza_provvisoria ? ' (orario da definire)' : '') : 'Non ancora inserita'}</span>
+                ${pGiornata?.scadenza_formazioni && !pGiornata.scadenza_provvisoria ? '<span class="conto-rovescia text-xs text-accent mt-1"></span>' : ''}
             </div>
         </div>
 
@@ -530,6 +561,7 @@ function renderHome(container) {
             </div>`).join('')}
     `;
     container.innerHTML = html;
+    if(pGiornata?.scadenza_formazioni && !pGiornata.scadenza_provvisoria) avviaContoAllaRovescia(pGiornata.scadenza_formazioni);
 
     turni.forEach((t, i) => {
         if(t.ultimo?.partite?.length) initCarousel(i === 0 ? 'ultima' : 'ultima-' + i, t.ultimo.partite.length);
@@ -573,7 +605,7 @@ function renderMatchCardLast(partita) {
                 <!-- Casa -->
                 <div class="flex flex-col items-center w-1/3">
                     ${renderStemma(partita.casa, 'w-16 h-16 mb-2')}
-                    <span class="font-bold text-sm text-center line-clamp-1 ${vCasa ? 'text-accent' : ''}">${partita.casa.nome}</span>
+                    <span class="font-bold text-sm text-center line-clamp-1 ${vCasa ? 'text-accent' : ''}" data-squadra="${esc(partita.casa.nome)}">${partita.casa.nome}</span>
                     <span class="text-xs text-muted">${formatNumber(partita.fantapunti[0])} fp</span>
                 </div>
                 
@@ -587,7 +619,7 @@ function renderMatchCardLast(partita) {
                 <!-- Trasferta -->
                 <div class="flex flex-col items-center w-1/3">
                     ${renderStemma(partita.trasferta, 'w-16 h-16 mb-2')}
-                    <span class="font-bold text-sm text-center line-clamp-1 ${vTras ? 'text-accent' : ''}">${partita.trasferta.nome}</span>
+                    <span class="font-bold text-sm text-center line-clamp-1 ${vTras ? 'text-accent' : ''}" data-squadra="${esc(partita.trasferta.nome)}">${partita.trasferta.nome}</span>
                     <span class="text-xs text-muted">${formatNumber(partita.fantapunti[1])} fp</span>
                 </div>
             </div>
@@ -670,12 +702,12 @@ function renderMatchCardNext(partita) {
             <div class="flex items-center justify-between w-full max-w-sm mt-4">
                 <div class="flex flex-col items-center w-5/12">
                     ${renderStemma(partita.casa, 'w-14 h-14 mb-2')}
-                    <span class="font-bold text-sm text-center line-clamp-1">${partita.casa.nome}</span>
+                    <span class="font-bold text-sm text-center line-clamp-1" data-squadra="${esc(partita.casa.nome)}">${partita.casa.nome}</span>
                 </div>
                 <div class="w-2/12 flex justify-center"><span class="text-muted text-sm font-bold px-3 py-1 bg-black/20 rounded-lg">VS</span></div>
                 <div class="flex flex-col items-center w-5/12">
                     ${renderStemma(partita.trasferta, 'w-14 h-14 mb-2')}
-                    <span class="font-bold text-sm text-center line-clamp-1">${partita.trasferta.nome}</span>
+                    <span class="font-bold text-sm text-center line-clamp-1" data-squadra="${esc(partita.trasferta.nome)}">${partita.trasferta.nome}</span>
                 </div>
             </div>
             ${eloBar}
@@ -833,7 +865,7 @@ function renderGirone(fase, compName) {
                 <td class="px-1 py-3 sm:p-3 font-semibold">
                     <div class="flex items-center gap-2 sm:gap-3">
                         ${renderStemma(r.squadra, 'w-6 h-6 sm:w-8 sm:h-8')}
-                        <span class="truncate max-w-[92px] sm:max-w-xs text-sm sm:text-base">${r.squadra.nome}</span>
+                        <span class="truncate max-w-[92px] sm:max-w-xs text-sm sm:text-base" data-squadra="${esc(r.squadra.nome)}">${r.squadra.nome}</span>
                     </div>
                 </td>
                 <td class="px-1 py-3 sm:p-3 text-center font-black text-lg flex items-center justify-center">${r.pt}${penBadge}</td>
@@ -895,12 +927,12 @@ function renderEliminazione(fase) {
                 <div class="flex sm:flex-col justify-center gap-2 sm:w-1/3">
                     <div class="flex items-center gap-2 ${p1 ? 'font-bold text-accent' : (sfida.finita && !p1 ? 'text-muted opacity-50' : '')}">
                         ${renderStemma(s1, 'w-6 h-6')}
-                        <span class="truncate">${s1.nome}</span>
+                        <span class="truncate" data-squadra="${esc(s1.nome)}">${s1.nome}</span>
                         <span class="ml-auto font-mono bg-black/20 px-2 rounded">${sfida.totale?.[s1.nome]?.gol ?? '-'}</span>
                     </div>
                     <div class="flex items-center gap-2 ${p2 ? 'font-bold text-accent' : (sfida.finita && !p2 ? 'text-muted opacity-50' : '')}">
                         ${renderStemma(s2, 'w-6 h-6')}
-                        <span class="truncate">${s2.nome}</span>
+                        <span class="truncate" data-squadra="${esc(s2.nome)}">${s2.nome}</span>
                         <span class="ml-auto font-mono bg-black/20 px-2 rounded">${sfida.totale?.[s2.nome]?.gol ?? '-'}</span>
                     </div>
                 </div>
@@ -936,7 +968,7 @@ function renderFinale(fase) {
         const riga = (sq, gol) => `
             <div class="flex items-center gap-3 ${vinc && vinc === sq.nome ? 'font-bold text-accent' : (vinc ? 'text-muted' : '')}">
                 ${renderStemma(sq, 'w-10 h-10')}
-                <span class="flex-1 truncate">${sq.nome}</span>
+                <span class="flex-1 truncate" data-squadra="${esc(sq.nome)}">${sq.nome}</span>
                 <span class="font-mono text-xl">${p.giocata ? gol : '-'}</span>
             </div>`;
         return `
@@ -958,7 +990,7 @@ function renderFormula1(fase) {
     const righe = (fase.classifica || []).map(r => `
         <tr class="border-b border-theme hover:bg-white/5 transition-colors">
             <td class="p-3 text-center font-bold text-sm text-muted w-10">${r.pos}</td>
-            <td class="p-3 font-semibold"><div class="flex items-center gap-3">${renderStemma(r.squadra, 'w-8 h-8')}<span class="truncate max-w-[140px] sm:max-w-xs">${r.squadra.nome}</span></div></td>
+            <td class="p-3 font-semibold"><div class="flex items-center gap-3">${renderStemma(r.squadra, 'w-8 h-8')}<span class="truncate max-w-[140px] sm:max-w-xs" data-squadra="${esc(r.squadra.nome)}">${r.squadra.nome}</span></div></td>
             <td class="p-3 text-center text-sm text-muted">${r.giornate}</td>
             <td class="p-3 text-center font-black text-lg">${formatNumber(r.pf1, 0)}</td>
             <td class="p-3 text-center text-sm font-mono">${formatNumber(r.fp)}</td>
@@ -1000,7 +1032,7 @@ function renderElo(container) {
                     <div class="flex items-center gap-2 min-w-0">
                         ${r.fascia ? `<span class="sm:hidden w-2.5 h-2.5 rounded-full flex-shrink-0" style="background:${COLORI_FASCE[r.fascia]}" title="${r.fascia}"></span>` : ''}
                         ${renderStemma(r.squadra, 'w-7 h-7')}
-                        <span class="truncate max-w-[96px] sm:max-w-[130px]">${r.squadra.nome}</span>
+                        <span class="truncate max-w-[96px] sm:max-w-[130px]" data-squadra="${esc(r.squadra.nome)}">${r.squadra.nome}</span>
                     </div>
                 </td>
                 <td class="py-3 px-2 text-center font-bold font-mono text-base">${r.rating.toFixed(0)}</td>
@@ -1198,28 +1230,40 @@ function renderRanking(container) {
         </table>
     `;
 
+    // sul telefono una tabella alla volta (schede), sul computer tutte e tre affiancate
+    const tab = State.rankTab || 'storico';
+    const pannelli = [['storico', 'Storico Assoluto', 'Storico', renderTable(d.storico, 'punti', 'Punti')],
+                      ['standardizzato', 'Standardizzato (Media)', 'Media', renderTable(d.standardizzato, 'punti', 'Pt/Stag', true)],
+                      ['ultime5', 'Ultime 5 Stagioni', 'Ultime 5', renderTable(d.ultime5_classifica, 'punti', 'Punti')]];
+    const albo = State.data.albo || [];
+    const comps = ['Campionato', 'Coppa', 'Champions'].filter(c => albo.some(r => r[c]));
     container.innerHTML = `
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div class="surface rounded-2xl border border-theme overflow-hidden flex flex-col">
-                <div class="p-4 border-b border-theme bg-black/20"><h3 class="font-bold">Storico Assoluto</h3></div>
-                <div>
-                    ${renderTable(d.storico, 'punti', 'Punti')}
-                </div>
-            </div>
-            <div class="surface rounded-2xl border border-theme overflow-hidden flex flex-col">
-                <div class="p-4 border-b border-theme bg-black/20"><h3 class="font-bold">Standardizzato (Media)</h3></div>
-                <div>
-                    ${renderTable(d.standardizzato, 'punti', 'Pt/Stag', true)}
-                </div>
-            </div>
-            <div class="surface rounded-2xl border border-theme overflow-hidden flex flex-col">
-                <div class="p-4 border-b border-theme bg-black/20"><h3 class="font-bold">Ultime 5 Stagioni</h3></div>
-                <div>
-                    ${renderTable(d.ultime5_classifica, 'punti', 'Punti')}
-                </div>
-            </div>
+        <div class="flex gap-2 mb-4 lg:hidden">${pannelli.map(([k, , corto]) => `
+            <button data-rank="${k}" class="flex-1 px-3 py-2 rounded-lg text-sm font-semibold border ${k === tab ? 'bg-accent text-black border-accent' : 'surface border-theme text-muted'}">${corto}</button>`).join('')}
         </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">${pannelli.map(([k, titolo, , tabella]) => `
+            <div class="surface rounded-2xl border border-theme overflow-hidden flex-col ${k === tab ? 'flex' : 'hidden lg:flex'}">
+                <div class="p-4 border-b border-theme bg-black/20"><h3 class="font-bold">${titolo}</h3></div>
+                <div>${tabella}</div>
+            </div>`).join('')}
+        </div>
+        ${albo.length ? `
+        <h2 class="font-bold text-xl mt-10 mb-4">Albo d'oro</h2>
+        <div class="surface rounded-2xl border border-theme overflow-hidden">
+            <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                <thead class="bg-black/10 border-b border-theme">
+                    <tr class="text-xs uppercase tracking-wider text-muted"><th class="p-2 sm:p-3">Stag.</th>${comps.map(c => `<th class="p-2 sm:p-3">${c === 'Campionato' ? 'Camp<span class="hidden sm:inline">ionato</span>' : c === 'Champions' ? 'Champ<span class="hidden sm:inline">ions</span>' : c}</th>`).join('')}</tr>
+                </thead>
+                <tbody>${albo.map(r => `
+                    <tr class="border-b border-theme">
+                        <td class="p-2 sm:p-3 font-mono text-muted whitespace-nowrap"><span class="hidden sm:inline">${esc(r.stagione.slice(0, 2))}</span>${esc(r.stagione.slice(2))}</td>
+                        ${comps.map(c => `<td class="p-2 sm:p-3 ${c === 'Campionato' ? 'font-bold' : ''}">${r[c] ? esc(r[c]) : '<span class="text-muted">–</span>'}</td>`).join('')}
+                    </tr>`).join('')}
+                </tbody>
+            </table>
+        </div>` : ''}
     `;
+    container.querySelectorAll('[data-rank]').forEach(b => b.addEventListener('click', () => { State.rankTab = b.dataset.rank; renderRanking(container); }));
 }
 
 // --- STREAMING_CHUNK:View - Mercato & Montepremi... ---
@@ -1289,7 +1333,7 @@ function bilancioMercato(ops) {
     const conCrediti = ops.some(r => r.crediti);
     const righe = Object.entries(b).sort((x, y) => y[1].op.size - x[1].op.size || y[1].in - x[1].in).map(([s, v]) => `
         <tr class="border-b border-theme">
-            <td class="py-2 px-2"><div class="flex items-center gap-2 min-w-0">${renderStemma(schedaSquadra(s), 'w-6 h-6')}<span class="truncate max-w-[120px] sm:max-w-none font-semibold">${esc(s)}</span></div></td>
+            <td class="py-2 px-2"><div class="flex items-center gap-2 min-w-0">${renderStemma(schedaSquadra(s), 'w-6 h-6')}<span class="truncate max-w-[120px] sm:max-w-none font-semibold" data-squadra="${esc(s)}">${esc(s)}</span></div></td>
             <td class="py-2 px-2 text-center">${v.op.size}</td>
             <td class="py-2 px-2 text-center text-accent font-semibold">+${v.in}</td>
             <td class="py-2 px-2 text-center text-danger font-semibold">−${v.out}</td>
@@ -1335,6 +1379,211 @@ function renderMercato(container) {
     container.querySelectorAll('.filtro-finestra').forEach(b => b.addEventListener('click', () => {
         State.finestraMercato = b.dataset.finestra || null; renderMercato(container);
     }));
+}
+
+// ===================== Sezioni aggiunte il 12/10: Calendario, Statistiche, Pagina squadra, Albo, conto alla rovescia
+const linkSquadra = (nome, cls = '') => `<span data-squadra="${esc(nome)}" class="cursor-pointer hover:underline ${cls}">${esc(nome)}</span>`;
+const fmtNum = (v, d = 1) => v === null || v === undefined ? '–' : Number(v).toFixed(d).replace('.', ',');
+
+function tempoMancante(iso) {
+    if(!iso) return '';
+    const ms = new Date(iso.includes('T') ? iso : iso + 'T12:00') - new Date();
+    if(ms <= 0) return 'chiusa';
+    const min = Math.floor(ms / 60000), g = Math.floor(min / 1440), h = Math.floor((min % 1440) / 60), m = min % 60;
+    return 'chiude tra ' + (g ? `${g} g ${h} h` : h ? `${h} h ${m} min` : `${m} min`);
+}
+function avviaContoAllaRovescia(iso) {
+    const agg = () => document.querySelectorAll('.conto-rovescia').forEach(el => el.textContent = tempoMancante(iso));
+    agg();
+    clearInterval(State.carouselTimers.contoRovescia);
+    State.carouselTimers.contoRovescia = setInterval(agg, 30000);
+}
+
+// --- Calendario: una giornata alla volta, con frecce e scelta della giornata
+function renderCalendario(container) {
+    const tutte = State.data.partite || [];
+    const comps = [...new Set(tutte.map(p => p.c))];
+    if(!comps.length) { container.innerHTML = '<div class="p-8 text-center text-muted">Calendario non disponibile.</div>'; return; }
+    if(!comps.includes(State.calComp)) State.calComp = comps[0];
+    const partite = tutte.filter(p => p.c === State.calComp);
+    const giornate = [...new Set(partite.map(p => p.g))].sort((a, b) => a - b);
+    const prossima = giornate.find(g => partite.some(p => p.g === g && !p.gol)) ?? giornate[giornate.length - 1];
+    if(!giornate.includes(State.calG)) State.calG = prossima;
+    const i = giornate.indexOf(State.calG);
+    const sq = n => State.data.squadre.find(q => q.nome === n) || { nome: n };
+    // nomi di una sola parola lunga: più piccoli sul telefono, così non vengono spezzati
+    const dim = n => !n.includes(' ') && n.length > 10 ? 'text-[10px] sm:text-sm tracking-tight' : 'text-xs sm:text-sm';
+    const riga = p => {
+        const vC = p.gol && p.gol[0] > p.gol[1], vT = p.gol && p.gol[1] > p.gol[0];
+        return `
+        <div class="flex items-center gap-1.5 sm:gap-2 py-3 border-b border-theme last:border-b-0">
+            <div class="flex items-center gap-2 justify-end flex-1 min-w-0 text-right">
+                <span class="line-clamp-2 leading-tight ${dim(p.casa)} ${vC ? 'font-bold text-accent' : 'font-semibold'}" data-squadra="${esc(p.casa)}">${esc(p.casa)}</span>${renderStemma(sq(p.casa), 'w-6 h-6 sm:w-7 sm:h-7')}
+            </div>
+            <div class="w-16 sm:w-24 text-center flex-shrink-0">
+                ${p.gol ? `<div class="font-black text-base sm:text-lg font-mono">${p.gol[0]} - ${p.gol[1]}</div><div class="text-[9px] sm:text-[10px] text-muted whitespace-nowrap">${fmtNum(p.fp[0])}–${fmtNum(p.fp[1])}</div>${p.dts ? `<div class="text-[10px] text-accent">d.t.s. ${esc(p.dts)}</div>` : ''}`
+                         : '<div class="text-muted text-sm">vs</div>'}
+            </div>
+            <div class="flex items-center gap-2 flex-1 min-w-0">
+                ${renderStemma(sq(p.trasf), 'w-6 h-6 sm:w-7 sm:h-7')}<span class="line-clamp-2 leading-tight ${dim(p.trasf)} ${vT ? 'font-bold text-accent' : 'font-semibold'}" data-squadra="${esc(p.trasf)}">${esc(p.trasf)}</span>
+            </div>
+        </div>`;
+    };
+    const diG = partite.filter(p => p.g === State.calG);
+    const fasi = [...new Set(diG.map(p => p.f))];
+    container.innerHTML = `
+        <div class="flex flex-wrap gap-2 mb-6">${comps.map(c => `<button data-cal-comp="${esc(c)}" class="px-4 sm:px-6 py-2 rounded-full text-sm font-bold border ${c === State.calComp ? 'bg-accent border-accent text-black' : 'surface border-theme text-muted'}">${esc(c)}</button>`).join('')}</div>
+        <div class="surface rounded-2xl border border-theme overflow-hidden max-w-3xl">
+            <div class="flex items-center justify-between gap-2 p-4 border-b border-theme bg-black/10">
+                <button id="cal-prec" class="w-9 h-9 rounded-full border border-theme ${i > 0 ? '' : 'opacity-30'}" ${i > 0 ? '' : 'disabled'} aria-label="Giornata precedente">‹</button>
+                <select id="cal-sel" class="surface border border-theme rounded-lg px-3 py-1.5 text-sm font-bold">
+                    ${giornate.map(g => `<option value="${g}" ${g === State.calG ? 'selected' : ''}>${gLega(g)}ª giornata${g === prossima ? ' (prossima)' : ''}</option>`).join('')}
+                </select>
+                <button id="cal-succ" class="w-9 h-9 rounded-full border border-theme ${i < giornate.length - 1 ? '' : 'opacity-30'}" ${i < giornate.length - 1 ? '' : 'disabled'} aria-label="Giornata successiva">›</button>
+            </div>
+            <div class="px-2 sm:px-4">${fasi.map(f => `${fasi.length > 1 || State.calComp !== 'Campionato' ? `<div class="text-xs uppercase tracking-wider text-muted pt-3">${esc(f)}</div>` : ''}${diG.filter(p => p.f === f).map(riga).join('')}`).join('')}</div>
+        </div>
+        <p class="text-xs text-muted mt-3">Giornate di Lega (la 1ª è la ${State.data.lega.prima_giornata}ª di Serie A). Sotto il risultato i fantapunti. Clicca una squadra per la sua scheda.</p>`;
+    container.querySelectorAll('[data-cal-comp]').forEach(b => b.addEventListener('click', () => { State.calComp = b.dataset.calComp; State.calG = null; renderCalendario(container); }));
+    container.querySelector('#cal-sel').addEventListener('change', e => { State.calG = Number(e.target.value); renderCalendario(container); });
+    container.querySelector('#cal-prec').addEventListener('click', () => { State.calG = giornate[i - 1]; renderCalendario(container); });
+    container.querySelector('#cal-succ').addEventListener('click', () => { State.calG = giornate[i + 1]; renderCalendario(container); });
+}
+
+// --- Statistiche: record, serie, classifica della fortuna
+function renderStatistiche(container) {
+    const S = State.data.statistiche;
+    if(!S) { container.innerHTML = '<div class="p-8 text-center text-muted">Le statistiche compariranno dopo la prima giornata.</div>'; return; }
+    const sq = n => State.data.squadre.find(q => q.nome === n) || { nome: n };
+    const tile = (titolo, corpo, nota = '') => `<div class="surface rounded-2xl border border-theme p-4 flex flex-col gap-2"><span class="text-xs text-muted font-semibold uppercase tracking-wider">${titolo}</span>${corpo}${nota ? `<span class="text-xs text-muted">${nota}</span>` : ''}</div>`;
+    const prest = r => `<div class="flex items-center gap-2">${renderStemma(sq(r.squadra), 'w-8 h-8')}<div class="min-w-0"><div class="font-bold truncate" data-squadra="${esc(r.squadra)}">${esc(r.squadra)}</div><div class="text-sm"><b class="font-mono">${fmtNum(r.fp)}</b> fp · ${r.gol} gol · ${gLega(r.giornata)}ª giornata</div></div></div>`;
+    const partita = p => p ? `<div class="text-sm"><span data-squadra="${esc(p.casa)}" class="font-semibold">${esc(p.casa)}</span> <b class="font-mono">${p.gol[0]}-${p.gol[1]}</b> <span data-squadra="${esc(p.trasferta)}" class="font-semibold">${esc(p.trasferta)}</span></div><div class="text-xs text-muted">${fmtNum(p.fp[0])} – ${fmtNum(p.fp[1])} fp · ${gLega(p.giornata)}ª giornata${p.competizione !== 'Campionato' ? ' · ' + esc(p.fase) : ''}</div>` : '<span class="text-muted text-sm">–</span>';
+    const serie = (x, cosa) => x ? `<div class="flex items-center gap-2">${renderStemma(sq(x[0]), 'w-8 h-8')}<div><div class="font-bold" data-squadra="${esc(x[0])}">${esc(x[0])}</div><div class="text-sm">${x[1]} ${cosa} di fila</div></div></div>` : '<span class="text-muted text-sm">nessuna serie in corso</span>';
+    const pallino = e => `<span class="inline-block w-4 h-4 rounded-full text-[9px] font-black leading-4 text-center text-white" style="background:${e === 'V' ? '#22c55e' : e === 'N' ? '#9ca3af' : '#ef4444'}">${e}</span>`;
+    const righe = S.fortuna.map((r, i) => `
+        <tr class="border-b border-theme">
+            <td class="py-2 px-2 text-center text-muted hidden sm:table-cell">${i + 1}</td>
+            <td class="py-2 px-2"><div class="flex items-center gap-2 min-w-0">${renderStemma(sq(r.squadra), 'w-6 h-6')}<span class="truncate max-w-[110px] sm:max-w-none font-semibold" data-squadra="${esc(r.squadra)}">${esc(r.squadra)}</span></div></td>
+            <td class="py-2 px-1 sm:px-2 text-center font-bold">${fmtNum(r.reali, 0)}</td>
+            <td class="py-2 px-1 sm:px-2 text-center font-mono">${fmtNum(r.meritati)}</td>
+            <td class="py-2 px-1 sm:px-2 text-center font-mono font-bold ${r.fortuna > 0 ? 'text-accent' : r.fortuna < 0 ? 'text-danger' : ''}">${r.fortuna > 0 ? '+' : ''}${fmtNum(r.fortuna)}</td>
+            <td class="py-2 px-2 text-center hidden sm:table-cell font-mono">${fmtNum(S.media_fp[r.squadra], 2)}</td>
+            <td class="py-2 px-2 hidden md:table-cell"><div class="flex gap-1 justify-center">${(S.forma[r.squadra] || []).map(pallino).join('')}</div></td>
+        </tr>`).join('');
+    container.innerHTML = `
+        <h3 class="font-bold text-lg mb-3">Ultima giornata (${gLega(S.giornata)}ª)</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+            ${tile('Miglior punteggio', prest(S.giornata_migliore))}
+            ${tile('Peggior punteggio', prest(S.giornata_peggiore))}
+            ${tile('Media della lega', `<div class="text-2xl font-black font-mono">${fmtNum(S.media_lega, 2)}</div>`, 'fantapunti a partita nel Campionato, da inizio stagione')}
+        </div>
+        <h3 class="font-bold text-lg mb-3">Record della stagione</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+            ${tile('Punteggio più alto', prest(S.stagione_migliore))}
+            ${tile('Punteggio più basso', prest(S.stagione_peggiore))}
+            ${tile('Partita con più gol', partita(S.partita_piu_gol))}
+            ${tile('Vittoria più larga', partita(S.vittoria_piu_larga))}
+            ${tile('La beffa', partita(S.beffa), 'più fantapunti dell\'avversario, ma niente vittoria')}
+        </div>
+        <h3 class="font-bold text-lg mb-3">Serie in corso (Campionato)</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+            ${tile('Vittorie consecutive', serie(S.serie_vittorie, 'vittorie'))}
+            ${tile('Imbattuta', serie(S.serie_imbattuta, 'risultati utili'))}
+            ${tile('Sconfitte consecutive', serie(S.serie_sconfitte, 'sconfitte'))}
+        </div>
+        <h3 class="font-bold text-lg mb-1">Classifica della fortuna</h3>
+        <p class="text-sm text-muted mb-3">I punti "meritati" sono quelli che i tuoi gol avrebbero fatto, in media, contro <b>tutte</b> le altre squadre della stessa giornata: nel fantacalcio l'avversario non dipende da te. Fortuna = punti sul campo − punti meritati (penalità escluse).</p>
+        <div class="surface rounded-2xl border border-theme overflow-hidden">
+            <table class="w-full text-sm border-collapse">
+                <thead class="border-b border-theme bg-black/10 text-xs uppercase text-muted"><tr>
+                    <th class="py-2 px-2 hidden sm:table-cell">#</th><th class="py-2 px-2 text-left">Squadra</th><th class="py-2 px-1 sm:px-2" title="Punti sul campo">Pt</th><th class="py-2 px-1 sm:px-2">Merit<span class="hidden sm:inline">ati</span></th><th class="py-2 px-1 sm:px-2">Fort<span class="hidden sm:inline">una</span></th>
+                    <th class="py-2 px-2 hidden sm:table-cell">Media fp</th><th class="py-2 px-2 hidden md:table-cell">Ultime 5</th>
+                </tr></thead><tbody>${righe}</tbody>
+            </table>
+        </div>`;
+}
+
+// --- Pagina squadra
+function renderSquadra(container) {
+    const nome = State.squadraSel, D = State.data;
+    const q = D.squadre.find(x => x.nome === nome);
+    if(!q) { container.innerHTML = '<div class="p-8 text-center text-muted">Squadra non trovata.</div>'; return; }
+    const sq = n => D.squadre.find(x => x.nome === n) || { nome: n };
+    let posCamp = null;
+    try { posCamp = D.competizioni.Campionato.fasi[0].classifica.find(r => r.squadra.nome === nome); } catch(e) {}
+    const elo = D.elo?.classifica?.find(r => r.squadra.nome === nome);
+    const eloPos = D.elo?.classifica?.findIndex(r => r.squadra.nome === nome) + 1;
+    const forza = D.forza?.[nome];
+    const mie = (D.partite || []).filter(p => p.casa === nome || p.trasf === nome);
+    const giocate = mie.filter(p => p.gol), future = mie.filter(p => !p.gol).slice(0, 5);
+    const S = D.statistiche;
+    const tile = (t, v, n = '') => `<div class="surface rounded-2xl border border-theme p-4"><div class="text-xs text-muted font-semibold uppercase tracking-wider mb-1">${t}</div><div class="text-xl font-black">${v}</div>${n ? `<div class="text-xs text-muted mt-1">${n}</div>` : ''}</div>`;
+    const esito = p => { const io = p.casa === nome ? 0 : 1, a = p.gol[io], b = p.gol[1 - io]; return a > b ? 'V' : a < b ? 'P' : 'N'; };
+    const coloreEsito = e => e === 'V' ? '#22c55e' : e === 'N' ? '#9ca3af' : '#ef4444';
+    const probProssima = p => {
+        const pp = D.prossima_giornata?.partite?.find(x => x.casa.nome === p.casa && x.trasferta.nome === p.trasf && x.fase === p.f);
+        if(!pp?.probabilita) return '';
+        const pr = pp.probabilita, io = p.casa === nome;
+        const v = io ? pr['1'] : pr['2'], x = pr['X'], s = io ? pr['2'] : pr['1'];
+        return `<span class="text-xs text-muted">vittoria ${Math.round(v * 100)}% · pari ${Math.round(x * 100)}% · sconfitta ${Math.round(s * 100)}%</span>`;
+    };
+    const ops = (D.mercato?.operazioni || []).filter(o => o.da_squadra === nome || o.a_squadra === nome);
+    const titoli = (D.albo || []).flatMap(a => ['Campionato', 'Champions', 'Coppa'].filter(c => a[c] && q.allenatori.some(al => a[c].split(' e ').includes(al))).map(c => `${c} ${a.stagione}`));
+    container.innerHTML = `
+        <button id="torna" class="text-sm text-muted hover:text-main mb-4">← Indietro</button>
+        <div class="surface rounded-2xl border border-theme p-5 mb-6 flex items-center gap-4" style="border-left: 6px solid ${q.colore || 'var(--accent)'}">
+            ${renderStemma(q, 'w-16 h-16')}
+            <div class="min-w-0">
+                <div class="text-xl sm:text-2xl font-black break-words leading-tight">${esc(nome)}</div>
+                <div class="text-sm text-muted">Allenatore: <b class="text-main">${q.allenatori.map(esc).join(', ')}</b></div>
+                ${titoli.length ? `<div class="text-xs mt-1">🏆 ${titoli.map(esc).join(' · ')}</div>` : ''}
+            </div>
+        </div>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            ${tile('Campionato', posCamp ? `${posCamp.pos}ª · ${posCamp.pt} pt` : '–', posCamp ? `${posCamp.v}V ${posCamp.n}N ${posCamp.p}P` : '')}
+            ${tile('Rating Elo', elo ? `${elo.rating.toFixed(0)}` : '–', elo ? `${eloPos}° · fascia ${elo.fascia}` : '')}
+            ${tile('Forza stimata', forza ? `${forza.media > 0 ? '+' : ''}${fmtNum(forza.media)} fp` : '–', forza ? `${Math.round(forza.prob_sopra_media * 100)}% di essere sopra la media` : '')}
+            ${tile('Media fantapunti', S?.media_fp?.[nome] ? fmtNum(S.media_fp[nome], 2) : '–', S ? `media della lega ${fmtNum(S.media_lega, 2)}` : '')}
+        </div>
+        <div class="surface rounded-2xl border border-theme p-4 mb-6 h-72 flex flex-col">
+            <h3 class="font-bold mb-2">Fantapunti giornata per giornata</h3>
+            <div class="flex-1 relative"><canvas id="grafico-squadra"></canvas></div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div>
+                <h3 class="font-bold text-lg mb-3">Prossime partite</h3>
+                <div class="surface rounded-2xl border border-theme divide-y divide-[var(--border)]">${future.length ? future.map(p => {
+                    const avv = p.casa === nome ? p.trasf : p.casa;
+                    return `<div class="p-3 flex items-center gap-3">${renderStemma(sq(avv), 'w-7 h-7')}<div class="min-w-0 flex-1"><div class="text-sm font-semibold truncate">${p.casa === nome ? 'vs' : '@'} <span data-squadra="${esc(avv)}">${esc(avv)}</span></div><div class="text-xs text-muted">${gLega(p.g)}ª giornata · ${p.c === 'Campionato' ? 'Campionato' : esc(p.f)}</div>${probProssima(p)}</div></div>`;
+                }).join('') : '<div class="p-4 text-sm text-muted">Nessuna partita in programma.</div>'}</div>
+            </div>
+            <div>
+                <h3 class="font-bold text-lg mb-3">Risultati</h3>
+                <div class="surface rounded-2xl border border-theme divide-y divide-[var(--border)]">${giocate.length ? giocate.slice().reverse().map(p => {
+                    const io = p.casa === nome ? 0 : 1, avv = io ? p.casa : p.trasf, e = esito(p);
+                    return `<div class="p-3 flex items-center gap-3"><span class="w-6 h-6 rounded-full text-[11px] font-black flex items-center justify-center text-white flex-shrink-0" style="background:${coloreEsito(e)}">${e}</span><div class="min-w-0 flex-1"><div class="text-sm font-semibold truncate">${io ? '@' : 'vs'} <span data-squadra="${esc(avv)}">${esc(avv)}</span> <b class="font-mono">${p.gol[io]}-${p.gol[1 - io]}</b></div><div class="text-xs text-muted">${gLega(p.g)}ª · ${p.c === 'Campionato' ? 'Campionato' : esc(p.f)} · ${fmtNum(p.fp[io])} fp</div></div></div>`;
+                }).join('') : '<div class="p-4 text-sm text-muted">Nessuna partita giocata.</div>'}</div>
+            </div>
+        </div>
+        ${ops.length ? `<h3 class="font-bold text-lg mt-8 mb-3">Mercato</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${raggruppaOperazioni((D.mercato.operazioni || []).filter(o => ops.some(x => x.id_operazione === o.id_operazione))).map(renderOperazione).join('')}</div>` : ''}`;
+    container.querySelector('#torna').addEventListener('click', () => { State.view = State.vistaPrecedente || 'home'; renderView(); });
+    // grafico: fantapunti della squadra (Campionato) contro la media della lega di ogni giornata
+    const camp = (D.partite || []).filter(p => p.c === 'Campionato' && p.gol);
+    const gg = [...new Set(camp.map(p => p.g))].sort((a, b) => a - b);
+    const mio = gg.map(g => { const p = camp.find(x => x.g === g && (x.casa === nome || x.trasf === nome)); return p ? p.fp[p.casa === nome ? 0 : 1] : null; });
+    const media = gg.map(g => { const v = camp.filter(x => x.g === g).flatMap(x => x.fp); return v.length ? v.reduce((a, b) => a + b, 0) / v.length : null; });
+    const testo = State.theme === 'dark' ? '#9ca3af' : '#6b7280', griglia = State.theme === 'dark' ? '#333633' : '#e5e7eb';
+    if(State.graficoSquadra) State.graficoSquadra.destroy();
+    State.graficoSquadra = new Chart(document.getElementById('grafico-squadra'), {
+        type: 'line',
+        data: { labels: gg.map(g => `${gLega(g)}ª`), datasets: [
+            { label: nome, data: mio, borderColor: q.colore || '#c4ff00', backgroundColor: q.colore || '#c4ff00', borderWidth: 3, tension: 0.3, pointRadius: 4 },
+            { label: 'Media della lega', data: media, borderColor: testo, borderDash: [4, 4], borderWidth: 1.5, pointRadius: 0, tension: 0.3 },
+            { label: 'Soglia 1° gol (66)', data: gg.map(() => 66), borderColor: griglia, borderWidth: 1, pointRadius: 0 }
+        ]},
+        options: { responsive: true, maintainAspectRatio: false, animation: false, plugins: { legend: { position: 'bottom', labels: { color: testo, boxWidth: 10 } } },
+                   scales: { x: { ticks: { color: testo }, grid: { color: griglia } }, y: { ticks: { color: testo }, grid: { color: griglia } } } }
+    });
 }
 
 // --- STREAMING_CHUNK:Bootstrapping... ---

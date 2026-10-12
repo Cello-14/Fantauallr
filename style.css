@@ -89,3 +89,7 @@ body {
 [data-theme="light"] .hover\:bg-white\/5:hover { background-color: rgba(0, 0, 0, 0.03); }
 [data-theme="light"] .bg-white\/40 { background-color: rgba(0, 0, 0, 0.30); }
 [data-theme="light"] .bg-white\/15 { background-color: rgba(0, 0, 0, 0.10); }
+
+/* nomi delle squadre cliccabili: aprono la pagina della squadra */
+[data-squadra] { cursor: pointer; }
+[data-squadra]:hover { text-decoration: underline; }

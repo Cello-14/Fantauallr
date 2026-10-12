@@ -1,0 +1,14 @@
+{
+  "name": "FANTAUALLR 2026-27",
+  "short_name": "FANTAUALLR",
+  "description": "Classifiche, Elo, previsioni e scommesse della lega FANTAUALLR",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#161816",
+  "theme_color": "#161816",
+  "icons": [
+    { "src": "icona-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icona-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
