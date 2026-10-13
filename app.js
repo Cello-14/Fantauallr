@@ -184,7 +184,7 @@ function renderView() {
             break;
         case 'statistiche':
             title.innerText = 'Statistiche';
-            subtitle.innerText = 'Record, serie e classifica della fortuna';
+            subtitle.innerText = 'Record, serie e Culometro';
             renderStatistiche(container);
             break;
         case 'squadra':
@@ -1450,7 +1450,7 @@ function renderCalendario(container) {
     container.querySelector('#cal-succ').addEventListener('click', () => { State.calG = giornate[i + 1]; renderCalendario(container); });
 }
 
-// --- Statistiche: record, serie, classifica della fortuna
+// --- Statistiche: record, serie, Culometro (classifica della fortuna)
 function renderStatistiche(container) {
     const S = State.data.statistiche;
     if(!S) { container.innerHTML = '<div class="p-8 text-center text-muted">Le statistiche compariranno dopo la prima giornata.</div>'; return; }
@@ -1491,8 +1491,8 @@ function renderStatistiche(container) {
             ${tile('Imbattuta', serie(S.serie_imbattuta, 'risultati utili'))}
             ${tile('Sconfitte consecutive', serie(S.serie_sconfitte, 'sconfitte'))}
         </div>
-        <h3 class="font-bold text-lg mb-1">Classifica della fortuna</h3>
-        <p class="text-sm text-muted mb-3">I punti "meritati" sono quelli che i tuoi gol avrebbero fatto, in media, contro <b>tutte</b> le altre squadre della stessa giornata: nel fantacalcio l'avversario non dipende da te. Fortuna = punti sul campo − punti meritati (penalità escluse).</p>
+        <h3 class="font-bold text-lg mb-1">🍀 Culometro</h3>
+        <p class="text-sm text-muted mb-3">Chi sta raccogliendo più punti di quanti ne meriterebbe (in alto) e chi meno (in fondo). I punti "meritati" sono quelli che i tuoi gol avrebbero fatto, in media, contro <b>tutte</b> le altre squadre della stessa giornata: nel fantacalcio l'avversario non dipende da te. Fortuna = punti sul campo − punti meritati (penalità escluse).</p>
         <div class="surface rounded-2xl border border-theme overflow-hidden">
             <table class="w-full text-sm border-collapse">
                 <thead class="border-b border-theme bg-black/10 text-xs uppercase text-muted"><tr>
