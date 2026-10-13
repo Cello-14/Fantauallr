@@ -184,7 +184,7 @@ function renderView() {
             break;
         case 'statistiche':
             title.innerText = 'Statistiche';
-            subtitle.innerText = 'Record, serie e Culometro';
+            subtitle.innerText = 'Record, serie, Culometro e Classifica Meritocratica';
             renderStatistiche(container);
             break;
         case 'squadra':
@@ -1462,16 +1462,32 @@ function renderStatistiche(container) {
     const lato = x => x ? `<div class="flex items-center gap-2">${renderStemma(sq(x.squadra), 'w-8 h-8')}<div class="min-w-0"><div class="font-bold truncate" data-squadra="${esc(x.squadra)}">${esc(x.squadra)}</div><div class="text-sm"><b class="font-mono">${fmtNum(x.fp)}</b> fp · ${x.esito === 'V' ? 'vittoria' : x.esito === 'N' ? 'pareggio' : 'sconfitta'} <b class="font-mono">${x.gol}-${x.gol_avv}</b></div><div class="text-xs text-muted">contro <span data-squadra="${esc(x.avversario)}">${esc(x.avversario)}</span> (${fmtNum(x.fp_avv)} fp) · ${gLega(x.giornata)}ª giornata${x.competizione !== 'Campionato' ? ' · ' + esc(x.fase) : ''}</div></div></div>` : '<span class="text-muted text-sm">–</span>';
     const serie = (x, cosa) => x ? `<div class="flex items-center gap-2">${renderStemma(sq(x[0]), 'w-8 h-8')}<div><div class="font-bold" data-squadra="${esc(x[0])}">${esc(x[0])}</div><div class="text-sm">${x[1]} ${cosa} di fila</div></div></div>` : '<span class="text-muted text-sm">nessuna serie in corso</span>';
     const pallino = e => `<span class="inline-block w-4 h-4 rounded-full text-[9px] font-black leading-4 text-center text-white" style="background:${e === 'V' ? '#22c55e' : e === 'N' ? '#9ca3af' : '#ef4444'}">${e}</span>`;
+    const nomeSq = r => `<td class="py-2 px-2"><div class="flex items-center gap-2 min-w-0">${renderStemma(sq(r.squadra), 'w-6 h-6')}<span class="truncate max-w-[110px] sm:max-w-none font-semibold" data-squadra="${esc(r.squadra)}">${esc(r.squadra)}</span></div></td>`;
+    const rubati = v => `<td class="py-2 px-1 sm:px-2 text-center font-mono font-bold ${v > 0 ? 'text-accent' : v < 0 ? 'text-danger' : ''}">${v > 0 ? '+' : ''}${fmtNum(v)}</td>`;
     const righe = S.fortuna.map((r, i) => `
         <tr class="border-b border-theme">
             <td class="py-2 px-2 text-center text-muted hidden sm:table-cell">${i + 1}</td>
-            <td class="py-2 px-2"><div class="flex items-center gap-2 min-w-0">${renderStemma(sq(r.squadra), 'w-6 h-6')}<span class="truncate max-w-[110px] sm:max-w-none font-semibold" data-squadra="${esc(r.squadra)}">${esc(r.squadra)}</span></div></td>
+            ${nomeSq(r)}${rubati(r.fortuna)}
             <td class="py-2 px-1 sm:px-2 text-center font-bold">${fmtNum(r.reali, 0)}</td>
             <td class="py-2 px-1 sm:px-2 text-center font-mono">${fmtNum(r.meritati)}</td>
-            <td class="py-2 px-1 sm:px-2 text-center font-mono font-bold ${r.fortuna > 0 ? 'text-accent' : r.fortuna < 0 ? 'text-danger' : ''}">${r.fortuna > 0 ? '+' : ''}${fmtNum(r.fortuna)}</td>
             <td class="py-2 px-2 text-center hidden sm:table-cell font-mono">${fmtNum(S.media_fp[r.squadra], 2)}</td>
             <td class="py-2 px-2 hidden md:table-cell"><div class="flex gap-1 justify-center">${(S.forma[r.squadra] || []).map(pallino).join('')}</div></td>
         </tr>`).join('');
+    // classifica meritocratica: per punti meritati; accanto la posizione vera in Campionato e lo scarto
+    const posVera = {};
+    try { State.data.competizioni.Campionato.fasi[0].classifica.forEach(r => posVera[r.squadra.nome] = r.pos); } catch(e) {}
+    const merito = [...S.fortuna].sort((a, b) => b.meritati - a.meritati);
+    const righeMerito = merito.map((r, i) => {
+        const pv = posVera[r.squadra], d = pv ? (i + 1) - pv : null;
+        return `
+        <tr class="border-b border-theme">
+            <td class="py-2 px-2 text-center text-muted">${i + 1}</td>
+            ${nomeSq(r)}
+            <td class="py-2 px-1 sm:px-2 text-center font-mono font-bold">${fmtNum(r.meritati)}</td>
+            <td class="py-2 px-1 sm:px-2 text-center">${fmtNum(r.reali, 0)}</td>
+            <td class="py-2 px-1 sm:px-2 text-center whitespace-nowrap">${pv ? pv + 'ª' : '–'}${d ? ` <span class="text-xs font-bold ${d > 0 ? 'text-accent' : 'text-danger'}">${d > 0 ? '▲' : '▼'}${Math.abs(d)}</span>` : ''}</td>
+        </tr>`;
+    }).join('');
     container.innerHTML = `
         <h3 class="font-bold text-lg mb-3">Ultima giornata (${gLega(S.giornata)}ª)</h3>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
@@ -1495,13 +1511,22 @@ function renderStatistiche(container) {
             ${tile('Sconfitte consecutive', serie(S.serie_sconfitte, 'sconfitte'))}
         </div>
         <h3 class="font-bold text-lg mb-1">🍀 Culometro</h3>
-        <p class="text-sm text-muted mb-3">Chi sta raccogliendo più punti di quanti ne meriterebbe (in alto) e chi meno (in fondo). I punti "meritati" sono quelli che i tuoi gol avrebbero fatto, in media, contro <b>tutte</b> le altre squadre della stessa giornata: nel fantacalcio l'avversario non dipende da te. Fortuna = punti sul campo − punti meritati (penalità escluse).</p>
+        <p class="text-sm text-muted mb-3">Chi sta raccogliendo più punti di quanti ne meriterebbe (in alto) e chi meno (in fondo). I punti "meritati" sono quelli che i tuoi gol avrebbero fatto, in media, contro <b>tutte</b> le altre squadre della stessa giornata: nel fantacalcio l'avversario non dipende da te. Punti rubati = punti sul campo − punti meritati (penalità escluse).</p>
         <div class="surface rounded-2xl border border-theme overflow-hidden">
             <table class="w-full text-sm border-collapse">
                 <thead class="border-b border-theme bg-black/10 text-xs uppercase text-muted"><tr>
-                    <th class="py-2 px-2 hidden sm:table-cell">#</th><th class="py-2 px-2 text-left">Squadra</th><th class="py-2 px-1 sm:px-2" title="Punti sul campo">Pt</th><th class="py-2 px-1 sm:px-2">Merit<span class="hidden sm:inline">ati</span></th><th class="py-2 px-1 sm:px-2">Fort<span class="hidden sm:inline">una</span></th>
+                    <th class="py-2 px-2 hidden sm:table-cell">#</th><th class="py-2 px-2 text-left">Squadra</th><th class="py-2 px-1 sm:px-2 text-accent leading-tight">Punti rubati</th><th class="py-2 px-1 sm:px-2" title="Punti sul campo">Pt</th><th class="py-2 px-1 sm:px-2">Merit<span class="hidden sm:inline">ati</span></th>
                     <th class="py-2 px-2 hidden sm:table-cell">Media fp</th><th class="py-2 px-2 hidden md:table-cell">Ultime 5</th>
                 </tr></thead><tbody>${righe}</tbody>
+            </table>
+        </div>
+        <h3 class="font-bold text-lg mt-8 mb-1">⚖️ Classifica Meritocratica</h3>
+        <p class="text-sm text-muted mb-3">Il Campionato ordinato per punti meritati, cioè come se ogni giornata avessi giocato contro tutte le altre squadre. La freccia accanto alla posizione vera dice quanto la classifica reale ti premia (▲) o ti penalizza (▼) rispetto a questa.</p>
+        <div class="surface rounded-2xl border border-theme overflow-hidden">
+            <table class="w-full text-sm border-collapse">
+                <thead class="border-b border-theme bg-black/10 text-xs uppercase text-muted"><tr>
+                    <th class="py-2 px-2">#</th><th class="py-2 px-2 text-left">Squadra</th><th class="py-2 px-1 sm:px-2 text-accent">Merit<span class="hidden sm:inline">ati</span></th><th class="py-2 px-1 sm:px-2" title="Punti sul campo">Pt</th><th class="py-2 px-1 sm:px-2 leading-tight">Pos. vera</th>
+                </tr></thead><tbody>${righeMerito}</tbody>
             </table>
         </div>`;
 }
