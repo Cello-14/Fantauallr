@@ -1458,6 +1458,8 @@ function renderStatistiche(container) {
     const tile = (titolo, corpo, nota = '') => `<div class="surface rounded-2xl border border-theme p-4 flex flex-col gap-2"><span class="text-xs text-muted font-semibold uppercase tracking-wider">${titolo}</span>${corpo}${nota ? `<span class="text-xs text-muted">${nota}</span>` : ''}</div>`;
     const prest = r => `<div class="flex items-center gap-2">${renderStemma(sq(r.squadra), 'w-8 h-8')}<div class="min-w-0"><div class="font-bold truncate" data-squadra="${esc(r.squadra)}">${esc(r.squadra)}</div><div class="text-sm"><b class="font-mono">${fmtNum(r.fp)}</b> fp · ${r.gol} gol · ${gLega(r.giornata)}ª giornata</div></div></div>`;
     const partita = p => p ? `<div class="text-sm"><span data-squadra="${esc(p.casa)}" class="font-semibold">${esc(p.casa)}</span> <b class="font-mono">${p.gol[0]}-${p.gol[1]}</b> <span data-squadra="${esc(p.trasferta)}" class="font-semibold">${esc(p.trasferta)}</span></div><div class="text-xs text-muted">${fmtNum(p.fp[0])} – ${fmtNum(p.fp[1])} fp · ${gLega(p.giornata)}ª giornata${p.competizione !== 'Campionato' ? ' · ' + esc(p.fase) : ''}</div>` : '<span class="text-muted text-sm">–</span>';
+    // una prestazione vista da una squadra: fantapunti, risultato e avversario (per la beffa e il colpaccio)
+    const lato = x => x ? `<div class="flex items-center gap-2">${renderStemma(sq(x.squadra), 'w-8 h-8')}<div class="min-w-0"><div class="font-bold truncate" data-squadra="${esc(x.squadra)}">${esc(x.squadra)}</div><div class="text-sm"><b class="font-mono">${fmtNum(x.fp)}</b> fp · ${x.esito === 'V' ? 'vittoria' : x.esito === 'N' ? 'pareggio' : 'sconfitta'} <b class="font-mono">${x.gol}-${x.gol_avv}</b></div><div class="text-xs text-muted">contro <span data-squadra="${esc(x.avversario)}">${esc(x.avversario)}</span> (${fmtNum(x.fp_avv)} fp) · ${gLega(x.giornata)}ª giornata${x.competizione !== 'Campionato' ? ' · ' + esc(x.fase) : ''}</div></div></div>` : '<span class="text-muted text-sm">–</span>';
     const serie = (x, cosa) => x ? `<div class="flex items-center gap-2">${renderStemma(sq(x[0]), 'w-8 h-8')}<div><div class="font-bold" data-squadra="${esc(x[0])}">${esc(x[0])}</div><div class="text-sm">${x[1]} ${cosa} di fila</div></div></div>` : '<span class="text-muted text-sm">nessuna serie in corso</span>';
     const pallino = e => `<span class="inline-block w-4 h-4 rounded-full text-[9px] font-black leading-4 text-center text-white" style="background:${e === 'V' ? '#22c55e' : e === 'N' ? '#9ca3af' : '#ef4444'}">${e}</span>`;
     const righe = S.fortuna.map((r, i) => `
@@ -1483,7 +1485,8 @@ function renderStatistiche(container) {
             ${tile('Punteggio più basso', prest(S.stagione_peggiore))}
             ${tile('Partita con più gol', partita(S.partita_piu_gol))}
             ${tile('Vittoria più larga', partita(S.vittoria_piu_larga))}
-            ${tile('La beffa', partita(S.beffa), 'più fantapunti dell\'avversario, ma niente vittoria')}
+            ${tile('😤 La beffa', lato(S.beffa), 'il punteggio più alto che non è bastato per vincere')}
+            ${tile('🥷 Il colpaccio', lato(S.colpaccio), 'il punteggio più basso che è bastato per vincere')}
         </div>
         <h3 class="font-bold text-lg mb-3">Serie in corso (Campionato)</h3>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
