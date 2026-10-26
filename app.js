@@ -454,12 +454,24 @@ function renderPrevisioni(container) {
             <div class="surface rounded-2xl p-10 text-center flex flex-col items-center justify-center border border-theme">
                 <span class="text-5xl mb-4 opacity-60">⏳</span>
                 <h3 class="text-xl font-bold mb-2">Tutto ancora possibile</h3>
-                <p class="text-muted max-w-md">Ogni squadra può ancora chiudere il Campionato, il girone di Champions e la Coppa Formula 1 in qualsiasi posizione. Ogni tabella con le probabilità comparirà quando, in quella competizione, almeno una posizione sarà diventata matematicamente impossibile per almeno una squadra.</p>
+                <p class="text-muted max-w-md">Ogni squadra può ancora chiudere il Campionato, il girone di Champions e la Coppa Formula 1 in qualsiasi posizione, e nessun risultato della prossima giornata può cambiare le cose. La tabella con le probabilità di una competizione comparirà dalla giornata in cui almeno una posizione potrà diventare matematicamente impossibile per almeno una squadra.</p>
             </div>`;
         return;
     }
-    container.innerHTML = visibili.map(t => tabellaPrevisioni(t)).join('') +
+    container.innerHTML = visibili.map(t => tabellaPrevisioni(t) + avvisoAnticipo(t)).join('') +
         `<p class="text-xs text-muted mt-3">Probabilità (%) da ${V.simulazioni.toLocaleString('it-IT')} stagioni simulate con il modello statistico sui fantapunti. Il punto (·) indica una posizione ormai matematicamente impossibile.${V.scala_f1_provvisoria ? ' Coppa: scala dei punti F1 provvisoria.' : ''}</p>`;
+}
+
+// la tabella è comparsa perché qualche risultato della prossima giornata può rendere impossibile una posizione
+function avvisoAnticipo(t) {
+    const a = (t.anticipo || []);
+    if(!a.length) return '';
+    const posto = n => ([8, 11].includes(n) ? "l'" : 'il ') + n + '° posto';
+    const frase = x => x.tipo === 'peggiore'
+        ? `<b>${esc(x.squadra)}</b> non potrebbe più scendere sotto ${posto(x.posizione)}`
+        : `<b>${esc(x.squadra)}</b> non potrebbe più salire sopra ${posto(x.posizione)}`;
+    const primi = a.slice(0, 4).map(frase).join('; ');
+    return `<div class="surface rounded-xl border border-accent p-3 mt-2 text-sm">🔔 Nessuna posizione è ancora impossibile, ma <b>con alcuni risultati della prossima giornata</b>: ${primi}${a.length > 4 ? ` (e altri ${a.length - 4} casi)` : ''}.</div>`;
 }
 
 function tabellaPrevisioni(t) {
