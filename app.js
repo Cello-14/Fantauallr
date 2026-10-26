@@ -462,16 +462,39 @@ function renderPrevisioni(container) {
         `<p class="text-xs text-muted mt-3">Probabilità (%) da ${V.simulazioni.toLocaleString('it-IT')} stagioni simulate con il modello statistico sui fantapunti. Il punto (·) indica una posizione ormai matematicamente impossibile.${V.scala_f1_provvisoria ? ' Coppa: scala dei punti F1 provvisoria.' : ''}</p>`;
 }
 
-// la tabella è comparsa perché qualche risultato della prossima giornata può rendere impossibile una posizione
+// la tabella è comparsa perché qualche risultato della prossima giornata può rendere impossibile una posizione:
+// per ogni caso, i risultati che servono e cosa comporterebbero
 function avvisoAnticipo(t) {
     const a = (t.anticipo || []);
     if(!a.length) return '';
-    const posto = n => ([8, 11].includes(n) ? "l'" : 'il ') + n + '° posto';
-    const frase = x => x.tipo === 'peggiore'
-        ? `<b>${esc(x.squadra)}</b> non potrebbe più scendere sotto ${posto(x.posizione)}`
-        : `<b>${esc(x.squadra)}</b> non potrebbe più salire sopra ${posto(x.posizione)}`;
-    const primi = a.slice(0, 4).map(frase).join('; ');
-    return `<div class="surface rounded-xl border border-accent p-3 mt-2 text-sm">🔔 Nessuna posizione è ancora impossibile, ma <b>con alcuni risultati della prossima giornata</b>: ${primi}${a.length > 4 ? ` (e altri ${a.length - 4} casi)` : ''}.</div>`;
+    const n = Object.keys(t.posizioni || {}).length;
+    const risultato = r => r.esito === '1' ? `<b>${esc(r.casa)}</b> batte ${esc(r.trasferta)}`
+        : r.esito === '2' ? `<b>${esc(r.trasferta)}</b> vince in casa di ${esc(r.casa)}`
+        : `${esc(r.casa)} – ${esc(r.trasferta)} finisce in <b>pareggio</b>`;
+    const effetto = x => {
+        const k = x.tipo === 'peggiore' ? x.posizione : n - x.posizione + 1;
+        const dove = x.tipo === 'peggiore' ? 'prime' : 'ultime';
+        return `<b>${esc(x.squadra)}</b> sarebbe matematicamente tra le ${dove} ${k} posizioni` +
+            (k === n - 1 ? (x.tipo === 'peggiore' ? ' (non potrebbe più arrivare ultima)' : ' (non potrebbe più arrivare prima)') : '');
+    };
+    // i casi con gli stessi risultati necessari diventano un solo blocco con più conseguenze
+    const gruppi = [];
+    a.forEach(x => {
+        const chiave = (x.risultati || []).map(r => `${r.casa}|${r.trasferta}|${r.esito}`).sort().join(';');
+        const g = gruppi.find(y => y.chiave === chiave);
+        g ? g.casi.push(x) : gruppi.push({ chiave, risultati: x.risultati || [], casi: [x] });
+    });
+    const blocco = g => `
+        <div class="border-t border-theme pt-2 mt-2">
+            <div class="text-muted text-xs mb-1">Se nella prossima giornata:</div>
+            <ul class="list-disc pl-5 space-y-0.5">${g.risultati.map(r => `<li>${risultato(r)}</li>`).join('') || '<li>qualunque risultato</li>'}</ul>
+            ${g.casi.map(x => `<div class="mt-1">→ ${effetto(x)}</div>`).join('')}
+        </div>`;
+    return `<div class="surface rounded-xl border border-accent p-3 mt-2 text-sm">
+        <div>🔔 Nessuna posizione è ancora impossibile, ma:</div>
+        ${gruppi.slice(0, 4).map(blocco).join('')}
+        ${gruppi.length > 4 ? `<div class="text-xs text-muted mt-2">…e altre ${gruppi.length - 4} combinazioni.</div>` : ''}
+    </div>`;
 }
 
 function tabellaPrevisioni(t) {
