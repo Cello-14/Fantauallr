@@ -468,9 +468,18 @@ function avvisoAnticipo(t) {
     const a = (t.anticipo || []);
     if(!a.length) return '';
     const n = Object.keys(t.posizioni || {}).length;
-    const risultato = r => r.esito === '1' ? `<b>${esc(r.casa)}</b> batte ${esc(r.trasferta)}`
-        : r.esito === '2' ? `<b>${esc(r.trasferta)}</b> vince in casa di ${esc(r.casa)}`
-        : `${esc(r.casa)} – ${esc(r.trasferta)} finisce in <b>pareggio</b>`;
+    // esito: 1, X, 2 oppure doppia (1X = la squadra di casa non perde, X2 = quella in trasferta non perde, 12 = niente pareggio)
+    const risultato = r => {
+        const c = esc(r.casa), t = esc(r.trasferta);
+        return ({
+            '1': `<b>${c}</b> batte ${t}`,
+            '2': `<b>${t}</b> vince in casa di ${c}`,
+            'X': `${c} – ${t} finisce in <b>pareggio</b>`,
+            '1X': `<b>${c}</b> non perde contro ${t} <span class="text-muted">(vittoria o pareggio)</span>`,
+            'X2': `<b>${t}</b> non perde in casa di ${c} <span class="text-muted">(vittoria o pareggio)</span>`,
+            '12': `${c} – ${t} <b>non</b> finisce in pareggio <span class="text-muted">(vince una delle due)</span>`,
+        })[r.esito] || `${c} – ${t}`;
+    };
     const effetto = x => {
         const k = x.tipo === 'peggiore' ? x.posizione : n - x.posizione + 1;
         const dove = x.tipo === 'peggiore' ? 'prime' : 'ultime';
