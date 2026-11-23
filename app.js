@@ -139,6 +139,15 @@ function updateHeader() {
     
     const dateStr = State.data.aggiornato ? formatDate(State.data.aggiornato) : 'Sconosciuto';
     document.getElementById('last-updated').innerText = `Aggiornato il ${dateStr}`;
+    // risultati provvisori (in attesa delle pagine ufficiali di Leghe): avviso in cima a ogni sezione
+    const prov = State.data.provvisori || [], box = document.getElementById('avviso-provvisori');
+    if(box) {
+        box.classList.toggle('hidden', !prov.length);
+        if(prov.length) {
+            const gg = [...new Set(prov.map(([g]) => gLega(g)))].join('ª, ') + 'ª';
+            box.innerHTML = `⚠️ <b>Risultati provvisori</b> della ${gg} giornata (${[...new Set(prov.map(([, c]) => c))].join(' e ')}): diventano definitivi con i dati ufficiali di Leghe. Fino ad allora le scommesse di queste partite non vengono pagate.`;
+        }
+    }
 }
 
 // --- STREAMING_CHUNK:Router & Rendering Logic... ---
@@ -1466,7 +1475,7 @@ function renderCalendario(container) {
                 <span class="line-clamp-2 leading-tight ${dim(p.casa)} ${vC ? 'font-bold text-accent' : 'font-semibold'}" data-squadra="${esc(p.casa)}">${esc(p.casa)}</span>${renderStemma(sq(p.casa), 'w-6 h-6 sm:w-7 sm:h-7')}
             </div>
             <div class="w-16 sm:w-24 text-center flex-shrink-0">
-                ${p.gol ? `<div class="font-black text-base sm:text-lg font-mono">${p.gol[0]} - ${p.gol[1]}</div><div class="text-[9px] sm:text-[10px] text-muted whitespace-nowrap">${fmtNum(p.fp[0])}–${fmtNum(p.fp[1])}</div>${p.dts ? `<div class="text-[10px] text-accent">d.t.s. ${esc(p.dts)}</div>` : ''}`
+                ${p.gol ? `<div class="font-black text-base sm:text-lg font-mono">${p.gol[0]} - ${p.gol[1]}</div><div class="text-[9px] sm:text-[10px] text-muted whitespace-nowrap">${fmtNum(p.fp[0])}–${fmtNum(p.fp[1])}</div>${p.dts ? `<div class="text-[10px] text-accent">d.t.s. ${esc(p.dts)}</div>` : ''}${p.prov ? '<div class="text-[10px] text-danger font-semibold">provvisorio</div>' : ''}`
                          : '<div class="text-muted text-sm">vs</div>'}
             </div>
             <div class="flex items-center gap-2 flex-1 min-w-0">
