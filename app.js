@@ -378,7 +378,7 @@ async function renderQuote(container) {
             <span class="text-muted">${puoi ? 'Le quote si muovono con le puntate: vale quella del momento in cui scommetti.' : Bet.sb ? 'Accedi con la tua email per scommettere con crediti virtuali.' : "Le scommesse con crediti virtuali si apriranno con l'accesso via email."}</span>
         </div>
         ${schedina}
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">${Q.partite.map(card).join('')}</div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">${[...Q.partite].sort((a, b) => (a.competizione !== 'Campionato') - (b.competizione !== 'Campionato') || a.fase.localeCompare(b.fase)).map(card).join('')}</div>
         ${mie}
         <p class="text-xs text-muted mt-4">Quote dal modello statistico sui fantapunti${Bet.quoteDb ? ' e dalle puntate dei membri' : ''}, con un margine del banco del ${Math.round(Q.margine * 100)}%. Sotto ogni quota la probabilità stimata dal modello. Si gioca solo con crediti virtuali: 100 per giornata, quelli non spesi si perdono.</p>`;
     collegaAccesso(container);
@@ -1507,13 +1507,14 @@ function renderStatistiche(container) {
     const lato = x => x ? `<div class="flex items-center gap-2">${renderStemma(sq(x.squadra), 'w-8 h-8')}<div class="min-w-0"><div class="font-bold truncate" data-squadra="${esc(x.squadra)}">${esc(x.squadra)}</div><div class="text-sm"><b class="font-mono">${fmtNum(x.fp)}</b> fp · ${x.esito === 'V' ? 'vittoria' : x.esito === 'N' ? 'pareggio' : 'sconfitta'} <b class="font-mono">${x.gol}-${x.gol_avv}</b></div><div class="text-xs text-muted">contro <span data-squadra="${esc(x.avversario)}">${esc(x.avversario)}</span> (${fmtNum(x.fp_avv)} fp) · ${gLega(x.giornata)}ª giornata${x.competizione !== 'Campionato' ? ' · ' + esc(x.fase) : ''}</div></div></div>` : '<span class="text-muted text-sm">–</span>';
     const serie = (x, cosa) => x ? `<div class="flex items-center gap-2">${renderStemma(sq(x[0]), 'w-8 h-8')}<div><div class="font-bold" data-squadra="${esc(x[0])}">${esc(x[0])}</div><div class="text-sm">${x[1]} ${cosa} di fila</div></div></div>` : '<span class="text-muted text-sm">nessuna serie in corso</span>';
     const pallino = e => `<span class="inline-block w-4 h-4 rounded-full text-[9px] font-black leading-4 text-center text-white" style="background:${e === 'V' ? '#22c55e' : e === 'N' ? '#9ca3af' : '#ef4444'}">${e}</span>`;
+    const penBadge = r => r.penalita ? `<span class="bg-danger text-white text-[9px] font-bold px-0.5 rounded ml-0.5 align-middle" title="Penalità: ${fmtNum(r.penalita, 0)} pt">${fmtNum(r.penalita, 0)}</span>` : '';
     const nomeSq = r => `<td class="py-2 px-2"><div class="flex items-center gap-2 min-w-0">${renderStemma(sq(r.squadra), 'w-6 h-6')}<span class="truncate max-w-[110px] sm:max-w-none font-semibold" data-squadra="${esc(r.squadra)}">${esc(r.squadra)}</span></div></td>`;
     const rubati = v => `<td class="py-2 px-1 sm:px-2 text-center font-mono font-bold ${v > 0 ? 'text-accent' : v < 0 ? 'text-danger' : ''}">${v > 0 ? '+' : ''}${fmtNum(v)}</td>`;
     const righe = S.fortuna.map((r, i) => `
         <tr class="border-b border-theme">
             <td class="py-2 px-2 text-center text-muted hidden sm:table-cell">${i + 1}</td>
             ${nomeSq(r)}${rubati(r.fortuna)}
-            <td class="py-2 px-1 sm:px-2 text-center font-bold">${fmtNum(r.reali, 0)}</td>
+            <td class="py-2 px-1 sm:px-2 text-center font-bold whitespace-nowrap">${fmtNum(r.reali, 0)}${penBadge(r)}</td>
             <td class="py-2 px-1 sm:px-2 text-center font-mono">${fmtNum(r.meritati)}</td>
             <td class="py-2 px-2 text-center hidden sm:table-cell font-mono">${fmtNum(S.media_fp[r.squadra], 2)}</td>
             <td class="py-2 px-2 hidden md:table-cell"><div class="flex gap-1 justify-center">${(S.forma[r.squadra] || []).map(pallino).join('')}</div></td>
@@ -1521,14 +1522,15 @@ function renderStatistiche(container) {
     // classifica meritocratica: per punti meritati; accanto la posizione vera in Campionato e lo scarto
     const posVera = {};
     try { State.data.competizioni.Campionato.fasi[0].classifica.forEach(r => posVera[r.squadra.nome] = r.pos); } catch(e) {}
-    const merito = [...S.fortuna].sort((a, b) => b.meritati - a.meritati);
+    const netti = r => r.meritati_netti ?? r.meritati;   // punti meritati con le penalità (come la classifica vera)
+    const merito = [...S.fortuna].sort((a, b) => netti(b) - netti(a));
     const righeMerito = merito.map((r, i) => {
         const pv = posVera[r.squadra], d = pv ? (i + 1) - pv : null;
         return `
         <tr class="border-b border-theme">
             <td class="py-2 px-2 text-center text-muted">${i + 1}</td>
             ${nomeSq(r)}
-            <td class="py-2 px-1 sm:px-2 text-center font-mono font-bold">${fmtNum(r.meritati)}</td>
+            <td class="py-2 px-1 sm:px-2 text-center font-mono font-bold whitespace-nowrap">${fmtNum(netti(r))}${penBadge(r)}</td>
             <td class="py-2 px-1 sm:px-2 text-center">${fmtNum(r.reali, 0)}</td>
             <td class="py-2 px-1 sm:px-2 text-center whitespace-nowrap">${pv ? pv + 'ª' : '–'}${d ? ` <span class="text-xs font-bold ${d > 0 ? 'text-accent' : 'text-danger'}">${d > 0 ? '▲' : '▼'}${Math.abs(d)}</span>` : ''}</td>
         </tr>`;
@@ -1556,7 +1558,7 @@ function renderStatistiche(container) {
             ${tile('Sconfitte consecutive', serie(S.serie_sconfitte, 'sconfitte'))}
         </div>
         <h3 class="font-bold text-lg mb-1">🍀 Culometro</h3>
-        <p class="text-sm text-muted mb-3">Chi sta raccogliendo più punti di quanti ne meriterebbe (in alto) e chi meno (in fondo). I punti "meritati" sono quelli che i tuoi gol avrebbero fatto, in media, contro <b>tutte</b> le altre squadre della stessa giornata: nel fantacalcio l'avversario non dipende da te. Punti rubati = punti sul campo − punti meritati (penalità escluse).</p>
+        <p class="text-sm text-muted mb-3">Chi sta raccogliendo più punti di quanti ne meriterebbe (in alto) e chi meno (in fondo). I punti "meritati" sono quelli che i tuoi gol avrebbero fatto, in media, contro <b>tutte</b> le altre squadre della stessa giornata: nel fantacalcio l'avversario non dipende da te. Punti rubati = punti sul campo − punti meritati: le penalità (in rosso accanto ai punti) contano nei Pt, come in classifica, ma non nei punti rubati, perché non dipendono dalla fortuna.</p>
         <div class="surface rounded-2xl border border-theme overflow-hidden">
             <table class="w-full text-sm border-collapse">
                 <thead class="border-b border-theme bg-black/10 text-xs uppercase text-muted"><tr>
@@ -1566,7 +1568,7 @@ function renderStatistiche(container) {
             </table>
         </div>
         <h3 class="font-bold text-lg mt-8 mb-1">⚖️ Classifica Meritocratica</h3>
-        <p class="text-sm text-muted mb-3">Il Campionato ordinato per punti meritati, cioè come se ogni giornata avessi giocato contro tutte le altre squadre. La freccia accanto alla posizione vera dice quanto la classifica reale ti premia (▲) o ti penalizza (▼) rispetto a questa.</p>
+        <p class="text-sm text-muted mb-3">Il Campionato ordinato per punti meritati, cioè come se ogni giornata avessi giocato contro tutte le altre squadre, con le penalità già sottratte (in rosso). La freccia accanto alla posizione vera dice quanto la classifica reale ti premia (▲) o ti penalizza (▼) rispetto a questa.</p>
         <div class="surface rounded-2xl border border-theme overflow-hidden">
             <table class="w-full text-sm border-collapse">
                 <thead class="border-b border-theme bg-black/10 text-xs uppercase text-muted"><tr>
@@ -1613,7 +1615,7 @@ function renderSquadra(container) {
             </div>
         </div>
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-            ${tile('Campionato', posCamp ? `${posCamp.pos}ª · ${posCamp.pt} pt` : '–', posCamp ? `${posCamp.v}V ${posCamp.n}N ${posCamp.p}P` : '')}
+            ${tile('Campionato', posCamp ? `${posCamp.pos}ª · ${posCamp.pt} pt` : '–', posCamp ? `${posCamp.v}V ${posCamp.n}N ${posCamp.p}P` + (posCamp.pen ? ` · <span class="text-danger font-semibold">penalità ${posCamp.pen} pt</span>` : '') : '')}
             ${tile('Rating Elo', elo ? `${elo.rating.toFixed(0)}` : '–', elo ? `${eloPos}° · fascia ${elo.fascia}` : '')}
             ${tile('Forza stimata', forza ? `${forza.media > 0 ? '+' : ''}${fmtNum(forza.media)} fp` : '–', forza ? `${Math.round(forza.prob_sopra_media * 100)}% di essere sopra la media` : '')}
             ${tile('Media fantapunti', S?.media_fp?.[nome] ? fmtNum(S.media_fp[nome], 2) : '–', S ? `media della lega ${fmtNum(S.media_lega, 2)}` : '')}

@@ -1,6 +1,6 @@
 {
  "versione_contratto": 1,
- "aggiornato": "2026-11-23T12:49",
+ "aggiornato": "2026-11-23T14:27",
  "lega": {
   "nome": "FANTAUALLR 2026-27",
   "stagione": "2026-27",
@@ -7102,73 +7102,109 @@
    {
     "squadra": "Gin Tony FC",
     "reali": 16.0,
+    "sul_campo": 16.0,
+    "penalita": 0.0,
     "meritati": 11.27,
+    "meritati_netti": 11.27,
     "fortuna": 4.73
    },
    {
     "squadra": "Cardiff",
     "reali": 18.0,
+    "sul_campo": 18.0,
+    "penalita": 0.0,
     "meritati": 13.73,
+    "meritati_netti": 13.73,
     "fortuna": 4.27
    },
    {
     "squadra": "SOMMO FC",
     "reali": 20.0,
+    "sul_campo": 20.0,
+    "penalita": 0.0,
     "meritati": 15.73,
+    "meritati_netti": 15.73,
     "fortuna": 4.27
    },
    {
     "squadra": "Sassuoli",
-    "reali": 9.0,
+    "reali": 8.0,
+    "sul_campo": 9.0,
+    "penalita": -1.0,
     "meritati": 6.45,
+    "meritati_netti": 5.45,
     "fortuna": 2.55
    },
    {
     "squadra": "BARÇELONARDO",
     "reali": 12.0,
+    "sul_campo": 12.0,
+    "penalita": 0.0,
     "meritati": 10.73,
+    "meritati_netti": 10.73,
     "fortuna": 1.27
    },
    {
     "squadra": "Milan & Shiro",
-    "reali": 12.0,
+    "reali": 11.0,
+    "sul_campo": 12.0,
+    "penalita": -1.0,
     "meritati": 12.36,
+    "meritati_netti": 11.36,
     "fortuna": -0.36
    },
    {
     "squadra": "Fresencvaros",
     "reali": 11.0,
+    "sul_campo": 11.0,
+    "penalita": 0.0,
     "meritati": 12.73,
+    "meritati_netti": 12.73,
     "fortuna": -1.73
    },
    {
     "squadra": "Friskoni FC",
     "reali": 5.0,
+    "sul_campo": 5.0,
+    "penalita": 0.0,
     "meritati": 6.91,
+    "meritati_netti": 6.91,
     "fortuna": -1.91
    },
    {
     "squadra": "Standard HEGI",
     "reali": 15.0,
+    "sul_campo": 15.0,
+    "penalita": 0.0,
     "meritati": 17.36,
+    "meritati_netti": 17.36,
     "fortuna": -2.36
    },
    {
     "squadra": "Real Sandro CF",
     "reali": 17.0,
+    "sul_campo": 17.0,
+    "penalita": 0.0,
     "meritati": 19.36,
+    "meritati_netti": 19.36,
     "fortuna": -2.36
    },
    {
     "squadra": "Union Sg",
     "reali": 10.0,
+    "sul_campo": 10.0,
+    "penalita": 0.0,
     "meritati": 14.27,
+    "meritati_netti": 14.27,
     "fortuna": -4.27
    },
    {
     "squadra": "FC Canzanella",
-    "reali": 6.0,
+    "reali": 5.0,
+    "sul_campo": 6.0,
+    "penalita": -1.0,
     "meritati": 10.36,
+    "meritati_netti": 9.36,
     "fortuna": -4.36
    }
   ],
