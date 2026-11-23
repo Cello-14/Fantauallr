@@ -477,6 +477,7 @@ function avvisoAnticipo(t) {
     const a = (t.anticipo || []);
     if(!a.length) return '';
     const n = Object.keys(t.posizioni || {}).length;
+    const giaEsclusa = Object.values(t.possibili || {}).some(v => v.length < n);
     // esito: 1, X, 2 oppure doppia (1X = la squadra di casa non perde, X2 = quella in trasferta non perde, 12 = niente pareggio)
     const risultato = r => {
         const c = esc(r.casa), t = esc(r.trasferta);
@@ -489,11 +490,19 @@ function avvisoAnticipo(t) {
             '12': `${c} – ${t} <b>non</b> finisce in pareggio <span class="text-muted">(vince una delle due)</span>`,
         })[r.esito] || `${c} – ${t}`;
     };
+    // conseguenza in parole: prima/ultima, qualificata/eliminata (se si sa quante passano), oppure tra le prime/ultime N
+    const q = t.qualificate, fase = t.extra?.etichetta || 'fase successiva';
     const effetto = x => {
-        const k = x.tipo === 'peggiore' ? x.posizione : n - x.posizione + 1;
-        const dove = x.tipo === 'peggiore' ? 'prime' : 'ultime';
-        return `<b>${esc(x.squadra)}</b> sarebbe matematicamente tra le ${dove} ${k} posizioni` +
-            (k === n - 1 ? (x.tipo === 'peggiore' ? ' (non potrebbe più arrivare ultima)' : ' (non potrebbe più arrivare prima)') : '');
+        const sq = `<b>${esc(x.squadra)}</b>`;
+        if(x.tipo === 'peggiore') {
+            if(x.posizione === 1) return `${sq} sarebbe matematicamente <b>prima</b>`;
+            if(q && x.posizione <= q) return `${sq} sarebbe matematicamente <b>qualificata</b> (${fase}): non scenderebbe sotto il ${x.posizione}° posto`;
+            return `${sq} sarebbe matematicamente tra le prime ${x.posizione} posizioni` + (x.posizione === n - 1 ? ' (non potrebbe più arrivare ultima)' : '');
+        }
+        if(x.posizione === n) return `${sq} sarebbe matematicamente <b>ultima</b>`;
+        if(q && x.posizione > q) return `${sq} sarebbe matematicamente <b>eliminata</b>: non potrebbe più arrivare tra le prime ${q}`;
+        const k = n - x.posizione + 1;
+        return `${sq} sarebbe matematicamente tra le ultime ${k} posizioni` + (k === n - 1 ? ' (non potrebbe più arrivare prima)' : '');
     };
     // i casi con gli stessi risultati necessari diventano un solo blocco con più conseguenze
     const gruppi = [];
@@ -509,7 +518,7 @@ function avvisoAnticipo(t) {
             ${g.casi.map(x => `<div class="mt-1">→ ${effetto(x)}</div>`).join('')}
         </div>`;
     return `<div class="surface rounded-xl border border-accent p-3 mt-2 text-sm">
-        <div>🔔 Nessuna posizione è ancora impossibile, ma:</div>
+        <div>🔔 ${giaEsclusa ? 'Con alcuni risultati della prossima giornata:' : 'Nessuna posizione è ancora impossibile, ma:'}</div>
         ${gruppi.slice(0, 4).map(blocco).join('')}
         ${gruppi.length > 4 ? `<div class="text-xs text-muted mt-2">…e altre ${gruppi.length - 4} combinazioni.</div>` : ''}
     </div>`;
