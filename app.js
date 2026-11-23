@@ -459,7 +459,7 @@ function renderPrevisioni(container) {
         return;
     }
     container.innerHTML = visibili.map(t => tabellaPrevisioni(t) + avvisoAnticipo(t)).join('') +
-        `<p class="text-xs text-muted mt-3">Probabilità (%) da ${V.simulazioni.toLocaleString('it-IT')} stagioni simulate con il modello statistico sui fantapunti. Il punto (·) indica una posizione ormai matematicamente impossibile.${V.scala_f1_provvisoria ? ' Coppa: scala dei punti F1 provvisoria.' : ''}</p>`;
+        `<p class="text-xs text-muted mt-3">Probabilità (%) da ${V.simulazioni.toLocaleString('it-IT')} stagioni simulate con il modello statistico sui fantapunti. La cella barrata (✕) indica una posizione ormai matematicamente impossibile.${V.scala_f1_provvisoria ? ' Coppa: scala dei punti F1 provvisoria.' : ''}</p>`;
 }
 
 // la tabella è comparsa perché qualche risultato della prossima giornata può rendere impossibile una posizione:
@@ -523,7 +523,8 @@ function tabellaPrevisioni(t) {
     }
     const scheda = nome => State.data.squadre.find(q => q.nome === nome) || { nome };
     const cella = (p, possibile) => {
-        if(!possibile) return '<td class="text-center text-muted">·</td>';
+        // posizione matematicamente impossibile: cella grigia barrata con ✕, ben visibile in chiaro e in scuro
+        if(!possibile) return '<td class="text-center font-bold text-danger" title="Posizione matematicamente impossibile" style="background: repeating-linear-gradient(135deg, rgba(128,128,128,0.28) 0 4px, rgba(128,128,128,0.08) 4px 8px)">✕</td>';
         const v = p * 100;
         const txt = v === 0 ? '0' : v < 1 ? '<1' : v.toFixed(0);
         const alfa = Math.min(0.85, 0.08 + p * 1.6);
