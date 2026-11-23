@@ -1615,7 +1615,7 @@ function renderSquadra(container) {
             </div>
         </div>
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-            ${tile('Campionato', posCamp ? `${posCamp.pos}ª · ${posCamp.pt} pt` : '–', posCamp ? `${posCamp.v}V ${posCamp.n}N ${posCamp.p}P` + (posCamp.pen ? ` · <span class="text-danger font-semibold">penalità ${posCamp.pen} pt</span>` : '') : '')}
+            ${tile('Campionato', posCamp ? `${posCamp.pos}ª · ${posCamp.pt} pt` : '–', posCamp ? `${posCamp.v}V ${posCamp.n}N ${posCamp.p}P` + (posCamp.pen ? ` · <span class="text-danger font-semibold whitespace-nowrap">penalità ${posCamp.pen} pt</span>` : '') : '')}
             ${tile('Rating Elo', elo ? `${elo.rating.toFixed(0)}` : '–', elo ? `${eloPos}° · fascia ${elo.fascia}` : '')}
             ${tile('Forza stimata', forza ? `${forza.media > 0 ? '+' : ''}${fmtNum(forza.media)} fp` : '–', forza ? `${Math.round(forza.prob_sopra_media * 100)}% di essere sopra la media` : '')}
             ${tile('Media fantapunti', S?.media_fp?.[nome] ? fmtNum(S.media_fp[nome], 2) : '–', S ? `media della lega ${fmtNum(S.media_lega, 2)}` : '')}
