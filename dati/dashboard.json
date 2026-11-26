@@ -1,6 +1,6 @@
 {
  "versione_contratto": 1,
- "aggiornato": "2026-11-25T16:36",
+ "aggiornato": "2026-11-26T11:45",
  "provvisori": [],
  "lega": {
   "nome": "FANTAUALLR 2026-27",
@@ -374,8 +374,8 @@
  },
  "prossima_giornata": {
   "giornata": 13,
-  "scadenza_formazioni": "2026-11-29",
-  "scadenza_provvisoria": true,
+  "scadenza_formazioni": "2026-11-27T20:45",
+  "scadenza_provvisoria": false,
   "partite": [
    {
     "competizione": "Campionato",
@@ -7561,7 +7561,7 @@
    },
    "modello vs elo_20": {
     "diff_rps": 0.002,
-    "errore_std": 0.0066,
+    "errore_std": 0.0067,
     "significativo": false
    },
    "elo K=10 vs K=20": {
@@ -7588,39 +7588,39 @@
   "calibrazione_modello": [
    {
     "fascia": "10-20%",
-    "n": 4,
-    "prevista": 0.197,
+    "n": 5,
+    "prevista": 0.198,
     "osservata": 0.0
    },
    {
     "fascia": "20-30%",
     "n": 79,
-    "prevista": 0.236,
+    "prevista": 0.237,
     "osservata": 0.228
    },
    {
     "fascia": "30-40%",
     "n": 76,
-    "prevista": 0.356,
-    "osservata": 0.355
+    "prevista": 0.357,
+    "osservata": 0.368
    },
    {
     "fascia": "40-50%",
-    "n": 52,
-    "prevista": 0.439,
-    "osservata": 0.481
+    "n": 51,
+    "prevista": 0.44,
+    "osservata": 0.471
    },
    {
     "fascia": "50-60%",
     "n": 5,
-    "prevista": 0.537,
+    "prevista": 0.538,
     "osservata": 0.4
    }
   ]
  },
  "quote": {
   "giornata": 13,
-  "chiusura": "2026-11-29",
+  "chiusura": "2026-11-27T20:45",
   "margine": 0.05,
   "partite": [
    {

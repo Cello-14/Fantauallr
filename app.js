@@ -528,11 +528,12 @@ function tabellaPrevisioni(t) {
     const nomi = Object.keys(t.posizioni);
     const N = t.posizioni[nomi[0]].length;
     // ordine e punti: classifica attuale della fase se c'è, altrimenti posizione media prevista
-    let ordine = null; const punti = {};
+    let ordine = null; const punti = {}, giocate = {};
+    const conG = (t.titolo || '').startsWith('Champions');   // nei gironi con riposo le partite giocate differiscono
     try {
         for(const c of Object.values(State.data.competizioni)) {
             const f = c.fasi.find(x => x.nome === t.fase);
-            if(f?.classifica) { ordine = f.classifica.map(r => r.squadra.nome).filter(n => nomi.includes(n)); f.classifica.forEach(r => punti[r.squadra.nome] = r.pt ?? r.pf1 ?? ''); }
+            if(f?.classifica) { ordine = f.classifica.map(r => r.squadra.nome).filter(n => nomi.includes(n)); f.classifica.forEach(r => { punti[r.squadra.nome] = r.pt ?? r.pf1 ?? ''; giocate[r.squadra.nome] = r.g ?? ''; }); }
         }
     } catch(e) {}
     if(!ordine || ordine.length !== nomi.length) {
@@ -555,7 +556,7 @@ function tabellaPrevisioni(t) {
         return `<tr class="border-b border-theme">
             <td class="py-2 px-1 text-center text-muted hidden sm:table-cell">${i + 1}</td>
             <td class="py-2 px-0.5 sm:px-1"><div class="flex items-center gap-2 min-w-0" data-squadra="${esc(nome)}" title="${esc(nome)}">${renderStemma(scheda(nome), 'w-5 h-5 sm:w-6 sm:h-6')}<span class="hidden sm:inline truncate max-w-[130px] font-semibold">${nome}</span></div></td>
-            <td class="py-2 px-0.5 sm:px-1 text-center font-bold">${punti[nome] ?? ''}</td>
+            <td class="py-2 px-0.5 sm:px-1 text-center font-bold">${punti[nome] ?? ''}</td>${conG ? `<td class="py-2 px-0.5 sm:px-1 text-center text-muted">${giocate[nome] ?? ''}</td>` : ''}
             ${t.posizioni[nome].map((p, k) => cella(p, poss.includes(k + 1))).join('')}${ex}
         </tr>`;
     }).join('');
@@ -564,7 +565,7 @@ function tabellaPrevisioni(t) {
         <div class="surface rounded-2xl border border-theme overflow-hidden">
             <table class="w-full text-[10px] sm:text-sm border-collapse">
                 <thead class="border-b border-theme bg-black/10 text-muted uppercase">
-                    <tr><th class="py-2 px-1 hidden sm:table-cell">#</th><th class="py-2 px-0.5 sm:px-1 text-left"><span class="hidden sm:inline">Squadra</span></th><th class="py-2 px-0.5 sm:px-1">Pt</th>
+                    <tr><th class="py-2 px-1 hidden sm:table-cell">#</th><th class="py-2 px-0.5 sm:px-1 text-left"><span class="hidden sm:inline">Squadra</span></th><th class="py-2 px-0.5 sm:px-1">Pt</th>${conG ? '<th class="py-2 px-0.5 sm:px-1" title="Partite giocate">G</th>' : ''}
                     ${Array.from({length: N}, (_, k) => `<th class="py-2 px-0 sm:px-1">${k + 1}<span class="hidden sm:inline">ª</span></th>`).join('')}${extra}</tr>
                 </thead>
                 <tbody>${righe}</tbody>
